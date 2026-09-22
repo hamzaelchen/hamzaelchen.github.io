@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hamza El Alami — AI Engineer</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACKklEQVR4nO2bPY7iQBCFX/sHsIhABA4sERDAOYi5ALlvwAm4AAERIkKcgpwUcQBSJAJOgHF3e6JdrSYYF/aOX+D+JLIS9fypaKO2Ww2HwwItxmMHYOMEsAOwab2AQFpYFPXXSqWUuLapfmIBYRh+dAHfMcbAWiuuD4IAnld9QK21MMaU95F8URRFOB6PSJKkUhilFLbbLQ6HA3q9Xml9lmVYr9dYLBaVJkEphfP5jNVqhSD4+RJFE+B5HmazWWUBADAajcQTUBQFkiTBdDqt3O9+v4vkiWcsz/PKYQB8NP4AROP7E1prUV3r7wJOADsAGyeAHYCNE8AOwMYJYAdg4wSwA7BxAtgB2DgB7ABsxFtiddFaI8sy+L5fWptlWe39ACmNCZhMJpjP56Itsff7jTiOG0jVoIA0TZGmaVPtxLR+DXAC2AHYOAHsAGxaL6Cx2+Dj8cDz+RQ977PWYjweYzAY/HquxgTsdjtsNhtEUVRa+3q9sN/vsVwufz1XYwKstdBai/7iGmP+y+NxCY0JUEr9/Uhqm6L1i6ATwA7AxglgB2DjBLADsHEC2AHYOAHsAGycAHYANk4AOwAbJ4AdgI1YQLfbrdWo7L3974RhWKtfp9MR1ZWmUkrBGIPT6YQ4jisfYLjdbmIJvu/jcrmg3+9X7ne9XkU70Ep6cDLP81oblb7vi94N+IPW+uMzBv/ieZ5I+Ednhprk059MVdwiyA7AxglgB2DTegFfcwqWhCZJt9gAAAAASUVORK5CYII=">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --obsidian: #09090a; --card: #121214; --hairline: rgba(255,255,255,.09); --hairline-strong: rgba(255,255,255,.22);
+    --text: #f3f1ea; --text-dim: #9a9893; --text-mute: #7d7b76; --muted-serif: #a9a69b; --accent: #ece7da;
+    --ms-blue-20: #6e6e78; --ms-blue-40: #4c4c53; --ms-blue: #2c2c31; --ms-blue-dark: #3a3a41; --ms-blue-deep: #1c1c1f;
+    --ms-blue-soft: rgba(255,255,255,.045); --radius: 12px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--obsidian); color: var(--text); font-family: 'Inter', sans-serif; }
+  a { text-decoration: none; color: inherit; }
+  ::selection { background: var(--accent); color: #09090a; }
+  .serif { font-family: 'Instrument Serif', serif; font-weight: 400; }
+  .serif-i { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--muted-serif); }
+
+  section, .section { padding: 130px 64px; box-sizing: border-box; border-bottom: 1px solid var(--hairline); }
+  @media (max-width: 900px) { section, .section { padding: 80px 24px; } }
+
+  .nav-link { position: relative; color: #8f8d88; font-size: 12px; letter-spacing: .08em; font-weight: 500; text-transform: uppercase; transition: color .2s ease; }
+  .nav-link::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 1px; background: var(--accent); transition: width .3s ease; }
+  .nav-link:hover { color: var(--text); }
+  .nav-link:hover::after { width: 100%; }
+
+  .tag { font-family: 'Inter', sans-serif; font-size: 10.5px; letter-spacing: .09em; font-weight: 600; color: var(--text-mute); text-transform: uppercase; }
+  .card { border: 1px solid var(--hairline); background: var(--card); border-radius: 10px; transition: border-color .3s ease, transform .3s ease; }
+  .card:hover { border-color: var(--hairline-strong); transform: translateY(-3px); }
+
+  /* ---- Morningstar-style buttons: rectangular, icon cell + divider, blue fill ---- */
+  .btn-primary, .btn-ghost {
+    display: inline-flex; align-items: stretch; border-radius: var(--radius); overflow: hidden; cursor: pointer;
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; transition: background .2s ease, border-color .2s ease, transform .12s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-primary { background: var(--ms-blue); color: #fff; border: none; }
+  .btn-primary:hover { background: var(--ms-blue-dark); }
+  .btn-primary:active { background: var(--ms-blue-deep); transform: scale(.98); }
+  .btn-primary .btn-icon { display: flex; align-items: center; justify-content: center; padding: 0 16px; border-right: 1px solid rgba(255,255,255,.28); }
+  .btn-primary .btn-label { padding: 15px 22px; }
+
+  .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--hairline-strong); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-ghost:active { transform: scale(.98); }
+  .btn-ghost .btn-label { padding: 14px 22px; }
+  .btn-ghost .btn-icon { display: flex; align-items: center; justify-content: center; padding: 0 14px; border-left: 1px solid var(--hairline-strong); transition: border-color .2s ease; }
+  .btn-ghost:hover .btn-icon { border-color: var(--accent); }
+  .btn-ghost:hover .btn-icon svg { transform: translateX(2px); }
+  .btn-ghost .btn-icon svg { transition: transform .2s ease; }
+
+  .chip { font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: .05em; padding: 6px 11px; border-radius: var(--radius); border: 1px solid var(--hairline-strong); color: #b9b6a9; text-transform: uppercase; display: inline-block; }
+  .chip.solid { background: var(--accent); border-color: var(--accent); color: #09090a; }
+
+  .lang-toggle { display: inline-flex; border: 1px solid var(--hairline-strong); border-radius: var(--radius); overflow: hidden; }
+  .lang-btn { font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: .06em; padding: 7px 12px; border: none; background: transparent; color: var(--text-mute); cursor: pointer; transition: all .2s ease; }
+  .lang-btn.active { background: var(--accent); color: #09090a; }
+
+  .row { display: flex; align-items: center; gap: 24px; padding: 22px 10px; border-bottom: 1px solid var(--hairline); transition: background .2s ease; cursor: pointer; }
+  .row:hover { background: var(--ms-blue-soft); }
+  .social { display: flex; align-items: stretch; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--hairline-strong); transition: border-color .2s ease; }
+  .social:hover { border-color: var(--accent); }
+  .social .btn-icon { display: flex; align-items: center; justify-content: center; padding: 0 16px; border-right: 1px solid var(--hairline-strong); transition: border-color .2s ease; }
+  .social:hover .btn-icon { border-color: var(--accent); }
+  .social .btn-label { padding: 14px 20px; font-size: 13px; font-weight: 600; }
+
+  #progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); z-index: 60; width: 0%; }
+
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal.d1 { transition-delay: .05s; } .reveal.d2 { transition-delay: .15s; } .reveal.d3 { transition-delay: .25s; } .reveal.d4 { transition-delay: .35s; }
+
+  .hero-line { font-size: 92px; line-height: 1.04; letter-spacing: -.01em; }
+  @media (max-width: 900px) { .hero-line { font-size: 46px; } }
+
+  .grid12 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: 32px; }
+  @media (max-width: 900px) { .grid12 { grid-template-columns: 1fr; } .grid12 > * { grid-column: span 1 !important; } }
+
+  .sig-stage { position: relative; height: 280px; margin-top: 6px; }
+  .sig-panel { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; animation: sigCycle 24s infinite; }
+  .sig-panel.p1 { animation-delay: 0s; } .sig-panel.p2 { animation-delay: -8s; } .sig-panel.p3 { animation-delay: -16s; }
+  @keyframes sigCycle { 0% { opacity: 0; } 2% { opacity: 1; } 31% { opacity: 1; } 34% { opacity: 0; } 100% { opacity: 0; } }
+  .sig-caption { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; align-items: baseline; animation: sigCycle 24s infinite; }
+  .sig-caption.p1 { animation-delay: 0s; } .sig-caption.p2 { animation-delay: -8s; } .sig-caption.p3 { animation-delay: -16s; }
+  @keyframes drawLine { to { stroke-dashoffset: 0; } }
+  @keyframes dotPop { to { opacity: 1; transform: scale(1); } }
+  @keyframes glowPulse { 0%,100% { opacity: .55; transform: scale(1); } 50% { opacity: 1; transform: scale(1.25); } }
+  @keyframes treeLeaf { 0%,100% { opacity: .7; r: 4; } 50% { opacity: 1; r: 5.5; } }
+  .chart-path { stroke-dasharray: 420; stroke-dashoffset: 420; animation: drawLine 3.6s ease-out infinite; }
+  .chart-dot { animation: glowPulse 2.4s ease-in-out infinite; }
+  .scatter-dot { opacity: 0; transform: scale(.4); transform-origin: center; animation: dotPop .5s ease-out forwards infinite; animation-duration: 7s; }
+  .reg-line { stroke-dasharray: 260; stroke-dashoffset: 260; animation: drawLine 2.2s ease-out infinite; animation-duration: 7s; animation-delay: 1.1s; }
+  .tree-edge { stroke-dasharray: 90; stroke-dashoffset: 90; animation: drawLine 1s ease-out infinite; animation-duration: 7s; }
+  .tree-edge-2 { animation-delay: .5s; }
+  .tree-path { stroke-dasharray: 160; stroke-dashoffset: 160; animation: drawLine 1.2s ease-out infinite; animation-duration: 7s; animation-delay: 1.3s; }
+  .tree-leaf-lit { animation: treeLeaf 1.6s ease-in-out infinite; animation-delay: 2.4s; }
+
+  .quote-band { position: relative; height: 120px; }
+  .quote-item { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; opacity: 0; animation: quoteCycle 20s infinite; padding: 0 24px; }
+  .quote-item.q1 { animation-delay: 0s; } .quote-item.q2 { animation-delay: -5s; } .quote-item.q3 { animation-delay: -10s; } .quote-item.q4 { animation-delay: -15s; }
+  @keyframes quoteCycle { 0% { opacity: 0; transform: translateY(8px); } 4% { opacity: 1; transform: translateY(0); } 21% { opacity: 1; } 25% { opacity: 0; transform: translateY(-8px); } 100% { opacity: 0; } }
+
+  /* ---- Morningstar-style dynamic table (projects) ---- */
+  .ms-toolbar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+  .ms-search { flex-grow: 1; min-width: 180px; background: var(--card); border: 1px solid var(--hairline-strong); border-radius: var(--radius); padding: 12px 14px; color: var(--text); font-family: 'Inter'; font-size: 13px; }
+  .ms-search:focus { outline: none; border-color: var(--accent); }
+  .ms-filter { width: 42px; height: 42px; border: 1px solid var(--hairline-strong); border-radius: var(--radius); background: var(--card); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-dim); transition: all .2s ease; flex-shrink: 0; }
+  .ms-filter:hover { border-color: var(--accent); color: var(--text); }
+  .ms-filter.active { background: var(--accent); border-color: var(--accent); color: #09090a; }
+  .ms-table { border: 1px solid var(--hairline); border-radius: 10px; overflow: hidden; }
+  .ms-trow { display: flex; align-items: center; gap: 18px; padding: 18px 20px; border-bottom: 1px solid var(--hairline); cursor: pointer; transition: background .2s ease; }
+  .ms-trow:last-child { border-bottom: none; }
+  .ms-trow:hover { background: var(--ms-blue-soft); }
+  .ms-domain-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+  .ms-chevron { transition: transform .25s ease; flex-shrink: 0; }
+  .ms-trow.open .ms-chevron { transform: rotate(90deg); }
+  .ms-detail { max-height: 0; overflow: hidden; transition: max-height .35s ease; background: rgba(255,255,255,.02); }
+  .ms-detail-inner { padding: 0 20px 20px 46px; font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+  .ms-hidden { display: none !important; }
+
+  /* ---- Accordion (certifications, skills) ---- */
+  .ms-acc-header { display: flex; align-items: center; gap: 14px; padding: 20px; border: 1px solid var(--hairline); border-radius: 10px; cursor: pointer; background: var(--card); transition: border-color .2s ease; margin-bottom: 10px; }
+  .ms-acc-header:hover { border-color: var(--hairline-strong); }
+  .ms-acc-header.open { border-left: 3px solid var(--accent); }
+  .ms-acc-bar { width: 8px; align-self: stretch; border-radius: 2px; background: var(--hairline-strong); }
+  .ms-acc-header.open .ms-acc-bar { background: var(--accent); }
+  .ms-acc-title { flex-grow: 1; font-size: 15px; font-weight: 600; }
+  .ms-acc-count { font-size: 11px; color: var(--text-mute); font-weight: 600; }
+  .ms-acc-chevron { transition: transform .25s ease; color: var(--text-mute); }
+  .ms-acc-header.open .ms-acc-chevron { transform: rotate(180deg); color: var(--accent); }
+  .ms-acc-body { max-height: 0; overflow: hidden; transition: max-height .35s ease; margin: -6px 0 10px 0; }
+  .ms-acc-body-inner { padding: 4px 4px 12px 4px; }
+
+  .ms-skill-bar-track { height: 6px; border-radius: 3px; background: rgba(255,255,255,.08); overflow: hidden; margin-top: 10px; }
+  .ms-skill-bar-fill { height: 100%; border-radius: 3px; width: 0; transition: width 1.1s cubic-bezier(.16,1,.3,1); }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<!-- ===== HERO ===== -->
+<div class="section" style="padding-top: 40px; padding-bottom: 64px;">
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div class="serif" style="font-size: 17px;">Hamza El Alami</div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 36px; flex-wrap: wrap;">
+      <a href="#projets" class="nav-link i18n" data-en="Projects" data-fr="Projets">Projects</a>
+      <a href="#certifications" class="nav-link i18n" data-en="Certifications" data-fr="Certifications">Certifications</a>
+      <a href="#competences" class="nav-link i18n" data-en="Skills" data-fr="Compétences">Skills</a>
+      <a href="#contact" class="nav-link i18n" data-en="Contact" data-fr="Contact">Contact</a>
+      <div class="tag" style="display: flex; align-items: center; gap: 6px;">
+        <span style="width:6px;height:6px;background:var(--accent);display:inline-block;"></span>
+        <span class="i18n" data-en="Available · Internship" data-fr="Disponible · Stage PFE">Available · Internship</span>
+      </div>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid12" style="margin-top: 100px; align-items: center;">
+    <div style="grid-column: span 7;">
+      <div class="serif reveal in hero-line i18n" data-en="Engineer" data-fr="Ingénieur">Engineer</div>
+      <div class="serif-i reveal in d1 hero-line i18n" data-en="Artificial" data-fr="Intelligence">Artificial</div>
+      <div class="serif reveal in d2 hero-line i18n" data-en="Intelligence." data-fr="Artificielle.">Intelligence.</div>
+
+      <div class="reveal in d3" style="margin-top: 44px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+        <a href="#projets" class="btn-primary">
+          <span class="btn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <span class="btn-label i18n" data-en="View my projects" data-fr="Voir mes projets">View my projects</span>
+        </a>
+        <a href="#" class="btn-ghost">
+          <span class="btn-label i18n" data-en="View my CV" data-fr="Voir mon CV">View my CV</span>
+          <span class="btn-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 12l6 6 6-6"/></svg></span>
+        </a>
+      </div>
+
+      <div class="reveal in d4" style="margin-top: 56px; display: flex; gap: 64px; flex-wrap: wrap;">
+        <div class="tag i18n" data-en="Data · AI · Dev · ML" data-fr="Data · IA · Dev · ML">Data · AI · Dev · ML</div>
+        <div class="tag i18n" data-en="Based in Casablanca, Morocco" data-fr="Basé à Casablanca, Maroc">Based in Casablanca, Morocco</div>
+      </div>
+    </div>
+
+    <div style="grid-column: span 5;" class="reveal in d2">
+      <div class="card" style="padding: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="tag">Signature</div>
+          <div class="tag i18n" data-en="Auto · Loop" data-fr="Auto · Boucle">Auto · Loop</div>
+        </div>
+
+        <div class="sig-stage">
+          <div class="sig-panel p1">
+            <svg width="240" height="150" viewBox="0 0 260 150" fill="none">
+              <path d="M10,120 C40,110 60,60 90,72 C120,84 140,20 170,32 C200,44 220,95 250,60" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" class="chart-path"/>
+              <circle cx="250" cy="60" r="4" fill="var(--accent)" class="chart-dot"/>
+            </svg>
+          </div>
+          <div class="sig-panel p2">
+            <svg width="240" height="150" viewBox="0 0 260 150" fill="none">
+              <g fill="var(--accent)">
+                <circle class="scatter-dot" style="animation-delay:.05s" cx="20" cy="125" r="3.5"/>
+                <circle class="scatter-dot" style="animation-delay:.15s" cx="38" cy="108" r="3.5"/>
+                <circle class="scatter-dot" style="animation-delay:.25s" cx="55" cy="115" r="3.5"/>
+                <circle class="scatter-dot" style="animation-delay:.35s" cx="72" cy="95" r="3.5"/>
+                <circle class="scatter-dot" style="animation-delay:.45s" cx="90" cy="100" r="3.5"/>
+                <circle class="scatter-dot" style="animation-delay:.55s" cx="107" cy="82" r="3.5"/>
+                <circle class="scatter-dot" style="animation-delay:.65s" cx="124" cy="88" r="3.5"/>
+                <circle class="scatter-dot" style="animation-delay:.75s" cx="142" cy="68" r="3.5"/>
+                <circle class="scatter-dot" style="animation-delay:.85s" cx="159" cy="74" r="3.5"/>
+                <circle class="scatter-dot" style="animation-delay:.95s" cx="176" cy="55" r="3.5"/>
+                <circle class="scatter-dot" style="animation-delay:1.05s" cx="194" cy="62" r="3.5"/>
+                <circle class="scatter-dot" style="animation-delay:1.15s" cx="211" cy="40" r="3.5"/>
+                <circle class="scatter-dot" style="animation-delay:1.25s" cx="228" cy="47" r="3.5"/>
+              </g>
+              <path d="M14,128 L236,32" stroke="var(--muted-serif)" stroke-width="1.6" class="reg-line"/>
+            </svg>
+          </div>
+          <div class="sig-panel p3">
+            <svg width="240" height="150" viewBox="0 0 260 150" fill="none">
+              <line x1="130" y1="20" x2="72" y2="68" stroke="var(--hairline-strong)" stroke-width="1.6" class="tree-edge"/>
+              <line x1="130" y1="20" x2="188" y2="68" stroke="var(--hairline-strong)" stroke-width="1.6" class="tree-edge tree-edge-2"/>
+              <line x1="72" y1="68" x2="40" y2="118" stroke="var(--hairline-strong)" stroke-width="1.6" class="tree-edge"/>
+              <line x1="188" y1="68" x2="160" y2="118" stroke="var(--hairline-strong)" stroke-width="1.6" class="tree-edge"/>
+              <line x1="188" y1="68" x2="222" y2="118" stroke="var(--hairline-strong)" stroke-width="1.6" class="tree-edge tree-edge-2"/>
+              <path d="M130,20 L188,68 L222,118" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" class="tree-path"/>
+              <circle cx="130" cy="20" r="5" fill="var(--card)" stroke="var(--text-mute)" stroke-width="1.4"/>
+              <circle cx="72" cy="68" r="5" fill="var(--card)" stroke="var(--text-mute)" stroke-width="1.4"/>
+              <circle cx="188" cy="68" r="5" fill="var(--card)" stroke="var(--accent)" stroke-width="1.4"/>
+              <circle cx="40" cy="118" r="4" fill="var(--card)" stroke="var(--text-mute)" stroke-width="1.2"/>
+              <circle cx="160" cy="118" r="4" fill="var(--card)" stroke="var(--text-mute)" stroke-width="1.2"/>
+              <circle cx="222" cy="118" r="5" fill="var(--accent)" class="tree-leaf-lit"/>
+            </svg>
+          </div>
+          <div class="sig-caption p1"><div class="serif-i" style="font-size: 15px;">Live signal</div><div class="tag">EMA · 20</div></div>
+          <div class="sig-caption p2"><div class="serif-i" style="font-size: 15px;">Linear relationship</div><div class="tag">FIT · OLS</div></div>
+          <div class="sig-caption p3"><div class="serif-i" style="font-size: 15px;">Decision path</div><div class="tag">GREEDY</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== QUOTES ===== -->
+<div class="section" style="padding-top: 56px; padding-bottom: 56px;">
+  <div class="tag i18n" style="text-align: center; display: block;" data-en="AI & ML, in a few words" data-fr="IA & ML, en quelques mots">AI & ML, in a few words</div>
+  <div class="quote-band" style="margin-top: 18px;">
+    <div class="quote-item q1"><div class="serif-i" style="font-size: 26px; max-width: 640px;">"AI is the new electricity."</div><div class="tag" style="margin-top: 12px;">— Andrew Ng</div></div>
+    <div class="quote-item q2"><div class="serif-i" style="font-size: 26px; max-width: 640px;">"The question of whether a computer can think is no more interesting than whether a submarine can swim."</div><div class="tag" style="margin-top: 12px;">— Edsger W. Dijkstra</div></div>
+    <div class="quote-item q3"><div class="serif-i" style="font-size: 26px; max-width: 640px;">"Machine intelligence is the last invention humanity will ever need to make."</div><div class="tag" style="margin-top: 12px;">— Nick Bostrom</div></div>
+    <div class="quote-item q4"><div class="serif-i" style="font-size: 26px; max-width: 640px;">"The greatest danger of AI is that people conclude too early that they understand it."</div><div class="tag" style="margin-top: 12px;">— Eliezer Yudkowsky</div></div>
+  </div>
+</div>
+
+<!-- ===== MARQUEE (Morningstar style: sans font, "|" separator) ===== -->
+<div style="border-bottom: 1px solid var(--hairline); border-top: 1px solid var(--hairline); padding: 22px 0; overflow: hidden;">
+  <div style="display: flex; align-items: center; gap: 32px; white-space: nowrap; animation: marquee 26s linear infinite; width: max-content;">
+    <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: .06em; color: #6b6b73; display: flex; align-items: center; gap: 32px; text-transform: uppercase;"><span>MACHINE LEARNING</span><span style="color:var(--accent);">|</span><span>DEEP LEARNING</span><span style="color:var(--accent);">|</span><span>DATA ENGINEERING</span><span style="color:var(--accent);">|</span><span>MLOPS</span><span style="color:var(--accent);">|</span><span>IOT</span></div>
+    <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: .06em; color: #6b6b73; display: flex; align-items: center; gap: 32px; text-transform: uppercase;"><span>MACHINE LEARNING</span><span style="color:var(--accent);">|</span><span>DEEP LEARNING</span><span style="color:var(--accent);">|</span><span>DATA ENGINEERING</span><span style="color:var(--accent);">|</span><span>MLOPS</span><span style="color:var(--accent);">|</span><span>IOT</span></div>
+  </div>
+</div>
+<style>@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }</style>
+
+<!-- ===== PROJETS (dynamic table) ===== -->
+<section id="projets">
+  <div class="grid12">
+    <div class="reveal" style="grid-column: span 4;">
+      <div class="tag i18n" data-en="Portfolio" data-fr="Portfolio">Portfolio</div>
+      <div class="serif" style="font-size: 48px; line-height: 1.1; margin-top: 18px;"><span class="i18n" data-en="My" data-fr="Mes">My</span> <span class="serif-i i18n" data-en="projects." data-fr="projets.">projects.</span></div>
+      <div class="i18n" style="margin-top: 22px; font-size: 15px; line-height: 1.65; color: var(--text-dim); max-width: 320px;" data-en="[A short line about your profile: data, machine learning, deep learning, IoT — and what you're looking for (PFE internship, apprenticeship…).]" data-fr="[Une phrase courte sur ton profil : data, machine learning, deep learning, IoT — et ce que tu cherches (stage PFE, alternance…).]">[A short line about your profile: data, machine learning, deep learning, IoT — and what you're looking for (PFE internship, apprenticeship…).]</div>
+    </div>
+
+    <a href="#" class="card reveal d1" style="grid-column: span 8; padding: 44px; display: flex; flex-direction: column; justify-content: space-between; min-height: 380px;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <div class="chip solid i18n" data-en="Latest project" data-fr="Dernier projet">Latest project</div>
+        <div class="tag">01 / 01</div>
+      </div>
+      <div>
+        <div class="serif i18n" style="font-size: 32px;" data-en="[Project name]" data-fr="[Nom du projet]">[Project name]</div>
+        <div class="i18n" style="margin-top: 14px; font-size: 14px; color: var(--text-dim); max-width: 480px; line-height: 1.65;" data-en="[Describe your most recent project here: problem, data used, model / tech stack, outcome.]" data-fr="[Décris ici ton projet le plus récent : problème, données utilisées, modèle / stack technique, résultat obtenu.]">[Describe your most recent project here: problem, data used, model / tech stack, outcome.]</div>
+        <div style="margin-top: 24px; display: flex; align-items: center; gap: 9px; font-size: 12px; font-weight: 600; color: var(--accent);">
+          <span class="i18n" data-en="View more" data-fr="Voir plus">View more</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <div class="reveal d2" style="grid-column: span 12;">
+      <div class="ms-toolbar">
+        <input class="ms-search" id="projectSearch" type="text" placeholder="Search projects…" data-en-ph="Search projects…" data-fr-ph="Rechercher un projet…">
+        <div class="ms-filter active" data-filter="all" title="All">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </div>
+        <div class="ms-filter" data-filter="ml" title="Machine Learning">ML</div>
+        <div class="ms-filter" data-filter="dl" title="Deep Learning">DL</div>
+        <div class="ms-filter" data-filter="iot" title="IoT / MLOps">IoT</div>
+      </div>
+
+      <div class="ms-table" id="projectTable">
+        <div class="ms-trow" data-domain="ml" data-name="ml project name">
+          <div class="ms-domain-dot" style="background: var(--accent);"></div>
+          <div class="tag" style="width: 90px;">01 · ML</div>
+          <div class="i18n" style="flex-grow: 1; font-size: 14px; font-weight: 500;" data-en="[ML project name]" data-fr="[Nom du projet ML]">[ML project name]</div>
+          <div class="chip">Machine Learning</div>
+          <svg class="ms-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-mute)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </div>
+        <div class="ms-detail"><div class="ms-detail-inner i18n" data-en="[Project preview and details go here — problem, data, model, result.]" data-fr="[Aperçu et détails du projet ici — problème, données, modèle, résultat.]">[Project preview and details go here — problem, data, model, result.]</div></div>
+
+        <div class="ms-trow" data-domain="dl" data-name="dl project name">
+          <div class="ms-domain-dot" style="background: var(--text-dim);"></div>
+          <div class="tag" style="width: 90px;">02 · DL</div>
+          <div class="i18n" style="flex-grow: 1; font-size: 14px; font-weight: 500;" data-en="[DL project name]" data-fr="[Nom du projet DL]">[DL project name]</div>
+          <div class="chip">Deep Learning</div>
+          <svg class="ms-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-mute)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </div>
+        <div class="ms-detail"><div class="ms-detail-inner i18n" data-en="[Project preview and details go here — problem, data, model, result.]" data-fr="[Aperçu et détails du projet ici — problème, données, modèle, résultat.]">[Project preview and details go here — problem, data, model, result.]</div></div>
+
+        <div class="ms-trow" data-domain="iot" data-name="iot project name">
+          <div class="ms-domain-dot" style="background: var(--text-mute);"></div>
+          <div class="tag" style="width: 90px;">03 · IoT</div>
+          <div class="i18n" style="flex-grow: 1; font-size: 14px; font-weight: 500;" data-en="[IoT project name]" data-fr="[Nom du projet IoT]">[IoT project name]</div>
+          <div class="chip">MLOps</div>
+          <svg class="ms-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-mute)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </div>
+        <div class="ms-detail"><div class="ms-detail-inner i18n" data-en="[Project preview and details go here — problem, data, model, result.]" data-fr="[Aperçu et détails du projet ici — problème, données, modèle, résultat.]">[Project preview and details go here — problem, data, model, result.]</div></div>
+      </div>
+      <div id="noResults" class="tag" style="display:none; padding: 20px; text-align:center;" data-en="No projects match your search." data-fr="Aucun projet ne correspond.">No projects match your search.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CERTIFICATIONS (accordion) ===== -->
+<section id="certifications">
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;" class="reveal">
+    <div class="serif" style="font-size: 42px;">Certifications.</div>
+  </div>
+
+  <div style="margin-top: 40px;" class="reveal d1" id="certAccordion">
+    <div class="ms-acc-header" data-acc="data">
+      <div class="ms-acc-bar"></div>
+      <div class="ms-acc-title">Data</div>
+      <div class="ms-acc-count">2</div>
+      <svg class="ms-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <div class="ms-acc-body" data-acc-body="data">
+      <div class="ms-acc-body-inner">
+        <a href="#" class="row"><div class="tag i18n" style="width:52px;" data-en="[Year]" data-fr="[Année]">[Year]</div><div style="width:38px;height:38px;border:1px solid var(--hairline-strong);border-radius:6px;flex-shrink:0;"></div><div class="i18n" style="flex-grow:1;font-size:15px;font-weight:500;" data-en="[Certification — Data Analysis]" data-fr="[Certification — Analyse de données]">[Certification — Data Analysis]</div><div class="chip i18n" data-en="[Platform]" data-fr="[Plateforme]">[Platform]</div></a>
+        <a href="#" class="row"><div class="tag i18n" style="width:52px;" data-en="[Year]" data-fr="[Année]">[Year]</div><div style="width:38px;height:38px;border:1px solid var(--hairline-strong);border-radius:6px;flex-shrink:0;"></div><div class="i18n" style="flex-grow:1;font-size:15px;font-weight:500;" data-en="[Certification — SQL / Data Engineering]" data-fr="[Certification — SQL / Data Engineering]">[Certification — SQL / Data Engineering]</div><div class="chip i18n" data-en="[Platform]" data-fr="[Plateforme]">[Platform]</div></a>
+      </div>
+    </div>
+
+    <div class="ms-acc-header" data-acc="ai">
+      <div class="ms-acc-bar"></div>
+      <div class="ms-acc-title">AI</div>
+      <div class="ms-acc-count">2</div>
+      <svg class="ms-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <div class="ms-acc-body" data-acc-body="ai">
+      <div class="ms-acc-body-inner">
+        <a href="#" class="row"><div class="tag i18n" style="width:52px;" data-en="[Year]" data-fr="[Année]">[Year]</div><div style="width:38px;height:38px;border:1px solid var(--hairline-strong);border-radius:6px;flex-shrink:0;"></div><div class="i18n" style="flex-grow:1;font-size:15px;font-weight:500;" data-en="[Certification — Machine Learning]" data-fr="[Certification — Machine Learning]">[Certification — Machine Learning]</div><div class="chip i18n" data-en="[Platform]" data-fr="[Plateforme]">[Platform]</div></a>
+        <a href="#" class="row"><div class="tag i18n" style="width:52px;" data-en="[Year]" data-fr="[Année]">[Year]</div><div style="width:38px;height:38px;border:1px solid var(--hairline-strong);border-radius:6px;flex-shrink:0;"></div><div class="i18n" style="flex-grow:1;font-size:15px;font-weight:500;" data-en="[Certification — Deep Learning]" data-fr="[Certification — Deep Learning]">[Certification — Deep Learning]</div><div class="chip i18n" data-en="[Platform]" data-fr="[Plateforme]">[Platform]</div></a>
+      </div>
+    </div>
+
+    <div class="ms-acc-header" data-acc="dev">
+      <div class="ms-acc-bar"></div>
+      <div class="ms-acc-title">Dev</div>
+      <div class="ms-acc-count">2</div>
+      <svg class="ms-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <div class="ms-acc-body" data-acc-body="dev">
+      <div class="ms-acc-body-inner">
+        <a href="#" class="row"><div class="tag i18n" style="width:52px;" data-en="[Year]" data-fr="[Année]">[Year]</div><div style="width:38px;height:38px;border:1px solid var(--hairline-strong);border-radius:6px;flex-shrink:0;"></div><div class="i18n" style="flex-grow:1;font-size:15px;font-weight:500;" data-en="[Certification — Development / Cloud]" data-fr="[Certification — Développement / Cloud]">[Certification — Development / Cloud]</div><div class="chip i18n" data-en="[Platform]" data-fr="[Plateforme]">[Platform]</div></a>
+        <a href="#" class="row"><div class="tag i18n" style="width:52px;" data-en="[Year]" data-fr="[Année]">[Year]</div><div style="width:38px;height:38px;border:1px solid var(--hairline-strong);border-radius:6px;flex-shrink:0;"></div><div class="i18n" style="flex-grow:1;font-size:15px;font-weight:500;" data-en="[Certification — DevOps / Docker]" data-fr="[Certification — DevOps / Docker]">[Certification — DevOps / Docker]</div><div class="chip i18n" data-en="[Platform]" data-fr="[Plateforme]">[Platform]</div></a>
+      </div>
+    </div>
+
+    <div class="ms-acc-header" data-acc="soft">
+      <div class="ms-acc-bar"></div>
+      <div class="ms-acc-title i18n" data-en="Soft Skills" data-fr="Soft Skills">Soft Skills</div>
+      <div class="ms-acc-count">2</div>
+      <svg class="ms-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <div class="ms-acc-body" data-acc-body="soft">
+      <div class="ms-acc-body-inner">
+        <a href="#" class="row"><div class="tag i18n" style="width:52px;" data-en="[Year]" data-fr="[Année]">[Year]</div><div style="width:38px;height:38px;border:1px solid var(--hairline-strong);border-radius:6px;flex-shrink:0;"></div><div class="i18n" style="flex-grow:1;font-size:15px;font-weight:500;" data-en="[Certification — Project Management]" data-fr="[Certification — Gestion de projet]">[Certification — Project Management]</div><div class="chip i18n" data-en="[Platform]" data-fr="[Plateforme]">[Platform]</div></a>
+        <a href="#" class="row"><div class="tag i18n" style="width:52px;" data-en="[Year]" data-fr="[Année]">[Year]</div><div style="width:38px;height:38px;border:1px solid var(--hairline-strong);border-radius:6px;flex-shrink:0;"></div><div class="i18n" style="flex-grow:1;font-size:15px;font-weight:500;" data-en="[Certification — Communication / Leadership]" data-fr="[Certification — Communication / Leadership]">[Certification — Communication / Leadership]</div><div class="chip i18n" data-en="[Platform]" data-fr="[Plateforme]">[Platform]</div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPÉTENCES (accordion + level bars) ===== -->
+<section id="competences">
+  <div class="reveal" style="margin-bottom: 40px;">
+    <div class="tag">N° 1 / 4</div>
+    <div class="serif" style="font-size: 40px; margin-top: 14px;"><span class="i18n" data-en="My" data-fr="Mes">My</span> <span class="serif-i i18n" data-en="skills." data-fr="compétences.">skills.</span></div>
+  </div>
+
+  <div class="reveal d1" id="skillAccordion">
+    <div class="ms-acc-header" data-acc="s1">
+      <div class="ms-acc-bar"></div>
+      <div class="ms-acc-title">Machine Learning &amp; Deep Learning</div>
+      <svg class="ms-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <div class="ms-acc-body" data-acc-body="s1">
+      <div class="ms-acc-body-inner">
+        <div class="i18n" style="font-size: 14px; color: var(--text-dim); line-height: 1.6;" data-en="[Python, Scikit-learn, TensorFlow / PyTorch, computer vision, NLP…]" data-fr="[Python, Scikit-learn, TensorFlow / PyTorch, computer vision, NLP…]">[Python, Scikit-learn, TensorFlow / PyTorch, computer vision, NLP…]</div>
+        <div class="ms-skill-bar-track"><div class="ms-skill-bar-fill" data-width="88%" style="background: var(--accent);"></div></div>
+      </div>
+    </div>
+
+    <div class="ms-acc-header" data-acc="s2">
+      <div class="ms-acc-bar"></div>
+      <div class="ms-acc-title">Data Engineering &amp; MLOps</div>
+      <svg class="ms-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <div class="ms-acc-body" data-acc-body="s2">
+      <div class="ms-acc-body-inner">
+        <div class="i18n" style="font-size: 14px; color: var(--text-dim); line-height: 1.6;" data-en="[SQL, Pandas, Docker, Cloud (AWS/GCP)]" data-fr="[SQL, Pandas, Docker, Cloud (AWS/GCP)]">[SQL, Pandas, Docker, Cloud (AWS/GCP)]</div>
+        <div class="ms-skill-bar-track"><div class="ms-skill-bar-fill" data-width="70%" style="background: var(--text-dim);"></div></div>
+      </div>
+    </div>
+
+    <div class="ms-acc-header" data-acc="s3">
+      <div class="ms-acc-bar"></div>
+      <div class="ms-acc-title i18n" data-en="IoT & Embedded Systems" data-fr="IoT &amp; Systèmes embarqués">IoT &amp; Embedded Systems</div>
+      <svg class="ms-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <div class="ms-acc-body" data-acc-body="s3">
+      <div class="ms-acc-body-inner">
+        <div class="i18n" style="font-size: 14px; color: var(--text-dim); line-height: 1.6;" data-en="[Sensors, protocols, IoT architecture]" data-fr="[Capteurs, protocoles, architecture IoT]">[Sensors, protocols, IoT architecture]</div>
+        <div class="ms-skill-bar-track"><div class="ms-skill-bar-fill" data-width="55%" style="background: var(--text-mute);"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card reveal d2" style="margin-top: 40px; padding: 44px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;">
+    <div class="serif" style="font-size: 27px; line-height: 1.25;"><span class="i18n" data-en="You can find me" data-fr="Vous pouvez me trouver">You can find me</span><br><span class="serif-i i18n" data-en="here:" data-fr="ici :">here:</span></div>
+    <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+      <a href="https://github.com/hamzaelchen" class="social">
+        <span class="btn-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></span>
+        <span class="btn-label">GitHub — hamzaelchen</span>
+      </a>
+      <a href="https://www.linkedin.com/in/hamza-el-alami-chentoufi-a54b123b0/" class="social">
+        <span class="btn-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-5M12 11c1.2-1.4 4-1.5 4 1v4"/></svg></span>
+        <span class="btn-label">LinkedIn — Hamza El Alami Chentoufi</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER / CONTACT ===== -->
+<div id="contact" style="padding: 44px 64px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+  <div class="tag">Hamza El Alami</div>
+  <div style="display: flex; gap: 32px; flex-wrap: wrap;">
+    <a href="#projets" class="nav-link i18n" data-en="Projects" data-fr="Projets">Projects</a>
+    <a href="#certifications" class="nav-link i18n" data-en="Certifications" data-fr="Certifications">Certifications</a>
+    <a href="#competences" class="nav-link i18n" data-en="Skills" data-fr="Compétences">Skills</a>
+    <a href="mailto:contact.hamzaelalami@gmail.com" class="nav-link">contact.hamzaelalami@gmail.com</a>
+  </div>
+</div>
+
+<script>
+  // language toggle
+  var currentLang = 'en';
+  document.querySelectorAll('.lang-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      currentLang = btn.getAttribute('data-lang');
+      document.querySelectorAll('.lang-btn').forEach(function (b) { b.classList.toggle('active', b === btn); });
+      document.documentElement.setAttribute('lang', currentLang);
+      document.querySelectorAll('.i18n').forEach(function (el) {
+        var val = el.getAttribute('data-' + currentLang);
+        if (val !== null) el.textContent = val;
+      });
+      var search = document.getElementById('projectSearch');
+      var ph = search.getAttribute('data-' + currentLang + '-ph');
+      if (ph) search.setAttribute('placeholder', ph);
+      try { localStorage.setItem('hea-lang', currentLang); } catch (e) {}
+    });
+  });
+  try {
+    var saved = localStorage.getItem('hea-lang');
+    if (saved === 'fr') document.querySelector('[data-lang="fr"]').click();
+  } catch (e) {}
+
+  // scroll progress
+  var progress = document.getElementById('progress');
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    progress.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // scroll reveal
+  var revealEls = document.querySelectorAll('.reveal:not(.in)');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // ---- dynamic projects table: search + domain filter + expandable rows ----
+  var activeFilter = 'all';
+  var searchInput = document.getElementById('projectSearch');
+  var filterBtns = document.querySelectorAll('.ms-filter');
+  var rows = document.querySelectorAll('.ms-trow');
+  var noResults = document.getElementById('noResults');
+
+  function applyFilters() {
+    var query = searchInput.value.trim().toLowerCase();
+    var visibleCount = 0;
+    rows.forEach(function (row) {
+      var domain = row.getAttribute('data-domain');
+      var name = row.getAttribute('data-name');
+      var matchesFilter = activeFilter === 'all' || domain === activeFilter;
+      var matchesSearch = !query || name.indexOf(query) !== -1;
+      var show = matchesFilter && matchesSearch;
+      row.classList.toggle('ms-hidden', !show);
+      row.nextElementSibling.classList.toggle('ms-hidden', !show);
+      if (show) visibleCount++;
+    });
+    noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+  }
+  searchInput.addEventListener('input', applyFilters);
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeFilter = btn.getAttribute('data-filter');
+      applyFilters();
+    });
+  });
+  rows.forEach(function (row) {
+    row.addEventListener('click', function () {
+      var detail = row.nextElementSibling;
+      var isOpen = row.classList.contains('open');
+      document.querySelectorAll('.ms-trow.open').forEach(function (r) {
+        if (r !== row) { r.classList.remove('open'); r.nextElementSibling.style.maxHeight = null; }
+      });
+      row.classList.toggle('open', !isOpen);
+      detail.style.maxHeight = !isOpen ? detail.scrollHeight + 'px' : null;
+    });
+  });
+
+  // ---- accordions (certifications + skills) ----
+  function wireAccordion(containerSelector) {
+    document.querySelectorAll(containerSelector + ' .ms-acc-header').forEach(function (header) {
+      header.addEventListener('click', function () {
+        var key = header.getAttribute('data-acc');
+        var body = document.querySelector(containerSelector + ' [data-acc-body="' + key + '"]');
+        var isOpen = header.classList.contains('open');
+        header.classList.toggle('open', !isOpen);
+        body.style.maxHeight = !isOpen ? body.scrollHeight + 'px' : null;
+        if (!isOpen) {
+          body.querySelectorAll('.ms-skill-bar-fill').forEach(function (bar) {
+            requestAnimationFrame(function () { bar.style.width = bar.getAttribute('data-width'); });
+          });
+        }
+      });
+    });
+  }
+  wireAccordion('#certAccordion');
+  wireAccordion('#skillAccordion');
+  // open the first certification category and first skill by default
+  document.querySelector('#certAccordion .ms-acc-header').click();
+  document.querySelector('#skillAccordion .ms-acc-header').click();
+</script>
+</body>
+</html>
