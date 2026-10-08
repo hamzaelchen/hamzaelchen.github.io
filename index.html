@@ -151,34 +151,38 @@
   @media (hover: hover) and (pointer: fine) { .about-tags .chip { transition: border-color .25s ease, color .25s ease, transform .3s var(--ease-out); } .about-tags .chip:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); } }
   @media (max-width: 900px) { .about-grid > p, .about-tags { grid-column: 1 / -1; } }
 
-  /* ---------- data to decision ---------- */
+  /* ---------- data to decision: every stage moves all the time, the title lights up in turn ---------- */
   .proc { border-bottom: 1px solid var(--line); }
   .steps { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 40px; margin-top: 72px; }
-  .step { animation: stageOn 10s infinite both; }
-  .step:nth-child(2) { animation-delay: 2.5s; } .step:nth-child(3) { animation-delay: 5s; } .step:nth-child(4) { animation-delay: 7.5s; }
-  .step h3 { margin: 22px 0 6px; font-size: 1.3rem; font-weight: 500; letter-spacing: -.02em; }
-  .step p { margin: 0; color: var(--dim); font-size: 14px; max-width: 28ch; }
-  .vis { position: relative; height: 150px; border-top: 1px solid var(--line); padding-top: 20px; }
+  .step h3 { margin: 22px 0 6px; font-size: 1.3rem; font-weight: 500; letter-spacing: -.02em; color: var(--dim); animation: titleOn 8s infinite both; }
+  .step:nth-child(2) h3 { animation-delay: 2s; } .step:nth-child(3) h3 { animation-delay: 4s; } .step:nth-child(4) h3 { animation-delay: 6s; }
+  .step p { margin: 0; color: var(--mute); font-size: 14px; max-width: 28ch; }
+  .vis { position: relative; height: 160px; border-top: 1px solid var(--line); padding-top: 20px; }
   .vis svg { width: 100%; height: 100%; overflow: visible; }
   .vis svg * { transform-box: fill-box; transform-origin: center; }
-  .step:not(:last-child) .vis::after { content: ''; position: absolute; left: 100%; top: 85px; width: 40px; height: 1px; background: var(--line-2); }
-  .step:not(:last-child) .vis::before { content: ''; position: absolute; z-index: 1; left: 100%; top: 82px; width: 7px; height: 7px; margin-left: -3px; border-radius: 50%; background: var(--accent); opacity: 0; animation: hop 10s infinite both; }
-  .step:nth-child(2) .vis::before { animation-delay: 2.5s; } .step:nth-child(3) .vis::before { animation-delay: 5s; }
-  .raw circle { animation: jit 2.6s ease-in-out infinite alternate; }
-  .cd { animation: dotIn 10s infinite both; animation-delay: calc(2.5s + var(--k) * 35ms); }
-  .ml { stroke: rgba(236,236,230,.22); stroke-width: 1.2; animation: wire 10s infinite both; }
-  .ml.a { animation-delay: 5s; } .ml.b { animation-delay: 5.7s; }
-  .mo { animation: lit 10s infinite both; animation-delay: 6.2s; }
-  .needle { animation: needle 10s infinite both; animation-delay: 7.5s; }
-  .dec-chip { position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); animation: chipIn 10s infinite both; animation-delay: 7.5s; }
-  @keyframes stageOn { 0% { opacity: .32; } 5%, 24% { opacity: 1; } 30%, 100% { opacity: .32; } }
-  @keyframes hop { 0%, 16% { opacity: 0; transform: translateX(-40px); } 18% { opacity: 1; } 28% { opacity: 1; transform: translateX(0); } 30%, 100% { opacity: 0; transform: translateX(0); } }
-  @keyframes jit { to { transform: translate(var(--dx, 2px), var(--dy, 2px)); } }
-  @keyframes dotIn { 0% { opacity: .15; transform: scale(.4); } 8%, 24% { opacity: 1; transform: none; } 30%, 100% { opacity: .15; transform: scale(.4); } }
-  @keyframes wire { 0% { stroke: rgba(236,236,230,.22); } 8%, 24% { stroke: #d4ff3a; } 30%, 100% { stroke: rgba(236,236,230,.22); } }
-  @keyframes lit { 0%, 4% { transform: scale(.6); opacity: .4; } 10%, 22% { transform: scale(1.25); opacity: 1; } 30%, 100% { transform: scale(.6); opacity: .4; } }
-  @keyframes needle { 0%, 4% { transform: translateX(0); } 18%, 24% { transform: translateX(44px); } 30%, 100% { transform: translateX(0); } }
-  @keyframes chipIn { 0%, 12% { opacity: 0; transform: translate(-50%, 6px); } 20%, 24% { opacity: 1; transform: translate(-50%, 0); } 30%, 100% { opacity: 0; transform: translate(-50%, 0); } }
+  .step:not(:last-child) .vis::after { content: ''; position: absolute; left: 100%; top: 90px; width: 40px; height: 1px; background: var(--line-2); }
+  .step:not(:last-child) .vis::before { content: ''; position: absolute; z-index: 1; left: 100%; top: 87px; width: 7px; height: 7px; margin-left: -3px; border-radius: 50%; background: var(--accent); opacity: 0; animation: hop 1.6s linear infinite; }
+  .step:nth-child(2) .vis::before { animation-delay: .5s; } .step:nth-child(3) .vis::before { animation-delay: 1s; }
+  .raw circle { animation: jit 1.5s ease-in-out infinite alternate; }
+  .cd { animation: wave 2.4s ease-in-out infinite; animation-delay: var(--w, 0s); }
+  .ml { stroke: rgba(212,255,58,.5); stroke-width: 1.2; stroke-dasharray: 3 7; animation: flow 1s linear infinite; }
+  .ml.b { animation-duration: .8s; }
+  .mdl circle:not(.mo) { animation: nodePulse 2.2s ease-in-out infinite; }
+  .mdl circle:nth-of-type(n+4) { animation-delay: .5s; } .mdl circle:nth-of-type(n+8) { animation-delay: 1s; }
+  .mo { animation: lit 2.2s ease-in-out infinite; animation-delay: 1.2s; }
+  .needle { animation: needle 6s ease-in-out infinite; }
+  .dec-chip { position: absolute; left: 50%; bottom: 6px; transform: translateX(-50%); animation: chipYes 6s infinite; }
+  .dec-chip.no { animation-name: chipNo; }
+  @keyframes titleOn { 0% { color: var(--dim); } 4%, 22% { color: var(--accent); } 28%, 100% { color: var(--dim); } }
+  @keyframes hop { 0% { opacity: 0; transform: translateX(-40px); } 15% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; transform: translateX(0); } }
+  @keyframes jit { to { transform: translate(calc(var(--dx, 2px) * 3), calc(var(--dy, 2px) * 3)); } }
+  @keyframes wave { 0%, 100% { opacity: .45; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.7); } }
+  @keyframes flow { to { stroke-dashoffset: -20; } }
+  @keyframes nodePulse { 0%, 100% { stroke: #85867f; transform: scale(1); } 50% { stroke: #d4ff3a; transform: scale(1.25); } }
+  @keyframes lit { 0%, 100% { transform: scale(.8); opacity: .6; } 50% { transform: scale(1.5); opacity: 1; } }
+  @keyframes needle { 0%, 6% { transform: translateX(0); fill: #d4ff3a; } 20%, 44% { transform: translateX(50px); fill: #d4ff3a; } 56%, 88% { transform: translateX(150px); fill: #ecece6; } 100% { transform: translateX(0); fill: #d4ff3a; } }
+  @keyframes chipYes { 0%, 14% { opacity: 0; transform: translate(-50%, 6px); } 22%, 44% { opacity: 1; transform: translate(-50%, 0); } 50%, 100% { opacity: 0; transform: translate(-50%, 0); } }
+  @keyframes chipNo { 0%, 56% { opacity: 0; transform: translate(-50%, 6px); } 64%, 88% { opacity: 1; transform: translate(-50%, 0); } 94%, 100% { opacity: 0; transform: translate(-50%, 0); } }
   @media (max-width: 900px) {
     .steps { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 48px 32px; }
     .step:not(:last-child) .vis::before, .step:not(:last-child) .vis::after { display: none; }
@@ -301,14 +305,14 @@
     html { scroll-behavior: auto; }
     .js .split .wi { transform: none; transition: none; }
     .js .rv { opacity: 1; transform: none; filter: none; transition: opacity .3s ease; }
-    .avail i, .step, .raw circle, .cd, .ml, .mo, .needle, .dec-chip, .vis::before, .chart-path, .chart-dot, .sc, .reg, .te, .tp, .tl { animation: none; }
+    .avail i, .step h3, .raw circle, .cd, .ml, .mdl circle, .mo, .needle, .dec-chip, .vis::before, .chart-path, .chart-dot, .sc, .reg, .te, .tp, .tl { animation: none; }
     .chart-path, .reg, .te, .tp { stroke-dashoffset: 0; } .sc { opacity: 1; transform: none; }
     .sig-panel, .sig-cap { animation: none; }
     .sig-panel:not(.p1), .sig-cap:not(.p1) { display: none; }
     .sig-panel.p1, .sig-cap.p1 { opacity: 1; }
     .hero-copy, .sig { animation: none; }
     #progress { animation: none; }
-    .step { opacity: 1; } .vis::before { display: none; } .ml { stroke: #d4ff3a; } .needle { transform: translateX(44px); }
+    .vis::before { display: none; } .ml { stroke-dasharray: none; } .needle { transform: translateX(50px); } .dec-chip.no { display: none; }
   }
 </style>
 </head>
@@ -425,24 +429,24 @@
         <p data-en="Missing values, error codes and outliers." data-fr="Valeurs manquantes, codes d'erreur et valeurs extrêmes.">Missing values, error codes and outliers.</p>
       </div>
       <div class="step">
-        <div class="vis" aria-hidden="true"><svg viewBox="0 0 200 120" fill="none"><circle class="cd" cx="40" cy="24" r="4" fill="#d4ff3a" style="--k:0"/><circle class="cd" cx="80" cy="24" r="4" fill="#d4ff3a" style="--k:1"/><circle class="cd" cx="120" cy="24" r="4" fill="#d4ff3a" style="--k:2"/><circle class="cd" cx="160" cy="24" r="4" fill="#d4ff3a" style="--k:3"/><circle class="cd" cx="40" cy="48" r="4" fill="#d4ff3a" style="--k:4"/><circle class="cd" cx="80" cy="48" r="4" fill="#d4ff3a" style="--k:5"/><circle class="cd" cx="120" cy="48" r="4" fill="#d4ff3a" style="--k:6"/><circle class="cd" cx="160" cy="48" r="4" fill="#d4ff3a" style="--k:7"/><circle class="cd" cx="40" cy="72" r="4" fill="#d4ff3a" style="--k:8"/><circle class="cd" cx="80" cy="72" r="4" fill="#d4ff3a" style="--k:9"/><circle class="cd" cx="120" cy="72" r="4" fill="#d4ff3a" style="--k:10"/><circle class="cd" cx="160" cy="72" r="4" fill="#d4ff3a" style="--k:11"/><circle class="cd" cx="40" cy="96" r="4" fill="#d4ff3a" style="--k:12"/><circle class="cd" cx="80" cy="96" r="4" fill="#d4ff3a" style="--k:13"/><circle class="cd" cx="120" cy="96" r="4" fill="#d4ff3a" style="--k:14"/><circle class="cd" cx="160" cy="96" r="4" fill="#d4ff3a" style="--k:15"/></svg></div>
+        <div class="vis" aria-hidden="true"><svg viewBox="0 0 200 120" fill="none"><circle class="cd" cx="40" cy="24" r="4" fill="#d4ff3a" style="--k:0;--w:0.00s"/><circle class="cd" cx="80" cy="24" r="4" fill="#d4ff3a" style="--k:1;--w:0.16s"/><circle class="cd" cx="120" cy="24" r="4" fill="#d4ff3a" style="--k:2;--w:0.32s"/><circle class="cd" cx="160" cy="24" r="4" fill="#d4ff3a" style="--k:3;--w:0.48s"/><circle class="cd" cx="40" cy="48" r="4" fill="#d4ff3a" style="--k:4;--w:0.16s"/><circle class="cd" cx="80" cy="48" r="4" fill="#d4ff3a" style="--k:5;--w:0.32s"/><circle class="cd" cx="120" cy="48" r="4" fill="#d4ff3a" style="--k:6;--w:0.48s"/><circle class="cd" cx="160" cy="48" r="4" fill="#d4ff3a" style="--k:7;--w:0.64s"/><circle class="cd" cx="40" cy="72" r="4" fill="#d4ff3a" style="--k:8;--w:0.32s"/><circle class="cd" cx="80" cy="72" r="4" fill="#d4ff3a" style="--k:9;--w:0.48s"/><circle class="cd" cx="120" cy="72" r="4" fill="#d4ff3a" style="--k:10;--w:0.64s"/><circle class="cd" cx="160" cy="72" r="4" fill="#d4ff3a" style="--k:11;--w:0.80s"/><circle class="cd" cx="40" cy="96" r="4" fill="#d4ff3a" style="--k:12;--w:0.48s"/><circle class="cd" cx="80" cy="96" r="4" fill="#d4ff3a" style="--k:13;--w:0.64s"/><circle class="cd" cx="120" cy="96" r="4" fill="#d4ff3a" style="--k:14;--w:0.80s"/><circle class="cd" cx="160" cy="96" r="4" fill="#d4ff3a" style="--k:15;--w:0.96s"/></svg></div>
         <h3 data-en="Clean data" data-fr="Données propres">Clean data</h3>
         <p data-en="Imputed, capped and ready to learn from." data-fr="Imputées, plafonnées et prêtes pour l'apprentissage.">Imputed, capped and ready to learn from.</p>
       </div>
       <div class="step">
-        <div class="vis" aria-hidden="true"><svg viewBox="0 0 200 120" fill="none"><line class="ml a" x1="30" y1="25" x2="100" y2="15"/><line class="ml a" x1="30" y1="25" x2="100" y2="45"/><line class="ml a" x1="30" y1="25" x2="100" y2="75"/><line class="ml a" x1="30" y1="25" x2="100" y2="105"/><line class="ml a" x1="30" y1="60" x2="100" y2="15"/><line class="ml a" x1="30" y1="60" x2="100" y2="45"/><line class="ml a" x1="30" y1="60" x2="100" y2="75"/><line class="ml a" x1="30" y1="60" x2="100" y2="105"/><line class="ml a" x1="30" y1="95" x2="100" y2="15"/><line class="ml a" x1="30" y1="95" x2="100" y2="45"/><line class="ml a" x1="30" y1="95" x2="100" y2="75"/><line class="ml a" x1="30" y1="95" x2="100" y2="105"/><line class="ml b" x1="100" y1="15" x2="170" y2="60"/><line class="ml b" x1="100" y1="45" x2="170" y2="60"/><line class="ml b" x1="100" y1="75" x2="170" y2="60"/><line class="ml b" x1="100" y1="105" x2="170" y2="60"/><circle cx="30" cy="25" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="30" cy="60" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="30" cy="95" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="100" cy="15" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="100" cy="45" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="100" cy="75" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="100" cy="105" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle class="mo" cx="170" cy="60" r="6" fill="#d4ff3a"/></svg></div>
+        <div class="vis" aria-hidden="true"><svg viewBox="0 0 200 120" fill="none" class="mdl"><line class="ml a" x1="30" y1="25" x2="100" y2="15"/><line class="ml a" x1="30" y1="25" x2="100" y2="45"/><line class="ml a" x1="30" y1="25" x2="100" y2="75"/><line class="ml a" x1="30" y1="25" x2="100" y2="105"/><line class="ml a" x1="30" y1="60" x2="100" y2="15"/><line class="ml a" x1="30" y1="60" x2="100" y2="45"/><line class="ml a" x1="30" y1="60" x2="100" y2="75"/><line class="ml a" x1="30" y1="60" x2="100" y2="105"/><line class="ml a" x1="30" y1="95" x2="100" y2="15"/><line class="ml a" x1="30" y1="95" x2="100" y2="45"/><line class="ml a" x1="30" y1="95" x2="100" y2="75"/><line class="ml a" x1="30" y1="95" x2="100" y2="105"/><line class="ml b" x1="100" y1="15" x2="170" y2="60"/><line class="ml b" x1="100" y1="45" x2="170" y2="60"/><line class="ml b" x1="100" y1="75" x2="170" y2="60"/><line class="ml b" x1="100" y1="105" x2="170" y2="60"/><circle cx="30" cy="25" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="30" cy="60" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="30" cy="95" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="100" cy="15" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="100" cy="45" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="100" cy="75" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="100" cy="105" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle class="mo" cx="170" cy="60" r="6" fill="#d4ff3a"/></svg></div>
         <h3 data-en="Model" data-fr="Modèle">Model</h3>
         <p data-en="Learns the pattern and shows what weighed in." data-fr="Apprend le schéma et montre ce qui a pesé.">Learns the pattern and shows what weighed in.</p>
       </div>
       <div class="step">
         <div class="vis" aria-hidden="true">
           <svg viewBox="0 0 200 120" fill="none">
-            <line x1="20" y1="58" x2="180" y2="58" stroke="rgba(236,236,230,.28)" stroke-width="1.5"/>
+            <line x1="20" y1="58" x2="180" y2="58" stroke="rgba(236,236,230,.28)" stroke-width="1.5"/><rect x="20" y="55" width="100" height="6" rx="3" fill="rgba(212,255,58,.14)"/>
             <line x1="120" y1="34" x2="120" y2="82" stroke="#ecece6" stroke-width="1.5" stroke-dasharray="3 3"/>
             <text x="120" y="26" text-anchor="middle" font-family="Geist Mono, monospace" font-size="9" fill="#85867f">threshold</text>
             <circle class="needle" cx="20" cy="58" r="6" fill="#d4ff3a"/>
           </svg>
-          <span class="dec-chip chip solid" data-en="Accepted" data-fr="Accepté">Accepted</span>
+          <span class="dec-chip chip solid" data-en="Accepted" data-fr="Accepté">Accepted</span><span class="dec-chip no chip" data-en="Refused" data-fr="Refusé">Refused</span>
         </div>
         <h3 data-en="Decision" data-fr="Décision">Decision</h3>
         <p data-en="A probability, a threshold, then an action." data-fr="Une probabilité, un seuil, puis une action.">A probability, a threshold, then an action.</p>
