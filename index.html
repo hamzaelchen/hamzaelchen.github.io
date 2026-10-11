@@ -193,6 +193,10 @@
   .features { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; margin-top: 56px; }
   .features .feature { margin-top: 0; min-height: 440px; }
   @media (max-width: 900px) { .features { grid-template-columns: 1fr; } .features .feature { min-height: 0; gap: 40px; } }
+  .features .feature.wide { grid-column: 1 / -1; min-height: 0; gap: 40px; }
+  .fstats { display: flex; flex-wrap: wrap; gap: 14px 40px; margin-top: 28px; }
+  .fstat b { display: block; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 500; letter-spacing: -.03em; line-height: 1.1; color: var(--accent); }
+  .fstat span { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--mute); }
   .feature { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 64px; min-height: 380px; margin-top: 56px; padding: clamp(28px, 4vw, 52px); border-radius: var(--r-box); border: 1px solid var(--line); background: var(--surface); overflow: hidden; transition: border-color .3s ease; }
   .feature::before, .spot::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .4s ease; background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(212,255,58,.11), transparent 65%); }
   .feature::after { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(rgba(236,236,230,.14) 1px, transparent 1.2px); background-size: 22px 22px; -webkit-mask-image: radial-gradient(360px circle at var(--mx, 85%) var(--my, 20%), #000, transparent 70%); mask-image: radial-gradient(360px circle at var(--mx, 85%) var(--my, 20%), #000, transparent 70%); opacity: .7; }
@@ -464,8 +468,22 @@
     </div>
 
     <div class="features">
-      <article class="feature rv">
+      <article class="feature wide rv">
         <span class="chip solid" data-en="Latest project" data-fr="Dernier projet">Latest project</span>
+        <div>
+          <h3>Supply Chain Risk Radar</h3>
+          <p data-en="Reads world news (18.4 million GDELT events) and flags which suppliers are exposed through their city or the strait on their shipping route, by comparing each place with its own normal over 28 days. A full lakehouse pipeline feeds a static site that reads the data in the browser. The supplier portfolio is fictional; the events are real." data-fr="Lit l'actualité mondiale (18,4 millions d'événements GDELT) et signale les fournisseurs exposés par leur ville ou par le détroit de leur route, en comparant chaque lieu à sa propre normale sur 28 jours. Un pipeline lakehouse complet alimente un site statique qui lit les données dans le navigateur. Le portefeuille de fournisseurs est fictif, les événements sont réels.">Reads world news (18.4 million GDELT events) and flags which suppliers are exposed through their city or the strait on their shipping route, by comparing each place with its own normal over 28 days. A full lakehouse pipeline feeds a static site that reads the data in the browser. The supplier portfolio is fictional; the events are real.</p>
+          <div class="fstats">
+            <div class="fstat"><b>18.4 M</b><span data-en="GDELT events" data-fr="événements GDELT">GDELT events</span></div>
+            <div class="fstat"><b>0</b><span data-en="duplicates" data-fr="doublons">duplicates</span></div>
+            <div class="fstat"><b>33 / 33</b><span data-en="dbt tests passing" data-fr="tests dbt réussis">dbt tests passing</span></div>
+          </div>
+          <div class="feature-tags"><span class="chip">Kafka</span><span class="chip">Spark</span><span class="chip">Iceberg</span><span class="chip">dbt</span><span class="chip">DuckDB</span></div>
+          <div class="feature-actions"><a href="https://hamzaelchen.github.io/supply-chain-risk-radar/" class="btn primary" target="_blank" rel="noopener"><span data-en="Open the live demo" data-fr="Ouvrir la démo en direct">Open the live demo</span><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a href="https://github.com/hamzaelchen/supply-chain-risk-radar" class="btn ghost" target="_blank" rel="noopener"><span data-en="Source code" data-fr="Code source">Source code</span><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+        </div>
+      </article>
+      <article class="feature rv">
+        <span class="chip" data-en="Data engineering" data-fr="Data engineering">Data engineering</span>
         <div>
           <h3>MobilityPulse France</h3>
           <p data-en="Tracks the Nantes bike-sharing network, spots empty and saturated stations, and suggests which bikes to move from where to where. A pipeline collects the open feed every 60 seconds and the interface shows the real age of the data." data-fr="Suit le réseau de vélos en libre-service de Nantes, repère les stations vides ou saturées et propose quels vélos déplacer d'où vers où. Un pipeline collecte le flux ouvert toutes les 60 secondes et l'interface affiche l'âge réel des données.">Tracks the Nantes bike-sharing network, spots empty and saturated stations, and suggests which bikes to move from where to where. A pipeline collects the open feed every 60 seconds and the interface shows the real age of the data.</p>
@@ -509,6 +527,15 @@
           <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
         </button>
         <div class="reveal-box"><div><div class="prow-d"><span data-en="Streaming pipeline: the GBFS feed is polled every 60 seconds, published to Kafka, cleaned and deduplicated with Spark, then stored in PostgreSQL. The descriptive and prescriptive views are live. The predictive part is a trend heuristic, because the collected history is still too short to train a model." data-fr="Pipeline en continu : le flux GBFS est interrogé toutes les 60 secondes, publié dans Kafka, nettoyé et dédoublonné avec Spark, puis stocké dans PostgreSQL. Les vues descriptive et prescriptive sont en service. La partie prédictive est une heuristique de tendance, car l'historique collecté est encore trop court pour entraîner un modèle.">Streaming pipeline: the GBFS feed is polled every 60 seconds, published to Kafka, cleaned and deduplicated with Spark, then stored in PostgreSQL. The descriptive and prescriptive views are live. The predictive part is a trend heuristic, because the collected history is still too short to train a model.</span> <a class="inline-link" href="https://hamzaelchen.github.io/mobilitypulse-france/app/" target="_blank" rel="noopener" data-en="Open the project" data-fr="Ouvrir le projet">Open the project</a></div></div></div>
+      </div>
+      <div class="prow" data-domain="de">
+        <button type="button" class="prow-h" aria-expanded="false">
+          <span class="idx mono tag">03</span>
+          <span class="name">Supply Chain Risk Radar, supplier risk</span>
+          <span class="chip">Data Engineering</span>
+          <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+        <div class="reveal-box"><div><div class="prow-d"><span data-en="Kafka and Spark Structured Streaming feed Iceberg tables (bronze, silver) on MinIO; dbt with DuckDB computes a 0 to 100 score, checked by 33 tests. Zero duplicates, 107 quarantined rows, and every figure traces back to a downloaded file. The site reads Parquet files in the browser with DuckDB-WASM, no server. Events are classified by rules rather than an LLM, and the site shows what the press reports without explaining why." data-fr="Kafka et Spark Structured Streaming alimentent des tables Iceberg (bronze, silver) sur MinIO ; dbt avec DuckDB calcule un score de 0 à 100, vérifié par 33 tests. Zéro doublon, 107 lignes en quarantaine, et chaque chiffre remonte à un fichier téléchargé. Le site lit des fichiers Parquet dans le navigateur avec DuckDB-WASM, sans serveur. Les événements sont classés par règles plutôt que par un LLM, et le site montre ce que la presse recense sans en donner la cause.">Kafka and Spark Structured Streaming feed Iceberg tables (bronze, silver) on MinIO; dbt with DuckDB computes a 0 to 100 score, checked by 33 tests. Zero duplicates, 107 quarantined rows, and every figure traces back to a downloaded file. The site reads Parquet files in the browser with DuckDB-WASM, no server. Events are classified by rules rather than an LLM, and the site shows what the press reports without explaining why.</span> <a class="inline-link" href="https://hamzaelchen.github.io/supply-chain-risk-radar/" target="_blank" rel="noopener" data-en="Open the demo" data-fr="Ouvrir la démo">Open the demo</a></div></div></div>
       </div>
       <p class="noresult" id="noResults" hidden data-en="No projects match your search." data-fr="Aucun projet ne correspond.">No projects match your search.</p>
     </div>
