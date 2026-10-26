@@ -333,6 +333,7 @@
       <a href="#projets" class="nav-link" data-en="Projects" data-fr="Projets">Projects</a>
       <a href="#certifications" class="nav-link" data-en="Certifications" data-fr="Certifications">Certifications</a>
       <a href="#competences" class="nav-link" data-en="Skills" data-fr="Compétences">Skills</a>
+      <a href="/blog/" class="nav-link" data-en="Blog" data-fr="Blog" aria-current="false">Blog</a>
       <a href="#contact" class="nav-link" data-en="Contact" data-fr="Contact">Contact</a>
     </nav>
     <div class="nav-right">
@@ -542,6 +543,49 @@
   </div>
 </section>
 
+<!-- ===== BLOG ===== -->
+<section id="blog" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="display h2 split" data-en="Latest from the *blog.*" data-fr="Dernier article du *blog.*" aria-label="Latest from the blog.">Latest from the blog.</h2>
+      <p class="rv" data-en="Three posts a week on data, AI and tech news, explained clearly and sourced." data-fr="Trois articles par semaine sur la data, l'IA et l'actu tech, expliqués clairement et sourcés.">Three posts a week on data, AI and tech news, explained clearly and sourced.</p>
+    </div>
+    <div class="features">
+      <article class="feature wide rv" id="blogLatest">
+        <span class="chip solid" data-en="Latest post" data-fr="Dernier article">Latest post</span>
+        <div>
+          <h3 id="blogTitle" data-en="Your tables, any engine." data-fr="Tes tables, n'importe quel moteur.">Your tables, any engine.</h3>
+          <p id="blogSum" data-en="In October, Databricks and Snowflake each shipped features built around open table formats. What happened, what is still marketing, and what it means for a future data engineer." data-fr="En octobre, Databricks et Snowflake ont chacun livré des fonctions autour des formats de table ouverts. Ce qui s'est passé, ce qui reste du marketing, et ce que ça change pour un futur data engineer.">In October, Databricks and Snowflake each shipped features built around open table formats. What happened, what is still marketing, and what it means for a future data engineer.</p>
+          <div class="feature-tags"><span class="chip">Iceberg</span><span class="chip">Delta Lake</span><span class="chip">Unity Catalog</span><span class="chip">Snowflake</span></div>
+          <div class="feature-actions">
+            <a href="/blog/" class="btn primary"><span data-en="Read the blog" data-fr="Lire le blog">Read the blog</span><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<script>
+/* Met à jour la carte avec le dernier article publié dans /blog/ (sinon garde le texte ci-dessus) */
+(function () {
+  fetch('/blog/').then(function (r) { return r.ok ? r.text() : Promise.reject(); }).then(function (html) {
+    var m = html.match(/<script type="application\/json" id="posts">([\s\S]*?)<\/script>/);
+    if (!m) return;
+    var p = JSON.parse(m[1])[0];
+    if (!p) return;
+    function set(id, key) {
+      var el = document.getElementById(id);
+      if (!el || !p[key]) return;
+      el.setAttribute('data-en', p[key].en);
+      el.setAttribute('data-fr', p[key].fr);
+      el.textContent = document.documentElement.lang === 'fr' ? p[key].fr : p[key].en;
+    }
+    set('blogTitle', 'title');
+    set('blogSum', 'summary');
+  }).catch(function () {});
+})();
+</script>
+
 <!-- ===== CERTIFICATIONS ===== -->
 <section id="certifications" style="border-top:1px solid var(--line)">
   <div class="wrap">
@@ -625,6 +669,10 @@
         <span class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-5M12 11c1.2-1.4 4-1.5 4 1v4"/></svg></span>
         <span>LinkedIn - Hamza El Alami Chentoufi</span>
       </a>
+      <a href="/blog/" class="social" rel="noopener">
+        <span class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></span>
+        <span data-en="Blog - Data, AI &amp; Tech" data-fr="Blog - Data, IA &amp; Tech">Blog - Data, AI &amp; Tech</span>
+      </a>
     </div>
     <div class="foot">
       <span class="tag">Hamza El Alami Chentoufi</span>
@@ -632,6 +680,7 @@
         <a href="#projets" class="nav-link" data-en="Projects" data-fr="Projets">Projects</a>
         <a href="#certifications" class="nav-link" data-en="Certifications" data-fr="Certifications">Certifications</a>
         <a href="#competences" class="nav-link" data-en="Skills" data-fr="Compétences">Skills</a>
+        <a href="/blog/" class="nav-link" data-en="Blog" data-fr="Blog">Blog</a>
       </nav>
       <a href="#top" class="totop"><span data-en="Back to top" data-fr="Haut de page">Back to top</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
     </div>
