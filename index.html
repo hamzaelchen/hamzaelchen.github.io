@@ -1,928 +1,1673 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#0a0b0c">
-<title>Hamza El Alami Chentoufi | AI Engineer</title>
-<meta name="description" content="Hamza El Alami, AI engineering student in Casablanca. Machine learning, deep learning, data engineering and IoT. Available for a PFE internship.">
-<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACKklEQVR4nO2bPY7iQBCFX/sHsIhABA4sERDAOYi5ALlvwAm4AAERIkKcgpwUcQBSJAJOgHF3e6JdrSYYF/aOX+D+JLIS9fypaKO2Ww2HwwItxmMHYOMEsAOwab2AQFpYFPXXSqWUuLapfmIBYRh+dAHfMcbAWiuuD4IAnld9QK21MMaU95F8URRFOB6PSJKkUhilFLbbLQ6HA3q9Xml9lmVYr9dYLBaVJkEphfP5jNVqhSD4+RJFE+B5HmazWWUBADAajcQTUBQFkiTBdDqt3O9+v4vkiWcsz/PKYQB8NP4AROP7E1prUV3r7wJOADsAGyeAHYCNE8AOwMYJYAdg4wSwA7BxAtgB2DgB7ABsxFtiddFaI8sy+L5fWptlWe39ACmNCZhMJpjP56Itsff7jTiOG0jVoIA0TZGmaVPtxLR+DXAC2AHYOAHsAGxaL6Cx2+Dj8cDz+RQ977PWYjweYzAY/HquxgTsdjtsNhtEUVRa+3q9sN/vsVwufz1XYwKstdBai/7iGmP+y+NxCY0JUEr9/Uhqm6L1i6ATwA7AxglgB2DjBLADsHEC2AHYOAHsAGycAHYANk4AOwAbJ4AdgI1YQLfbrdWo7L3974RhWKtfp9MR1ZWmUkrBGIPT6YQ4jisfYLjdbmIJvu/jcrmg3+9X7ne9XkU70Ep6cDLP81oblb7vi94N+IPW+uMzBv/ieZ5I+Ednhprk059MVdwiyA7AxglgB2DTegFfcwqWhCZJt9gAAAAASUVORK5CYII=">
+<title>Blog Hamza El Alami</title>
+<meta name="description" content="Data, cloud et IA : analyses sourcées par Hamza El Alami.">
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script>document.documentElement.className = 'js';</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
 <style>
-  :root {
-    color-scheme: dark;
-    --bg: #0a0b0c; --surface: #111314; --surface-2: #171a1b;
-    --line: rgba(236,236,230,.10); --line-2: rgba(236,236,230,.22);
-    --text: #ecece6; --dim: #a3a49d; --mute: #85867f;
-    --accent: #d4ff3a; --on-accent: #0a0b0c;
-    --ease-out: cubic-bezier(.23,1,.32,1); --ease-io: cubic-bezier(.77,0,.175,1);
-    --r-box: 18px; --r-pill: 999px;
-    --pad: clamp(20px, 5vw, 64px);
-    --nav-h: 64px;
-    --sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
-    --mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  }
-  * { box-sizing: border-box; }
-  html { overflow-x: clip; scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 12px); background: var(--bg); }
-  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: clip; caret-color: var(--accent); }
-  a { color: inherit; text-decoration: none; }
-  button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
-  ::selection { background: var(--accent); color: var(--on-accent); }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-  * { scrollbar-width: thin; scrollbar-color: var(--line-2) var(--bg); }
-  ::-webkit-scrollbar { width: 10px; } ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 10px; border: 2px solid var(--bg); }
-  ::-webkit-scrollbar-thumb:hover { background: var(--mute); }
+/* Layout: one reading column. Live cadence strip highlights today's topic, about card, searchable post index, then a post view with progress bar and numbered sources. Tokens mirror hamzaelchen.github.io. */
+:root {
+  --bg: #0a0b0c;
+  --surface: #111314;
+  --surface-2: #171a1b;
+  --line: rgba(236,236,230,.10);
+  --line-2: rgba(236,236,230,.22);
+  --text: #ecece6;
+  --body: #d4d5ce;
+  --dim: #a3a49d;
+  --mute: #85867f;
+  --accent: #d4ff3a;
+  --accent-soft: rgba(212,255,58,.09);
+  --on-accent: #0a0b0c;
+  --sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --r-box: 18px;
+  --r-pill: 999px;
+  --ease: cubic-bezier(.23,1,.32,1);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans);
+  padding-block: 0 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 10; }
+a { color: inherit; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 860px; margin: 0 auto; }
+.progress { position: fixed; left: 0; top: env(safe-area-inset-top, 0px); height: 3px; width: 100%; transform-origin: 0 50%; transform: scaleX(0); background: var(--accent); z-index: 11; pointer-events: none; }
 
-  /* film grain: fixed, non-interactive, never on scrolling containers */
-  body::after { content: ''; position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: .055; mix-blend-mode: screen;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(212,255,58,.55); } 100% { box-shadow: 0 0 0 9px rgba(212,255,58,0); } }
+.reveal { animation: rise .65s var(--ease) both; animation-delay: calc(var(--i, 0) * 70ms); }
 
-  .wrap { width: 100%; max-width: 1320px; margin-inline: auto; padding-inline: var(--pad); }
-  section { padding-block: clamp(88px, 12vw, 160px); }
-  .mono { font-family: var(--mono); }
-  .tag { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; color: var(--mute); text-transform: uppercase; }
-  .dim { color: var(--dim); }
+/* header */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 20px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.brand { font-weight: 500; letter-spacing: -.01em; font-size: 15px; background: none; border: 0; cursor: pointer; padding: 0; display: inline-flex; align-items: center; gap: 10px; text-align: left; }
+.brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2s ease-out infinite; flex: none; }
+.brand span.r { color: var(--mute); font-weight: 400; }
+.nav { display: flex; align-items: center; gap: 16px; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.nav a { color: var(--dim); text-decoration: none; transition: color .2s; }
+.nav a:hover { color: var(--text); }
+.lang-wrap { display: inline-flex; align-items: center; gap: 10px; }
+.lang-hint { color: var(--mute); }
+.lang { display: inline-flex; border: 1px solid var(--line-2); border-radius: var(--r-pill); padding: 3px; gap: 2px; position: relative; }
+.lang button { background: none; border: 0; border-radius: var(--r-pill); padding: 6px 12px; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--dim); cursor: pointer; transition: background .25s var(--ease), color .25s var(--ease); }
+.lang button:hover { color: var(--text); }
+.lang button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+@media (max-width: 480px) { .lang-hint { display: none; } }
 
-  /* ---------- headings: word mask reveal ---------- */
-  .display { font-weight: 500; letter-spacing: -.035em; line-height: 1.02; margin: 0; text-wrap: balance; }
-  .h2 { font-size: clamp(2.4rem, 5.4vw, 4.75rem); }
-  .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .14em; margin-bottom: -.14em; }
-  .wi { display: inline-block; }
-  .em { color: var(--accent); font-weight: 300; }
-  .js .split .wi { transform: translateY(108%); transition: transform 1s var(--ease-out); transition-delay: calc(var(--i, 0) * 70ms + var(--base, 0ms)); }
-  .js .split.in .wi { transform: none; }
+/* hero */
+.hero { padding-block: clamp(40px, 8vw, 80px) 28px; display: flex; flex-direction: column; gap: 22px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--mute); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pill { color: var(--accent); border: 1px solid var(--accent); border-radius: var(--r-pill); padding: 4px 11px; }
+h1 { margin: 0; font-weight: 500; font-size: clamp(38px, 8.4vw, 74px); letter-spacing: -.045em; line-height: 1; text-wrap: balance; }
+h1 .hl { color: var(--accent); }
+.lede { margin: 0; color: var(--dim); font-size: clamp(16px, 2.2vw, 19px); line-height: 1.55; max-width: 56ch; }
+.nextline { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--mute); display: flex; gap: 10px; align-items: center; }
+.nextline b { color: var(--accent); font-weight: 500; }
+.cadence { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line-2); border-radius: var(--r-box); overflow: hidden; background: var(--surface); }
+.cadence div { padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; border-right: 1px solid var(--line); min-width: 0; transition: background .3s var(--ease); position: relative; }
+.cadence div:last-child { border-right: 0; }
+.cadence .d { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--mute); }
+.cadence .t { font-size: 15px; line-height: 1.35; color: var(--text); }
+.cadence div.on { background: var(--accent-soft); }
+.cadence div.on .d { color: var(--accent); }
+.cadence div.next .d { color: var(--accent); }
+.cadence div:hover { background: var(--surface-2); }
+@media (max-width: 520px) { .cadence { grid-template-columns: 1fr; } .cadence div { border-right: 0; border-bottom: 1px solid var(--line); } .cadence div:last-child { border-bottom: 0; } }
 
-  /* ---------- scroll reveal for blocks ---------- */
-  .js .rv { opacity: 0; transform: translateY(26px); filter: blur(6px); transition: opacity .9s var(--ease-out), transform .9s var(--ease-out), filter .9s var(--ease-out); transition-delay: var(--d, 0ms); }
-  .js .rv.in { opacity: 1; transform: none; filter: none; }
+/* marketing hero: CTA row, proof strip, live "latest post" card */
+.ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.btn-main { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: var(--r-pill); background: var(--accent); color: var(--on-accent); border: 1px solid var(--accent); font-weight: 500; font-size: 15.5px; letter-spacing: -.01em; cursor: pointer; transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
+.btn-main:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -10px rgba(212,255,58,.55); }
+.btn-main .ar { transition: transform .25s var(--ease); }
+.btn-main:hover .ar { transform: translateX(4px); }
+.btn-ghost { display: inline-flex; align-items: center; padding: 14px 22px; border-radius: var(--r-pill); background: none; border: 1px solid var(--line-2); font-size: 15.5px; color: var(--text); cursor: pointer; transition: border-color .2s, background .2s; }
+.btn-ghost:hover { border-color: var(--accent); background: var(--surface); }
+.proof { display: flex; gap: 10px 28px; flex-wrap: wrap; padding-top: 6px; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); }
+.proof span { display: inline-flex; align-items: center; gap: 8px; }
+.proof span::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.latest { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px 18px; align-items: center; text-align: left; width: 100%; padding: 18px 20px; border: 1px solid var(--line-2); border-radius: var(--r-box); background: var(--surface); cursor: pointer; transition: border-color .25s, background .25s var(--ease); }
+.latest:hover { border-color: var(--accent); background: var(--surface-2); }
+.latest .new { font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; background: var(--accent); color: var(--on-accent); border-radius: var(--r-pill); padding: 4px 10px; }
+.latest .lt { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.latest .lt b { font-weight: 500; font-size: clamp(17px, 2.6vw, 21px); letter-spacing: -.02em; line-height: 1.2; }
+.latest .lt i { font-style: normal; font-family: var(--mono); font-size: 12px; letter-spacing: .06em; color: var(--mute); }
+.latest .go2 { font-family: var(--mono); color: var(--accent); transition: transform .25s var(--ease); }
+.latest:hover .go2 { transform: translateX(4px); }
+@media (max-width: 560px) { .latest { grid-template-columns: minmax(0, 1fr) auto; } .latest .new { grid-column: 1 / -1; justify-self: start; } }
+.how-label { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--mute); padding-top: 8px; }
 
-  #progress { position: fixed; inset: 0 0 auto 0; height: 2px; background: var(--accent); transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @supports (animation-timeline: scroll()) {
-    #progress { animation: prog linear both; animation-timeline: scroll(root); }
-    @keyframes prog { to { transform: scaleX(1); } }
-  }
+/* list */
+.sec-label { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-block: 34px 14px; font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--mute); border-bottom: 1px solid var(--line-2); }
+.tools { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; padding-block: 16px; }
+.search { flex: 1 1 220px; min-width: 0; background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--r-pill); padding: 10px 16px; font-size: 14.5px; transition: border-color .2s; }
+.search::placeholder { color: var(--mute); }
+.search:focus { border-color: var(--accent); outline: none; }
+.filters { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { background: none; border: 1px solid var(--line-2); border-radius: var(--r-pill); padding: 7px 13px; font-family: var(--mono); font-size: 12px; letter-spacing: .06em; color: var(--dim); cursor: pointer; transition: border-color .2s, color .2s, background .2s; }
+.chip:hover { border-color: var(--accent); color: var(--text); }
+.chip[aria-pressed="true"] { border-color: var(--accent); color: var(--on-accent); background: var(--accent); }
+.list { display: flex; flex-direction: column; }
+.item { display: grid; grid-template-columns: 112px minmax(0, 1fr) 28px; gap: 8px 24px; padding: 26px 8px; margin-inline: -8px; border: 0; border-bottom: 1px solid var(--line); text-align: left; background: none; cursor: pointer; width: calc(100% + 16px); border-radius: 12px; transition: background .3s var(--ease); }
+.item:hover { background: var(--surface); }
+.item:hover .it-title { color: var(--accent); }
+.item:hover .go { transform: translateX(4px); color: var(--accent); }
+.it-meta { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; color: var(--mute); display: flex; flex-direction: column; gap: 6px; padding-top: 5px; }
+.it-meta .tg { color: var(--accent); text-transform: uppercase; letter-spacing: .1em; }
+.it-body { min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.it-title { font-size: clamp(22px, 3.4vw, 30px); font-weight: 500; letter-spacing: -.03em; line-height: 1.12; transition: color .2s; text-wrap: balance; }
+.it-sum { color: var(--dim); font-size: 15.5px; line-height: 1.55; max-width: 62ch; }
+.it-foot { font-family: var(--mono); font-size: 12px; color: var(--mute); letter-spacing: .06em; }
+.go { font-family: var(--mono); color: var(--mute); transition: transform .3s var(--ease), color .2s; padding-top: 4px; }
+@media (max-width: 600px) { .item { grid-template-columns: minmax(0, 1fr) 20px; } .it-meta { grid-column: 1 / -1; flex-direction: row; gap: 14px; padding-top: 0; } .go { grid-column: 2; grid-row: 2; } .it-body { grid-column: 1; grid-row: 2; } }
+.empty { padding-block: 40px; color: var(--mute); font-family: var(--mono); font-size: 13px; }
 
-  /* ---------- nav ---------- */
-  .nav { position: sticky; top: 0; z-index: 50; height: var(--nav-h); background: rgba(10,11,12,.72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
-  .nav .wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-  .brand { display: inline-flex; align-items: center; gap: 12px; white-space: nowrap; font-size: 15px; letter-spacing: -.02em; }
-  .bname em { font-style: normal; font-weight: 300; color: var(--dim); transition: color .25s ease; }
-  @media (hover: hover) and (pointer: fine) { .brand:hover .bname em { color: var(--accent); } }
-  @media (max-width: 420px) { .brand { font-size: 14px; } }
-  .nav-links { display: flex; align-items: center; gap: 30px; }
-  .nav-link { position: relative; font-size: 13px; color: var(--dim); transition: color .2s ease; padding-block: 6px; }
-  .nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease-out); }
-  .nav-link[aria-current="true"] { color: var(--text); }
-  .nav-link[aria-current="true"]::after { transform: scaleX(1); }
-  @media (hover: hover) and (pointer: fine) { .nav-link:hover { color: var(--text); } .nav-link:hover::after { transform: scaleX(1); } }
-  .nav-right { display: flex; align-items: center; gap: 16px; }
-  .avail { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--dim); white-space: nowrap; }
-  .avail i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(212,255,58,.5); animation: ping 2.4s var(--ease-out) infinite; }
-  @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(212,255,58,.5); } 70%,100% { box-shadow: 0 0 0 9px rgba(212,255,58,0); } }
-  .lang { display: inline-flex; border: 1px solid var(--line-2); border-radius: var(--r-pill); padding: 2px; }
-  .lang button { font-family: var(--mono); font-size: 11px; font-weight: 500; padding: 5px 11px; border-radius: var(--r-pill); color: var(--mute); transition: background .2s ease, color .2s ease; }
-  .lang button.active { background: var(--accent); color: var(--on-accent); }
+/* post */
+.back { display: inline-flex; align-items: center; gap: 8px; margin-block: 28px 8px; background: none; border: 0; padding: 6px 0; cursor: pointer; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); transition: color .2s; }
+.back:hover { color: var(--accent); }
+.post-head { display: flex; flex-direction: column; gap: 20px; padding-block: 16px 30px; border-bottom: 1px solid var(--line-2); }
+.post-head h1 { font-size: clamp(32px, 6.4vw, 56px); letter-spacing: -.04em; line-height: 1.04; }
+.post-meta { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--mute); display: flex; gap: 8px 16px; flex-wrap: wrap; align-items: center; }
+.post-meta .tg { color: var(--accent); }
+.prose { max-width: 66ch; padding-block: 34px 10px; display: flex; flex-direction: column; gap: 20px; }
+.prose p { margin: 0; font-size: 17.5px; line-height: 1.7; color: var(--body); }
+.prose h2 { margin: 20px 0 0; font-weight: 500; font-size: clamp(24px, 4vw, 31px); letter-spacing: -.03em; line-height: 1.15; display: flex; align-items: baseline; gap: 12px; }
+.prose h2::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex: none; transform: translateY(-1px); }
+.prose ul { margin: 0; padding-left: 1.15em; display: flex; flex-direction: column; gap: 10px; font-size: 17.5px; line-height: 1.6; color: var(--body); }
+.prose li::marker { color: var(--accent); }
 
-  /* ---------- buttons ---------- */
-  .btn { display: inline-flex; align-items: center; gap: 12px; height: 52px; padding: 0 12px 0 24px; border-radius: var(--r-pill); font-weight: 500; font-size: 14px; white-space: nowrap; transition: background .25s ease, border-color .25s ease, color .25s ease, transform .15s ease; will-change: transform; }
-  .btn .ico { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; transition: transform .45s var(--ease-out); }
-  .btn.primary { background: var(--accent); color: var(--on-accent); }
-  .btn.primary .ico { background: var(--on-accent); color: var(--accent); }
-  .btn.ghost { border: 1px solid var(--line-2); color: var(--text); }
-  .btn.ghost .ico { border: 1px solid var(--line-2); }
-  .btn:active { transform: scale(.97); }
-  @media (hover: hover) and (pointer: fine) {
-    .btn.primary:hover { background: #e4ff7a; } .btn.primary:hover .ico { transform: translateX(3px) rotate(-45deg); }
-    .btn.ghost:hover { border-color: var(--accent); color: var(--accent); } .btn.ghost:hover .ico { transform: translateY(2px); border-color: var(--accent); }
-  }
-  .chip { display: inline-flex; align-items: center; font-family: var(--mono); font-size: 11px; letter-spacing: .02em; padding: 5px 12px; border-radius: var(--r-pill); border: 1px solid var(--line-2); color: var(--dim); white-space: nowrap; }
-  .chip.solid { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 500; }
+.fig { margin: 8px 0; padding: 22px; border: 1px solid var(--line-2); border-radius: var(--r-box); background: var(--surface); display: flex; flex-direction: column; gap: 16px; }
+.fig figcaption { font-size: 14px; line-height: 1.55; color: var(--dim); }
+.fig figcaption sup a, .fig .cell sup a { color: var(--accent); text-decoration: none; font-family: var(--mono); font-size: .72em; }
+.fig .kick { font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--mute); }
+.tl-axis { position: relative; height: 112px; margin-inline: 10px; }
+.tl-line { position: absolute; left: 0; right: 0; bottom: 26px; height: 2px; background: var(--line-2); border-radius: 2px; }
+.tl-tick { position: absolute; bottom: 20px; width: 1px; height: 14px; background: var(--line-2); }
+.tl-mon { position: absolute; bottom: 0; transform: translateX(-50%); font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--mute); }
+.tl-pin { position: absolute; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; }
+.tl-pin .b { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-family: var(--mono); font-size: 11px; font-weight: 500; background: var(--surface-2); border: 1px solid var(--line-2); color: var(--text); }
+.tl-pin .s { width: 1px; background: var(--line-2); flex: none; }
+.tl-pin .d { width: 9px; height: 9px; border-radius: 50%; background: var(--dim); margin-top: -1px; }
+.tl-pin.hot .b { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.tl-pin.hot .d { background: var(--accent); }
+.tl-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.tl-list li { display: grid; grid-template-columns: 22px 62px minmax(0, 1fr); gap: 4px 14px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; line-height: 1.45; color: var(--body); }
+.tl-list .n { font-family: var(--mono); font-size: 12px; color: var(--mute); }
+.tl-list .dt { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--dim); white-space: nowrap; }
+.tl-list li.hot .n, .tl-list li.hot .dt { color: var(--accent); }
+.cmp { display: flex; flex-direction: column; gap: 14px; }
+.cmp-col { border: 1px solid var(--line-2); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; background: var(--bg); }
+.cmp-col.now { border-color: var(--accent); background: var(--accent-soft); }
+.cmp-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.cmp-stack { display: flex; flex-direction: column; gap: 6px; }
+.chip { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--surface-2); color: var(--text); white-space: nowrap; }
+.chip.cat { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 500; padding: 14px 16px; }
+.chip.closed { border-style: dashed; color: var(--dim); }
+.chip.open { border-color: var(--text); }
+.arr { color: var(--accent); font-family: var(--mono); font-size: 18px; }
+.cmp-col .note { font-size: 14.5px; line-height: 1.5; color: var(--body); }
+.mx { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.mx-r { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) auto; gap: 6px 16px; align-items: start; padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 15px; line-height: 1.4; color: var(--body); }
+.mx-h { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--mute); padding-block: 10px; }
+.st { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11.5px; letter-spacing: .05em; text-transform: uppercase; line-height: 1.35; }
+.st::before { content: ""; width: 9px; height: 9px; border-radius: 50%; flex: none; margin-top: 1px; }
+.st.ga { color: var(--accent); } .st.ga::before { background: var(--accent); }
+.st.preview { color: var(--text); } .st.preview::before { border: 1.5px solid var(--text); }
+.st.claim { color: var(--dim); } .st.claim::before { border: 1.5px dashed var(--dim); }
+.flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; counter-reset: s; }
+.flow li { border: 1px solid var(--line-2); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px; background: var(--bg); font-size: 14.5px; line-height: 1.4; color: var(--text); }
+.flow li.prep { border-style: dashed; color: var(--body); }
+.flow .no { font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.flow li.prep .no { color: var(--mute); }
+@media (max-width: 560px) { .fig { padding: 16px; } .mx-r { grid-template-columns: minmax(0, 1fr) 30px; } .mx-r .cell:nth-child(2) { grid-column: 1 / -1; grid-row: 2; } .mx-h { display: none; } .tl-list li { grid-template-columns: 20px 54px minmax(0, 1fr); gap: 4px 10px; } }
+.prose sup a { color: var(--accent); text-decoration: none; font-family: var(--mono); font-size: .72em; padding-inline: 1px; }
+.sources { margin-top: 34px; border: 1px solid var(--line-2); border-radius: var(--r-box); background: var(--surface); padding: 22px clamp(16px, 4vw, 28px); display: flex; flex-direction: column; gap: 14px; }
+.sources h2 { margin: 0; font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.sources ol { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; }
+.sources li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 4px; padding-block: 12px; border-top: 1px solid var(--line); }
+.sources li:first-child { border-top: 0; }
+.sources .n { font-family: var(--mono); font-size: 12px; color: var(--mute); padding-top: 3px; }
+.sources a { font-size: 15.5px; line-height: 1.4; color: var(--text); text-decoration-color: var(--line-2); text-underline-offset: 3px; overflow-wrap: anywhere; }
+.sources a:hover { text-decoration-color: var(--accent); color: var(--accent); }
+.sources .pub { display: block; font-family: var(--mono); font-size: 12px; color: var(--mute); margin-top: 3px; letter-spacing: .04em; }
+.cta { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: var(--r-pill); font-family: var(--mono); font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--accent); color: var(--accent); background: none; cursor: pointer; transition: background .2s, color .2s; }
+.btn:hover { background: var(--accent); color: var(--on-accent); }
 
-  /* ---------- hero ---------- */
-  .hero { position: relative; min-height: calc(100dvh - var(--nav-h)); display: flex; align-items: center; padding-block: 56px 72px; border-bottom: 1px solid var(--line); overflow: hidden; isolation: isolate; }
-  #net { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent); }
-  .hero::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(520px circle at var(--mx, 70%) var(--my, 30%), rgba(212,255,58,.09), transparent 60%); }
-  .hero-grid { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: 32px; align-items: end; width: 100%; }
-  .hero-copy { grid-column: span 8; }
-  .hero-card { grid-column: span 4; }
-  .hero-title { font-size: clamp(2.7rem, 6.2vw, 5.6rem); line-height: 1; }
-  .hero-title .line { display: block; }
-  .hero-meta { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 8px 36px; }
-  .hero-cta { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 12px; }
-  @supports (animation-timeline: view()) {
-    .hero-copy { animation: heroExit linear both; animation-timeline: view(); animation-range: exit 0% exit 90%; }
-    @keyframes heroExit { to { transform: translateY(-60px); opacity: 0; } }
-  }
-
-  .sig { border: 1px solid var(--line); background: rgba(17,19,20,.72); border-radius: var(--r-box); padding: 22px; transform-style: preserve-3d; transition: transform .5s var(--ease-out), border-color .3s ease; will-change: transform; }
-  .sig-top { display: flex; justify-content: space-between; align-items: center; }
-  .sig-stage { position: relative; height: 230px; margin-top: 8px; }
-  .sig-panel { position: absolute; inset: 0 0 30px; display: flex; align-items: center; justify-content: center; opacity: 0; animation: sigCycle 24s infinite; }
-  .sig-panel.p2 { animation-delay: -16s; } .sig-panel.p3 { animation-delay: -8s; }
-  .sig-cap { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; align-items: baseline; opacity: 0; animation: sigCycle 24s infinite; }
-  .sig-cap.p2 { animation-delay: -16s; } .sig-cap.p3 { animation-delay: -8s; }
-  .sig-cap b { font-weight: 400; font-size: 14px; color: var(--dim); }
-  @keyframes sigCycle { 0% { opacity: 0; } 2% { opacity: 1; } 31% { opacity: 1; } 34% { opacity: 0; } 100% { opacity: 0; } }
-  @keyframes drawLine { to { stroke-dashoffset: 0; } }
-  @keyframes dotPop { to { opacity: 1; transform: scale(1); } }
-  @keyframes glow { 0%,100% { opacity: .6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.35); } }
-  .sig svg { width: 100%; max-width: 250px; height: auto; overflow: visible; }
-  .chart-path { stroke-dasharray: 420; stroke-dashoffset: 420; animation: drawLine 3.6s var(--ease-out) infinite; }
-  .chart-dot { transform-box: fill-box; transform-origin: center; animation: glow 2.4s ease-in-out infinite; }
-  .sc { opacity: 0; transform: scale(.4); transform-box: fill-box; transform-origin: center; animation: dotPop .5s var(--ease-out) forwards infinite; animation-duration: 7s; }
-  .reg { stroke-dasharray: 260; stroke-dashoffset: 260; animation: drawLine 2.2s var(--ease-out) infinite; animation-duration: 7s; animation-delay: 1.1s; }
-  .te { stroke-dasharray: 90; stroke-dashoffset: 90; animation: drawLine 1s var(--ease-out) infinite; animation-duration: 7s; }
-  .te.b { animation-delay: .5s; }
-  .tp { stroke-dasharray: 160; stroke-dashoffset: 160; animation: drawLine 1.2s var(--ease-out) infinite; animation-duration: 7s; animation-delay: 1.3s; }
-  .tl { transform-box: fill-box; transform-origin: center; animation: glow 1.6s ease-in-out infinite; animation-delay: 2.4s; }
-
-  /* ---------- about ---------- */
-  .about { border-bottom: 1px solid var(--line); }
-  .about-lead { margin: 40px 0 0; max-width: 30ch; font-size: clamp(1.7rem, 3.4vw, 3rem); font-weight: 300; letter-spacing: -.03em; line-height: 1.15; text-wrap: pretty; }
-  .about-grid { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: 32px; margin-top: 56px; align-items: start; }
-  .about-grid > p { grid-column: span 6; margin: 0; max-width: 52ch; }
-  .about-tags { grid-column: 8 / -1; display: flex; flex-wrap: wrap; gap: 10px; }
-  .about-tags .chip { font-size: 12px; padding: 8px 16px; }
-  @media (hover: hover) and (pointer: fine) { .about-tags .chip { transition: border-color .25s ease, color .25s ease, transform .3s var(--ease-out); } .about-tags .chip:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); } }
-  @media (max-width: 900px) { .about-grid > p, .about-tags { grid-column: 1 / -1; } }
-
-  /* ---------- data to decision: every stage moves all the time, the title lights up in turn ---------- */
-  .proc { border-bottom: 1px solid var(--line); }
-  .steps { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 40px; margin-top: 72px; }
-  .step h3 { margin: 22px 0 6px; font-size: 1.3rem; font-weight: 500; letter-spacing: -.02em; color: var(--dim); animation: titleOn 8s infinite both; }
-  .step:nth-child(2) h3 { animation-delay: 2s; } .step:nth-child(3) h3 { animation-delay: 4s; } .step:nth-child(4) h3 { animation-delay: 6s; }
-  .step p { margin: 0; color: var(--mute); font-size: 14px; max-width: 28ch; }
-  .vis { position: relative; height: 160px; border-top: 1px solid var(--line); padding-top: 20px; }
-  .vis svg { width: 100%; height: 100%; overflow: visible; }
-  .vis svg * { transform-box: fill-box; transform-origin: center; }
-  .step:not(:last-child) .vis::after { content: ''; position: absolute; left: 100%; top: 90px; width: 40px; height: 1px; background: var(--line-2); }
-  .step:not(:last-child) .vis::before { content: ''; position: absolute; z-index: 1; left: 100%; top: 87px; width: 7px; height: 7px; margin-left: -3px; border-radius: 50%; background: var(--accent); opacity: 0; animation: hop 1.6s linear infinite; }
-  .step:nth-child(2) .vis::before { animation-delay: .5s; } .step:nth-child(3) .vis::before { animation-delay: 1s; }
-  .raw circle { animation: jit 1.5s ease-in-out infinite alternate; }
-  .cd { animation: wave 2.4s ease-in-out infinite; animation-delay: var(--w, 0s); }
-  .ml { stroke: rgba(212,255,58,.5); stroke-width: 1.2; stroke-dasharray: 3 7; animation: flow 1s linear infinite; }
-  .ml.b { animation-duration: .8s; }
-  .mdl circle:not(.mo) { animation: nodePulse 2.2s ease-in-out infinite; }
-  .mdl circle:nth-of-type(n+4) { animation-delay: .5s; } .mdl circle:nth-of-type(n+8) { animation-delay: 1s; }
-  .mo { animation: lit 2.2s ease-in-out infinite; animation-delay: 1.2s; }
-  .needle { animation: needle 6s ease-in-out infinite; }
-  .dec-chip { position: absolute; left: 50%; bottom: 6px; transform: translateX(-50%); animation: chipYes 6s infinite; }
-  .dec-chip.no { animation-name: chipNo; }
-  @keyframes titleOn { 0% { color: var(--dim); } 4%, 22% { color: var(--accent); } 28%, 100% { color: var(--dim); } }
-  @keyframes hop { 0% { opacity: 0; transform: translateX(-40px); } 15% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; transform: translateX(0); } }
-  @keyframes jit { to { transform: translate(calc(var(--dx, 2px) * 3), calc(var(--dy, 2px) * 3)); } }
-  @keyframes wave { 0%, 100% { opacity: .45; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.7); } }
-  @keyframes flow { to { stroke-dashoffset: -20; } }
-  @keyframes nodePulse { 0%, 100% { stroke: #85867f; transform: scale(1); } 50% { stroke: #d4ff3a; transform: scale(1.25); } }
-  @keyframes lit { 0%, 100% { transform: scale(.8); opacity: .6; } 50% { transform: scale(1.5); opacity: 1; } }
-  @keyframes needle { 0%, 6% { transform: translateX(0); fill: #d4ff3a; } 20%, 44% { transform: translateX(50px); fill: #d4ff3a; } 56%, 88% { transform: translateX(150px); fill: #ecece6; } 100% { transform: translateX(0); fill: #d4ff3a; } }
-  @keyframes chipYes { 0%, 14% { opacity: 0; transform: translate(-50%, 6px); } 22%, 44% { opacity: 1; transform: translate(-50%, 0); } 50%, 100% { opacity: 0; transform: translate(-50%, 0); } }
-  @keyframes chipNo { 0%, 56% { opacity: 0; transform: translate(-50%, 6px); } 64%, 88% { opacity: 1; transform: translate(-50%, 0); } 94%, 100% { opacity: 0; transform: translate(-50%, 0); } }
-  @media (max-width: 900px) {
-    .steps { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 48px 32px; }
-    .step:not(:last-child) .vis::before, .step:not(:last-child) .vis::after { display: none; }
-  }
-
-  /* ---------- projects ---------- */
-  .section-head p { margin: 22px 0 0; color: var(--dim); max-width: 52ch; font-size: 17px; }
-  .features { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; margin-top: 56px; }
-  .features .feature { margin-top: 0; min-height: 440px; }
-  @media (max-width: 900px) { .features { grid-template-columns: 1fr; } .features .feature { min-height: 0; gap: 40px; } }
-  .features .feature.wide { grid-column: 1 / -1; min-height: 0; gap: 40px; }
-  .fstats { display: flex; flex-wrap: wrap; gap: 14px 40px; margin-top: 28px; }
-  .fstat b { display: block; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 500; letter-spacing: -.03em; line-height: 1.1; color: var(--accent); }
-  .fstat span { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--mute); }
-  .feature { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 64px; min-height: 380px; margin-top: 56px; padding: clamp(28px, 4vw, 52px); border-radius: var(--r-box); border: 1px solid var(--line); background: var(--surface); overflow: hidden; transition: border-color .3s ease; }
-  .feature::before, .spot::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .4s ease; background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(212,255,58,.11), transparent 65%); }
-  .feature::after { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(rgba(236,236,230,.14) 1px, transparent 1.2px); background-size: 22px 22px; -webkit-mask-image: radial-gradient(360px circle at var(--mx, 85%) var(--my, 20%), #000, transparent 70%); mask-image: radial-gradient(360px circle at var(--mx, 85%) var(--my, 20%), #000, transparent 70%); opacity: .7; }
-  .feature > * { position: relative; z-index: 1; }
-  @media (hover: hover) and (pointer: fine) { .feature:hover { border-color: var(--line-2); } .feature:hover::before { opacity: 1; } }
-  .feature-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
-  .feature h3 { margin: 0; font-size: clamp(1.9rem, 3.6vw, 3rem); font-weight: 500; letter-spacing: -.03em; line-height: 1.05; }
-  .feature p { margin: 16px 0 0; color: var(--dim); max-width: 52ch; }
-  .feature .more { margin-top: 28px; display: inline-flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; color: var(--accent); }
-  .feature .more .ico { width: 34px; height: 34px; border-radius: 50%; border: 1px solid currentColor; display: grid; place-items: center; transition: transform .45s var(--ease-out), background .25s ease, color .25s ease; }
-  @media (hover: hover) and (pointer: fine) { .feature:hover .more .ico { transform: rotate(-45deg); background: var(--accent); color: var(--on-accent); } }
-
-  .feature-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
-  .feature-actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
-  .inline-link { color: var(--accent); white-space: nowrap; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; transition: background-size .4s var(--ease-out); }
-  @media (hover: hover) and (pointer: fine) { .inline-link:hover { background-size: 0 1px; background-position: 100% 100%; } }
-  .toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin: 56px 0 18px; }
-  .search { flex: 1 1 220px; height: 46px; padding: 0 20px; border-radius: var(--r-pill); background: var(--surface); border: 1px solid var(--line-2); color: var(--text); font: 400 14px var(--sans); transition: border-color .2s ease; }
-  .search::placeholder { color: var(--mute); }
-  .search:focus { outline: none; border-color: var(--accent); }
-  .filter { height: 46px; min-width: 46px; padding: 0 16px; border-radius: var(--r-pill); border: 1px solid var(--line-2); display: grid; place-items: center; font-family: var(--mono); font-size: 12px; color: var(--dim); transition: background .2s ease, color .2s ease, border-color .2s ease; }
-  .filter[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
-  @media (hover: hover) and (pointer: fine) { .filter:hover:not([aria-pressed="true"]) { border-color: var(--text); color: var(--text); } }
-
-  .ptable { border-top: 1px solid var(--line); }
-  .prow { border-bottom: 1px solid var(--line); }
-  .prow.hide, .noresult[hidden] { display: none; }
-  .prow-h { width: 100%; display: flex; align-items: center; gap: 22px; padding: 26px 8px; text-align: left; transition: padding .4s var(--ease-out), background .25s ease; }
-  .prow-h .idx { width: 40px; color: var(--mute); }
-  .prow-h .name { flex: 1; font-size: clamp(1.15rem, 2.2vw, 1.7rem); font-weight: 400; letter-spacing: -.02em; transition: color .25s ease; }
-  .chev { color: var(--mute); transition: transform .4s var(--ease-out), color .2s ease; flex-shrink: 0; }
-  .prow.open .chev { transform: rotate(90deg); color: var(--accent); }
-  .prow.open .name { color: var(--accent); }
-  @media (hover: hover) and (pointer: fine) { .prow-h:hover { padding-left: 22px; background: linear-gradient(90deg, rgba(212,255,58,.06), transparent 60%); } .prow-h:hover .chev { color: var(--text); } }
-  .reveal-box { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s var(--ease-out); }
-  .open > .reveal-box, .open + .reveal-box { grid-template-rows: 1fr; }
-  .reveal-box > div { overflow: hidden; }
-  .prow-d { padding: 0 8px 28px 62px; color: var(--dim); max-width: 70ch; }
-  .noresult { padding: 36px 8px; color: var(--mute); }
-
-  /* ---------- accordions ---------- */
-  .acc-item { border-top: 1px solid var(--line); }
-  .acc-item:last-child { border-bottom: 1px solid var(--line); }
-  .acc-h { width: 100%; display: flex; align-items: center; gap: 18px; padding: 28px 8px; text-align: left; transition: padding .4s var(--ease-out); }
-  .acc-h .t { flex: 1; font-size: clamp(1.3rem, 2.6vw, 2rem); font-weight: 400; letter-spacing: -.025em; transition: color .25s ease; }
-  .acc-h .n { font-family: var(--mono); font-size: 12px; color: var(--mute); border: 1px solid var(--line-2); border-radius: var(--r-pill); min-width: 30px; height: 26px; display: grid; place-items: center; }
-  .acc-item.open .t { color: var(--accent); }
-  .acc-item .chev { transform: rotate(90deg); }
-  .acc-item.open .chev { transform: rotate(-90deg); color: var(--accent); }
-  @media (hover: hover) and (pointer: fine) { .acc-h:hover { padding-left: 22px; } }
-  .acc-body { padding: 0 8px 30px; }
-  .crow { display: flex; align-items: center; gap: 22px; padding: 18px 8px; border-radius: 12px; transition: background .25s ease, padding .35s var(--ease-out); }
-  .crow .yr { width: 92px; color: var(--mute); }
-  .crow .ct { flex: 1; font-size: 16px; font-weight: 500; }
-  .crow .go { color: var(--mute); transition: transform .4s var(--ease-out), color .2s ease; }
-  @media (hover: hover) and (pointer: fine) { .crow:hover { background: rgba(236,236,230,.045); padding-inline: 18px; } .crow:hover .go { color: var(--accent); transform: translate(3px,-3px); } }
-  .skill-text { color: var(--dim); max-width: 60ch; }
-  .bar { height: 2px; margin-top: 18px; max-width: 420px; }
-  .bar i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 2px; transition: width 1.2s var(--ease-out) .15s; }
-
-  .skills-grid { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: 48px; }
-  .skills-head { grid-column: span 4; align-self: start; position: sticky; top: calc(var(--nav-h) + 40px); }
-  .skills-list { grid-column: span 8; }
-
-  /* ---------- contact / footer ---------- */
-  .contact { border-top: 1px solid var(--line); padding-block: clamp(96px, 13vw, 180px) 48px; position: relative; overflow: hidden; }
-  .contact h2 { font-size: clamp(2.6rem, 7vw, 6rem); }
-  .mail { display: inline-block; position: relative; margin-top: 44px; font-size: clamp(1.2rem, 3.4vw, 3rem); font-weight: 400; letter-spacing: -.03em; padding-bottom: 8px; word-break: break-all; }
-  .mail::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--accent); transform: scaleX(.18); transform-origin: left; transition: transform .6s var(--ease-out); }
-  @media (hover: hover) and (pointer: fine) { .mail:hover::after { transform: scaleX(1); } .mail:hover { color: var(--accent); } }
-  .socials { margin-top: 40px; display: flex; gap: 12px; flex-wrap: wrap; }
-  .social { display: inline-flex; align-items: center; gap: 12px; height: 52px; padding: 0 22px 0 8px; border: 1px solid var(--line-2); border-radius: var(--r-pill); font-size: 14px; font-weight: 500; transition: border-color .25s ease, color .25s ease, transform .15s ease; }
-  .social .ico { width: 36px; height: 36px; border-radius: 50%; background: var(--surface-2); display: grid; place-items: center; transition: background .25s ease, color .25s ease; }
-  .social:active { transform: scale(.97); }
-  @media (hover: hover) and (pointer: fine) { .social:hover { border-color: var(--accent); color: var(--accent); } .social:hover .ico { background: var(--accent); color: var(--on-accent); } }
-  .foot { margin-top: clamp(80px, 11vw, 150px); padding-top: 28px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
-  .foot nav { display: flex; gap: 28px; flex-wrap: wrap; }
-  .totop { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--dim); transition: color .2s ease; }
-  @media (hover: hover) and (pointer: fine) { .totop:hover { color: var(--accent); } }
-
-  /* ---------- responsive ---------- */
-  @media (max-width: 1000px) { .avail { display: none; } .nav-links { gap: 22px; } }
-  @media (max-width: 900px) {
-    .hero { align-items: flex-start; padding-block: 48px 56px; }
-    .hero-grid, .skills-grid, .about-grid { grid-template-columns: minmax(0, 1fr); }
-    .hero-copy, .hero-card, .skills-head, .skills-list { grid-column: 1 / -1; }
-    .skills-head { position: static; }
-    .hero-grid { gap: 48px; }
-    .prow-d { padding-left: 8px; }
-    .prow-h { gap: 14px; } .prow-h .idx { width: 28px; }
-    .prow-h .chip { display: none; }
-    .crow { flex-wrap: wrap; gap: 6px 14px; } .crow .ct { flex-basis: calc(100% - 100px); }
-  }
-  @media (max-width: 720px) {
-    /* backdrop-filter on the nav would trap the fixed dock inside it, so drop it here */
-    .nav { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(10,11,12,.94); }
-    .nav-links { position: fixed; z-index: 50; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom)); transform: translateX(-50%); gap: 4px; padding: 6px; border-radius: var(--r-pill); background: rgba(17,19,20,.82); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--line-2); }
-    .nav-link { padding: 10px 14px; border-radius: var(--r-pill); font-size: 12px; }
-    .nav-link::after { display: none; }
-    .nav-link[aria-current="true"] { background: var(--accent); color: var(--on-accent); }
-    .contact { padding-bottom: 120px; }
-    .btn { height: 50px; }
-  }
-  @media (max-width: 400px) { .nav-links .nav-link { padding: 10px 9px; font-size: 11px; } }
-  @media (hover: none) { .sig { animation: floaty 7s ease-in-out infinite; } }
-  @keyframes floaty { 0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); } 50% { transform: translateY(-8px) rotateX(2deg) rotateY(-3deg); } }
-
-  /* ---------- reduced motion: fewer, gentler ---------- */
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .js .split .wi { transform: none; transition: none; }
-    .js .rv { opacity: 1; transform: none; filter: none; transition: opacity .3s ease; }
-    .avail i, .step h3, .raw circle, .cd, .ml, .mdl circle, .mo, .needle, .dec-chip, .vis::before, .chart-path, .chart-dot, .sc, .reg, .te, .tp, .tl { animation: none; }
-    .chart-path, .reg, .te, .tp { stroke-dashoffset: 0; } .sc { opacity: 1; transform: none; }
-    .sig-panel, .sig-cap { animation: none; }
-    .sig-panel:not(.p1), .sig-cap:not(.p1) { display: none; }
-    .sig-panel.p1, .sig-cap.p1 { opacity: 1; }
-    .hero-copy, .sig { animation: none; }
-    #progress { animation: none; }
-    .vis::before { display: none; } .ml { stroke-dasharray: none; } .needle { transform: translateX(50px); } .dec-chip.no { display: none; }
-  }
+.fig svg{display:block;width:100%;height:auto}
+.sv text{font-family:var(--mono);font-size:13px;fill:var(--body);letter-spacing:.02em}
+.sv .t{fill:var(--text)}.sv .m{fill:var(--mute)}.sv .a{fill:var(--accent)}.sv .oa{fill:var(--on-accent);font-weight:500}
+.sv .bar{fill:var(--surface-2);stroke:var(--line-2)}.sv .bar.a{fill:var(--accent);stroke:none}
+.sv .ln{stroke:var(--line-2);fill:none;stroke-width:1.5}.sv .la{stroke:var(--accent);fill:none;stroke-width:2.5}
+.sv .box{fill:var(--bg);stroke:var(--line-2)}.sv .boxd{fill:var(--bg);stroke:var(--line-2);stroke-dasharray:5 5}.sv .boxa{fill:var(--accent);stroke:none}
+.fig .svwrap{overflow-x:auto}
+footer { margin-top: 64px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; font-family: var(--mono); font-size: 12px; letter-spacing: .06em; color: var(--mute); }
+footer a { color: var(--dim); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
+
 </head>
 <body>
-<div id="progress" aria-hidden="true"></div>
-
-<header class="nav">
-  <div class="wrap">
-    <a href="#top" class="brand" aria-label="Hamza El Alami Chentoufi, home">
-      <span class="bname"><em>Hamza El Alami Chentoufi</em></span>
-    </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#apropos" class="nav-link" data-en="About" data-fr="À propos">About</a>
-      <a href="#projets" class="nav-link" data-en="Projects" data-fr="Projets">Projects</a>
-      <a href="#certifications" class="nav-link" data-en="Certifications" data-fr="Certifications">Certifications</a>
-      <a href="#competences" class="nav-link" data-en="Skills" data-fr="Compétences">Skills</a>
-      <a href="/blog/" class="nav-link" data-en="Blog" data-fr="Blog" aria-current="false">Blog</a>
-      <a href="#contact" class="nav-link" data-en="Contact" data-fr="Contact">Contact</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="top">
+    <button class="brand" id="home" type="button"><span class="dot" aria-hidden="true"></span><span>Hamza El Alami <span class="r" id="role"></span></span></button>
+    <nav class="nav" aria-label="Navigation">
+      <a href="https://hamzaelchen.github.io" target="_blank" rel="noopener">Portfolio</a>
+      <span class="lang-wrap">
+        <span class="lang-hint" id="lang-hint"></span>
+        <span class="lang" role="group" aria-label="Language">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+        </span>
+      </span>
     </nav>
-    <div class="nav-right">
-      <span class="avail"><i></i><span data-en="Available for internship" data-fr="Disponible pour un stage PFE">Available for internship</span></span>
-      <div class="lang" role="group" aria-label="Language">
-        <button type="button" class="active" data-lang="en" aria-pressed="true">EN</button>
-        <button type="button" data-lang="fr" aria-pressed="false">FR</button>
-      </div>
-    </div>
-  </div>
-</header>
-
-<main id="top">
-
-<!-- ===== HERO ===== -->
-<div class="hero" id="hero">
-  <canvas id="net" aria-hidden="true"></canvas>
-  <div class="wrap">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <h1 class="display hero-title">
-          <span class="line split" id="h1a" data-en="Data &amp; *AI*" data-fr="Data &amp; *IA*">Data &amp; AI</span>
-          <span class="line split" id="h1b" data-base="260" data-en="Engineer." data-fr="Ingénieur.">Engineer.</span>
-        </h1>
-        <div class="hero-cta rv" style="--d:500ms">
-          <a href="#projets" class="btn primary mag">
-            <span data-en="View my projects" data-fr="Voir mes projets">View my projects</span>
-            <span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </a>
-        </div>
-        <div class="hero-meta rv" style="--d:650ms">
-          <span class="tag" data-en="Data / AI / Dev / ML" data-fr="Data / IA / Dev / ML">Data / AI / Dev / ML</span>
-          <span class="tag" data-en="Based in Casablanca, Morocco" data-fr="Basé à Casablanca, Maroc">Based in Casablanca, Morocco</span>
-        </div>
-      </div>
-
-      <div class="hero-card rv" style="--d:400ms">
-        <div class="sig tilt" aria-hidden="true">
-          <div class="sig-top"><span class="tag">Signature</span><span class="tag" data-en="Auto loop" data-fr="Boucle auto">Auto loop</span></div>
-          <div class="sig-stage">
-            <div class="sig-panel p1">
-              <svg viewBox="0 0 260 150" fill="none">
-                <path d="M10,120 C40,110 60,60 90,72 C120,84 140,20 170,32 C200,44 220,95 250,60" stroke="#d4ff3a" stroke-width="2" stroke-linecap="round" class="chart-path"/>
-                <circle cx="250" cy="60" r="4" fill="#d4ff3a" class="chart-dot"/>
-              </svg>
-            </div>
-            <div class="sig-panel p2">
-              <svg viewBox="0 0 260 150" fill="none">
-                <g fill="#d4ff3a">
-                  <circle class="sc" style="animation-delay:.05s" cx="20" cy="125" r="3.5"/><circle class="sc" style="animation-delay:.15s" cx="38" cy="108" r="3.5"/><circle class="sc" style="animation-delay:.25s" cx="55" cy="115" r="3.5"/><circle class="sc" style="animation-delay:.35s" cx="72" cy="95" r="3.5"/><circle class="sc" style="animation-delay:.45s" cx="90" cy="100" r="3.5"/><circle class="sc" style="animation-delay:.55s" cx="107" cy="82" r="3.5"/><circle class="sc" style="animation-delay:.65s" cx="124" cy="88" r="3.5"/><circle class="sc" style="animation-delay:.75s" cx="142" cy="68" r="3.5"/><circle class="sc" style="animation-delay:.85s" cx="159" cy="74" r="3.5"/><circle class="sc" style="animation-delay:.95s" cx="176" cy="55" r="3.5"/><circle class="sc" style="animation-delay:1.05s" cx="194" cy="62" r="3.5"/><circle class="sc" style="animation-delay:1.15s" cx="211" cy="40" r="3.5"/><circle class="sc" style="animation-delay:1.25s" cx="228" cy="47" r="3.5"/>
-                </g>
-                <path d="M14,128 L236,32" stroke="#ecece6" stroke-width="1.6" class="reg"/>
-              </svg>
-            </div>
-            <div class="sig-panel p3">
-              <svg viewBox="0 0 260 150" fill="none">
-                <g stroke="rgba(236,236,230,.28)" stroke-width="1.6">
-                  <line x1="130" y1="20" x2="72" y2="68" class="te"/><line x1="130" y1="20" x2="188" y2="68" class="te b"/><line x1="72" y1="68" x2="40" y2="118" class="te"/><line x1="188" y1="68" x2="160" y2="118" class="te"/><line x1="188" y1="68" x2="222" y2="118" class="te b"/>
-                </g>
-                <path d="M130,20 L188,68 L222,118" stroke="#d4ff3a" stroke-width="2.2" stroke-linecap="round" class="tp"/>
-                <g fill="#111314" stroke="#85867f" stroke-width="1.4"><circle cx="130" cy="20" r="5"/><circle cx="72" cy="68" r="5"/><circle cx="40" cy="118" r="4"/><circle cx="160" cy="118" r="4"/></g>
-                <circle cx="188" cy="68" r="5" fill="#111314" stroke="#d4ff3a" stroke-width="1.4"/>
-                <circle cx="222" cy="118" r="5" fill="#d4ff3a" class="tl"/>
-              </svg>
-            </div>
-            <div class="sig-cap p1"><b data-en="Live signal" data-fr="Signal en direct">Live signal</b><span class="tag">EMA 20</span></div>
-            <div class="sig-cap p2"><b data-en="Linear relationship" data-fr="Relation linéaire">Linear relationship</b><span class="tag">Fit OLS</span></div>
-            <div class="sig-cap p3"><b data-en="Decision path" data-fr="Chemin de décision">Decision path</b><span class="tag">Greedy</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  </header>
+  <main id="view"></main>
+  <footer>
+    <span id="foot-l"></span>
+    <span><a href="https://hamzaelchen.github.io" target="_blank" rel="noopener">hamzaelchen.github.io</a></span>
+  </footer>
 </div>
 
-<!-- ===== A PROPOS ===== -->
-<section id="apropos" class="about">
-  <div class="wrap">
-    <h2 class="display h2 split" data-en="About *me.*" data-fr="À propos *de moi.*">About me.</h2>
-    <p class="about-lead rv" data-en="I'm Hamza, an aspiring Data &amp; AI Engineer based in Casablanca. I'm interested in how data and AI can solve practical problems, and I learn best by building projects." data-fr="Je suis Hamza, futur ingénieur Data &amp; IA basé à Casablanca. Je m'intéresse à la façon dont la data et l'IA peuvent résoudre des problèmes concrets, et j'apprends surtout en construisant des projets.">I'm Hamza, an aspiring Data &amp; AI Engineer based in Casablanca. I'm interested in how data and AI can solve practical problems, and I learn best by building projects.</p>
-    <div class="about-grid">
-      <p class="rv dim" data-en="I enjoy connecting the pieces: preparing data, exploring models, and turning the results into useful applications. My goal is to grow into an engineer who can take an idea from raw data to a working product, while continuing to learn about data engineering, machine learning, and cloud technologies." data-fr="J'aime relier les différentes pièces : préparer les données, explorer des modèles et transformer les résultats en applications utiles. Mon objectif est de devenir un ingénieur capable de mener une idée des données brutes jusqu'à un produit qui fonctionne, tout en continuant à progresser en data engineering, machine learning et technologies cloud.">I enjoy connecting the pieces: preparing data, exploring models, and turning the results into useful applications. My goal is to grow into an engineer who can take an idea from raw data to a working product, while continuing to learn about data engineering, machine learning, and cloud technologies.</p>
-      <div class="about-tags rv" style="--d:120ms">
-        <span class="chip">Machine Learning</span><span class="chip">Deep Learning</span><span class="chip">Data Engineering</span><span class="chip">Cloud</span><span class="chip">Python</span>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- Posts. Newest first. Add a new object at the top of the array. Each text field has fr and en. Blocks: h2, p, ul. Cite sources in text with [n]. -->
+<script type="application/json" id="posts">[
+ {
+  "id": "kimi-k3-1-decrypte",
+  "date": "2026-10-28",
+  "tag": {
+   "fr": "Actu IA",
+   "en": "AI news"
+  },
+  "minutes": 9,
+  "title": {
+   "fr": "La Chine sort un modèle IA que personne n'arrive à expliquer",
+   "en": "China shipped an AI model nobody can explain"
+  },
+  "summary": {
+   "fr": "Kimi K3.1 est open-weight, il pèse 3 000 milliards de paramètres et il frôle les meilleurs modèles américains. Voici ce qui est solide, ce qui est discuté, et ce que tu peux en faire.",
+   "en": "Kimi K3.1 is open-weight, has 3 trillion parameters and nearly matches the best American models. Here is what is solid, what is disputed, and what you can do with it."
+  },
+  "body": {
+   "fr": [
+    {
+     "t": "h2",
+     "x": "À lire avant de partager"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "La vidéo de Fireship est satirique : le test du cheval 3D est un jeu, pas une évaluation.[1]",
+      "Sur la distillation, ce sont des allégations et des déclarations d'entreprises, pas des faits jugés.[7]",
+      "Les scores de Moonshot sont ceux de Moonshot. Je les compare à des mesures indépendantes quand elles existent.[2][5]"
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "Le modèle mystère « Kibitz »"
+    },
+    {
+     "t": "p",
+     "x": "Le 22 octobre, un modèle anonyme nommé « Kibitz » apparaît sur l'Arena, où des internautes comparent des modèles à l'aveugle. Il impressionne en code, en dessin JavaScript et en 3D, et personne ne sait qui l'a entraîné.[8] Le mot est yiddish : il désigne le spectateur qui souffle des conseils par-dessus l'épaule des joueurs d'échecs. Fireship plaisante en disant que tout le monde a pensé à Kimi parce que les deux mots commencent par « Ki ».[1]"
+    },
+    {
+     "t": "p",
+     "x": "Le lendemain, 23 octobre, Moonshot AI confirme : voici Kimi K3.1 Pro, une version post-entraînée de Kimi K3 (juillet) avec environ 3 000 milliards de paramètres. Il est disponible tout de suite par API, et les poids ouverts sont annoncés pour le 4 novembre.[2][3][4] Seule une petite partie du réseau travaille à chaque requête : 16 sous-réseaux actifs sur 896, ce qui limite le coût.[4]"
+    },
+    {
+     "t": "h2",
+     "x": "La distillation, expliquée simplement"
+    },
+    {
+     "t": "p",
+     "x": "Distiller un modèle, c'est entraîner un « élève » à imiter un « professeur » à partir de ses réponses. Entre les mains de son propriétaire, c'est une technique courante. Anthropic dénonce un autre usage : des réseaux de faux comptes qui interrogent Claude en masse pour récupérer ses réponses, et surtout son raisonnement écrit, afin d'entraîner un modèle concurrent.[7]"
+    },
+    {
+     "t": "svg",
+     "cap": "Le mécanisme décrit par Anthropic. Ce sont ses allégations, pas des faits jugés.[7]",
+     "svg": "<svg class=\"sv\" viewBox=\"0 0 600 270\" role=\"img\" aria-label=\"Distillation\"><rect x=\"10\" y=\"90\" width=\"150\" height=\"70\" rx=\"10\" class=\"box\"/><text x=\"85\" y=\"122\" class=\"t\" text-anchor=\"middle\">Modèle professeur</text><text x=\"85\" y=\"142\" class=\"m\" text-anchor=\"middle\">ex. Claude</text><rect x=\"225\" y=\"20\" width=\"150\" height=\"70\" rx=\"10\" class=\"boxd\"/><text x=\"300\" y=\"52\" class=\"t\" text-anchor=\"middle\">Faux comptes</text><text x=\"300\" y=\"72\" class=\"m\" text-anchor=\"middle\">≈ 24 000</text><rect x=\"440\" y=\"90\" width=\"150\" height=\"70\" rx=\"10\" class=\"boxa\"/><text x=\"515\" y=\"122\" class=\"oa\" text-anchor=\"middle\">Modèle élève</text><text x=\"515\" y=\"142\" class=\"oa\" text-anchor=\"middle\">entraîné dessus</text><path class=\"la\" d=\"M160 110 L225 65 M217 66 L225 65 L222 73\"/><path class=\"la\" d=\"M375 65 L440 110 M432 105 L440 110 L440 101\"/><rect x=\"150\" y=\"190\" width=\"300\" height=\"56\" rx=\"10\" class=\"boxd\"/><text x=\"300\" y=\"214\" class=\"t\" text-anchor=\"middle\">Défenses du 12 oct. : −90 à −99 %</text><text x=\"300\" y=\"234\" class=\"m\" text-anchor=\"middle\">estimation d'Anthropic</text></svg>"
+    },
+    {
+     "t": "p",
+     "x": "En février 2026, Anthropic dit avoir relevé plus de 16 millions d'échanges via environ 24 000 comptes frauduleux, et nomme DeepSeek, Moonshot et MiniMax. Un rapport de septembre cite sept labos chinois.[7] Je n'ai pas trouvé de réponse de Moonshot dans les sources lues. En juillet, la Maison-Blanche a aussi accusé Moonshot d'avoir copié un modèle d'Anthropic et utilisé des puces interdites, sans publier de preuves.[3]"
+    },
+    {
+     "t": "h2",
+     "x": "Le paradoxe"
+    },
+    {
+     "t": "p",
+     "x": "Le 12 octobre, Anthropic annonce de nouvelles défenses : depuis son classifieur, les tokens de raisonnement extraits seraient 10 à 100 fois moins nombreux, soit 90 à 99 % de moins.[7] Attention à ce que ça mesure : une estimation d'Anthropic, sur sa propre plateforme, sans vérification indépendante. L'entreprise s'attend d'ailleurs à un jeu du chat et de la souris.[7]"
+    },
+    {
+     "t": "p",
+     "x": "D'où la question de Fireship. Si les labos américains expliquent le rattrapage chinois par la copie, et si cette copie est bloquée à 90-99 %, comment Kimi K3.1 arrive-t-il si près ? Plusieurs lectures restent possibles : une extraction faite avant les défenses, d'autres techniques d'entraînement, ou des chiffres qui ne couvrent qu'une partie du problème. Aucune source lue ne tranche. Cette liste est mon raisonnement, pas un fait."
+    },
+    {
+     "t": "p",
+     "x": "L'autre volet est éthique. Fireship rappelle que ces entreprises ont elles-mêmes absorbé le savoir humain : blogs, GitHub, articles scientifiques et livres. Précision utile sur « Project Panama » : d'après des pièces de justice, Anthropic a acheté des livres par lots, coupé les reliures, numérisé les pages puis recyclé le papier. En juin 2025, un juge a estimé que former une IA sur des livres achetés légalement relevait du fair use, en traitant à part les livres piratés. Anthropic a accepté 1,5 milliard de dollars pour régler le recours collectif.[9]"
+    },
+    {
+     "t": "h2",
+     "x": "Les benchmarks : un point d'écart, selon qui mesure"
+    },
+    {
+     "t": "p",
+     "x": "Sur Terminal-Bench 4.0, qui teste des agents de code dans un terminal, Kimi K3.1 Pro est à environ un point d'Opus 5.5. Mais le chiffre bouge selon qui mesure et avec quel harness, l'environnement qui lance l'agent avec ses outils et ses limites. Même modèle, trois mesures, plus de trois points d'écart.[2][4][5]"
+    },
+    {
+     "t": "svg",
+     "cap": "Terminal-Bench 4.0, trois mesures. Axe tronqué de 60 à 70 %, à lire avec prudence.[2][3][5]",
+     "svg": "<svg class=\"sv\" viewBox=\"0 0 600 260\" role=\"img\" aria-label=\"Terminal-Bench 4.0\"><text x=\"40\" y=\"20\" class=\"t\" text-anchor=\"start\">Moonshot (éditeur)</text><path class=\"ln\" d=\"M40 42 H560\"/><circle cx=\"372.8\" cy=\"42\" r=\"8\" class=\"bar\"/><circle cx=\"336.4\" cy=\"42\" r=\"8\" fill=\"#d4ff3a\"/><text x=\"40\" y=\"70\" class=\"a\" text-anchor=\"start\">Kimi 65.7%</text><text x=\"560\" y=\"70\" class=\"m\" text-anchor=\"end\">Opus 5.5 66.4%</text><text x=\"40\" y=\"90\" class=\"t\" text-anchor=\"start\">Vals AI (mini-SWE-agent)</text><path class=\"ln\" d=\"M40 112 H560\"/><circle cx=\"307.8\" cy=\"112\" r=\"8\" class=\"bar\"/><circle cx=\"229.3\" cy=\"112\" r=\"8\" fill=\"#d4ff3a\"/><text x=\"40\" y=\"140\" class=\"a\" text-anchor=\"start\">Kimi 63.64%</text><text x=\"560\" y=\"140\" class=\"m\" text-anchor=\"end\">Opus 5.5 65.15%</text><text x=\"40\" y=\"160\" class=\"t\" text-anchor=\"start\">Artificial Analysis</text><path class=\"ln\" d=\"M40 182 H560\"/><circle cx=\"248.0\" cy=\"182\" r=\"8\" class=\"bar\"/><circle cx=\"404.0\" cy=\"182\" r=\"8\" fill=\"#d4ff3a\"/><text x=\"40\" y=\"210\" class=\"a\" text-anchor=\"start\">Kimi 67%</text><text x=\"560\" y=\"210\" class=\"m\" text-anchor=\"end\">Sonnet 5.5 64%</text><text x=\"40\" y=\"254\" class=\"m\" text-anchor=\"start\">60%</text><text x=\"560\" y=\"254\" class=\"m\" text-anchor=\"end\">70%</text></svg>"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Terminal-Bench 4.0 (Vals AI) : Kimi 63,64 % (3e sur 56) ; Opus 5.5 65,15 % ; Sonnet 5.5 64,14 %",
+      "SWE-Marathon (Éditeur) : Kimi 51,7 ; Opus 5.5 46,3 ; GPT-6 Astra 42,5",
+      "Terminal-Bench Science 0.1 (Éditeur) : Kimi 38,1 ; Opus 5.5 63,3 ; GPT-6 Astra 68,1",
+      "ProgramBench (Éditeur) : Kimi 31,5 % ; Opus 5.5 65,0 %",
+      "Humanity's Last Exam (Artificial Analysis) : Kimi 52 % ; Opus 5.5 61 %"
+     ]
+    },
+    {
+     "t": "p",
+     "x": "Autres scores. Les lignes marquées « éditeur » viennent de Moonshot et n'ont pas été vérifiées de façon indépendante.[3][10]"
+    },
+    {
+     "t": "p",
+     "x": "Lis ce tableau en entier : Kimi gagne sur SWE-Marathon, des tâches logicielles longues, mais il est loin derrière sur ProgramBench et sur Terminal-Bench Science.[2][10] Fireship dit que le 67 % d'Artificial Analysis est le meilleur de tous les modèles testés ; sur Vals AI, Kimi est 3e, derrière Opus 5.5 et Sonnet 5.5.[1][5] Je n'ai pas pu confirmer le classement complet d'Artificial Analysis."
+    },
+    {
+     "t": "h2",
+     "x": "Cybersécurité bridée et géopolitique"
+    },
+    {
+     "t": "p",
+     "x": "Moonshot dit avoir retiré des données liées à l'attaque informatique de l'entraînement et filtré des tâches d'apprentissage par renforcement avant la sortie ouverte.[2][3] Sur son test interne d'exploitation de failles réelles, une version non filtrée résout 90,5 % des problèmes en trois essais. Le modèle publié en résout 81 %, contre 33,3 % pour K3.[2][3]"
+    },
+    {
+     "t": "p",
+     "x": "Fireship relie ce choix à l'interdiction de DeepSeek dans les agences fédérales américaines : ne pas donner de prétexte pour bannir tous les modèles chinois.[1][11] C'est son interprétation. Moonshot, elle, parle de limiter les risques d'une publication ouverte, qu'on ne peut plus rappeler une fois téléchargée.[3]"
+    },
+    {
+     "t": "p",
+     "x": "Côté défense, Artificial Analysis mesure un index cyber qui exclut la construction d'exploits : Kimi K3.1 Pro obtient 64 %, devant DeepSeek V4.1 Flash (57 %) et K3 (41 %). Seule la configuration à accès de confiance de GPT-6 Sol fait mieux, avec 69 %.[6] Une partie de l'écart vient des refus : des modèles d'OpenAI, d'Anthropic et de Google ont refusé certaines requêtes de sécurité, alors que Kimi n'en a refusé aucune. Fireship dit « tous » les prompts. La source dit « certains ».[6]"
+    },
+    {
+     "t": "h2",
+     "x": "Le test du cheval 3D (et son benchmark inventé)"
+    },
+    {
+     "t": "p",
+     "x": "Fireship demande à chaque modèle de créer un cheval 3D réaliste et interactif avec Three.js, puis note le résultat sur 10 à l'œil. Il appelle ça « Thoroughbench ». C'est un benchmark humoristique inventé pour la vidéo, subjectif, sans valeur scientifique.[1]"
+    },
+    {
+     "t": "svg",
+     "cap": "Notes de Thoroughbench sur 10, telles que rapportées par la vidéo. Subjectif et humoristique : ce n'est pas une évaluation officielle.[1]",
+     "svg": "<svg class=\"sv\" viewBox=\"0 0 600 228\" role=\"img\" aria-label=\"Thoroughbench\"><text x=\"20\" y=\"24\" class=\"t\" text-anchor=\"start\">Opus</text><rect class=\"bar\" x=\"20\" y=\"32\" width=\"255.6\" height=\"18\" rx=\"4\"/><text x=\"285.6\" y=\"46\" class=\"t\" text-anchor=\"start\">6.39</text><text x=\"20\" y=\"76\" class=\"t\" text-anchor=\"start\">GPT-6 Astra</text><rect class=\"bar\" x=\"20\" y=\"84\" width=\"208.4\" height=\"18\" rx=\"4\"/><text x=\"238.4\" y=\"98\" class=\"t\" text-anchor=\"start\">5.21</text><text x=\"20\" y=\"128\" class=\"t\" text-anchor=\"start\">Kimi K3.1</text><rect class=\"bar a\" x=\"20\" y=\"136\" width=\"168.0\" height=\"18\" rx=\"4\"/><text x=\"198.0\" y=\"150\" class=\"t\" text-anchor=\"start\">4.20</text><text x=\"20\" y=\"180\" class=\"t\" text-anchor=\"start\">Google Argon</text><rect class=\"bar\" x=\"20\" y=\"188\" width=\"27.6\" height=\"18\" rx=\"4\"/><text x=\"57.6\" y=\"202\" class=\"t\" text-anchor=\"start\">0.69</text></svg>"
+    },
+    {
+     "t": "p",
+     "x": "Kimi produit le plus joli cheval : couleurs justes, rendu réaliste. Mais son animation est mauvaise, car il déforme directement le maillage d'origine, un peu comme on étire une sculpture en argile. Claude construit un vrai squelette : un maillage d'environ 95 000 sommets relié à 35 os qui bougent indépendamment, et la peau suit. Gemini utilise aussi des os, avec un os en trop.[1]"
+    },
+    {
+     "t": "svg",
+     "cap": "Déformer un maillage ou animer un squelette : schéma simplifié, pas le rendu réel des modèles.[1]",
+     "svg": "<svg class=\"sv\" viewBox=\"0 0 600 250\" role=\"img\" aria-label=\"mesh vs skeleton\"><text x=\"150\" y=\"22\" class=\"m\" text-anchor=\"middle\">Déformer le maillage</text><path class=\"ln\" d=\"M70 50 L80 190\"/><path class=\"ln\" d=\"M99 50 L109 190\"/><path class=\"ln\" d=\"M128 50 L138 190\"/><path class=\"ln\" d=\"M157 50 L167 190\"/><path class=\"ln\" d=\"M186 50 L196 190\"/><path class=\"ln\" d=\"M215 50 L225 190\"/><path class=\"ln\" d=\"M244 50 L254 190\"/><path class=\"ln\" d=\"M70 50 L240 60\"/><path class=\"ln\" d=\"M70 85 L240 95\"/><path class=\"ln\" d=\"M70 120 L240 130\"/><path class=\"ln\" d=\"M70 155 L240 165\"/><path class=\"ln\" d=\"M70 190 L240 200\"/><text x=\"450\" y=\"22\" class=\"a\" text-anchor=\"middle\">Animer un squelette</text><path class=\"la\" d=\"M360 80 L400 100 L450 100 L500 92 L540 65 M400 100 L392 160 L388 195 M450 100 L458 160 L465 195 M500 92 L508 155 L515 195\"/><circle cx=\"360\" cy=\"80\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"400\" cy=\"100\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"450\" cy=\"100\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"500\" cy=\"92\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"540\" cy=\"65\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"392\" cy=\"160\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"458\" cy=\"160\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"508\" cy=\"155\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"388\" cy=\"195\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"465\" cy=\"195\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"515\" cy=\"195\" r=\"5\" fill=\"#d4ff3a\"/><text x=\"150\" y=\"230\" class=\"m\" text-anchor=\"middle\">Tout s'étire d'un bloc</text><text x=\"450\" y=\"230\" class=\"m\" text-anchor=\"middle\">Chaque os bouge, la peau suit</text></svg>"
+    },
+    {
+     "t": "p",
+     "x": "La leçon dépasse le cheval : une belle démo n'est pas une bonne ingénierie. Notons que Moonshot revendique 92,7 % sur BenchCAD, un test de code pour la modélisation 3D.[4]"
+    },
+    {
+     "t": "h2",
+     "x": "Ce que ça change pour les développeurs et les data engineers"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Le prix : 2 $ l'entrée et 10 $ la sortie par million de tokens, contre 4 $ et 20 $ pour Opus 5.5 et 2 $ et 10 $ pour Sonnet 5.5.[2] Sur l'index d'Artificial Analysis, le coût par tâche est d'environ 2 $ contre environ 6 $ pour Opus 5.5.[2]",
+      "Les poids ne sont pas encore téléchargeables : pas d'auto-hébergement avant le 4 novembre, et la licence n'est pas précisée dans les sources lues.[2][10] L'API cite des serveurs à Singapour dans sa politique de confidentialité : vérifie la conformité de tes données.[2]",
+      "Les benchmarks ne remplacent pas ton cas d'usage. Le test du cheval le montre : valide sur tes tâches, avec le même harness pour tous les modèles.[2]",
+      "Traite un modèle ouvert comme un logiciel téléchargé. En août, K3 a été mis en cause après avoir quitté la sandbox d'un test pour chercher les réponses d'un benchmark en ligne.[3] Isole tes agents."
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "Ton plan pour cette semaine"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Note 10 à 20 tâches réelles de ton travail : SQL, nettoyage de données, documentation, correction de bugs.",
+      "Lance-les sur trois modèles avec le même harness et compare qualité, temps et coût par tâche.[2]",
+      "Attends les poids du 4 novembre et lis la licence avant tout projet sérieux.[3]",
+      "Fais tourner l'agent dans une sandbox à réseau fermé par défaut, et relis les appels bloqués."
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "Limites"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Les passages tirés de la vidéo (blague « Ki », scores de Thoroughbench, abonnement à 250 yuans par mois) n'ont pas pu être recoupés avec une autre source.[1]",
+      "Les scores de Moonshot sont ceux de l'éditeur, et plusieurs mesures indépendantes divergent.[2][5][10]",
+      "Des captures d'écran non authentifiées évoquent une promotion payante de Kimi par des influenceurs. Rien n'est confirmé et je n'ai pas trouvé de réponse de Moonshot.[2]",
+      "Les poids ne sont pas publiés : tout ce qui touche à l'open-weight reste une annonce jusqu'au 4 novembre.[3]"
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "En bref"
+    },
+    {
+     "t": "p",
+     "x": "La Chine a presque comblé l'écart avec les meilleurs modèles américains sur certains tests, en open-weight, à un prix plus bas. Mais les benchmarks dépendent du harness, la cybersécurité est volontairement réduite, et la démo créative montre encore un écart de qualité. La tension géopolitique devient un facteur de la course."
+    },
+    {
+     "t": "h2",
+     "x": "Et toi ?"
+    },
+    {
+     "t": "p",
+     "x": "Tu ferais confiance à un modèle chinois open-weight ? Réponds en commentaire sur LinkedIn ou Instagram : j'y lis tout."
+    }
+   ],
+   "en": [
+    {
+     "t": "h2",
+     "x": "Read this before sharing"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Fireship's video is satirical: the 3D horse test is a game, not an evaluation.[1]",
+      "On distillation, these are allegations and company statements, not proven facts.[7]",
+      "Moonshot's scores are Moonshot's own. I compare them with independent measurements where they exist.[2][5]"
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "The mystery model \"Kibitz\""
+    },
+    {
+     "t": "p",
+     "x": "On 22 October, an anonymous model called \"Kibitz\" shows up on Arena, where people compare models blind. It impresses in code, JavaScript drawing and 3D, and nobody knows who trained it.[8] The word is Yiddish: it means the onlooker who gives advice over a chess player's shoulder. Fireship jokes that everyone guessed Kimi because both words start with \"Ki\".[1]"
+    },
+    {
+     "t": "p",
+     "x": "The next day, 23 October, Moonshot AI confirms: this is Kimi K3.1 Pro, a post-trained version of Kimi K3 (July) with about 3 trillion parameters. It is available now through the API, and open weights are announced for 4 November.[2][3][4] Only a small part of the network works on each request: 16 active networks out of 896, which keeps costs down.[4]"
+    },
+    {
+     "t": "h2",
+     "x": "Distillation, explained simply"
+    },
+    {
+     "t": "p",
+     "x": "To distill a model is to train a \"student\" to imitate a \"teacher\" from its answers. In its owner's hands, it is a common technique. Anthropic denounces another use: networks of fake accounts that query Claude at scale to collect its answers, and above all its written reasoning, in order to train a rival model.[7]"
+    },
+    {
+     "t": "svg",
+     "cap": "The mechanism Anthropic describes. These are its allegations, not proven facts.[7]",
+     "svg": "<svg class=\"sv\" viewBox=\"0 0 600 270\" role=\"img\" aria-label=\"Distillation\"><rect x=\"10\" y=\"90\" width=\"150\" height=\"70\" rx=\"10\" class=\"box\"/><text x=\"85\" y=\"122\" class=\"t\" text-anchor=\"middle\">Teacher model</text><text x=\"85\" y=\"142\" class=\"m\" text-anchor=\"middle\">e.g. Claude</text><rect x=\"225\" y=\"20\" width=\"150\" height=\"70\" rx=\"10\" class=\"boxd\"/><text x=\"300\" y=\"52\" class=\"t\" text-anchor=\"middle\">Fake accounts</text><text x=\"300\" y=\"72\" class=\"m\" text-anchor=\"middle\">≈ 24 000</text><rect x=\"440\" y=\"90\" width=\"150\" height=\"70\" rx=\"10\" class=\"boxa\"/><text x=\"515\" y=\"122\" class=\"oa\" text-anchor=\"middle\">Student model</text><text x=\"515\" y=\"142\" class=\"oa\" text-anchor=\"middle\">trained on it</text><path class=\"la\" d=\"M160 110 L225 65 M217 66 L225 65 L222 73\"/><path class=\"la\" d=\"M375 65 L440 110 M432 105 L440 110 L440 101\"/><rect x=\"150\" y=\"190\" width=\"300\" height=\"56\" rx=\"10\" class=\"boxd\"/><text x=\"300\" y=\"214\" class=\"t\" text-anchor=\"middle\">Defenses of 12 Oct.: −90 to −99%</text><text x=\"300\" y=\"234\" class=\"m\" text-anchor=\"middle\">Anthropic estimate</text></svg>"
+    },
+    {
+     "t": "p",
+     "x": "In February 2026, Anthropic says it found more than 16 million exchanges through about 24,000 fraudulent accounts, and names DeepSeek, Moonshot and MiniMax. A September report cites seven Chinese labs.[7] I found no reply from Moonshot in the sources I read. In July, the White House also accused Moonshot of copying an Anthropic model and using banned chips, without publishing evidence.[3]"
+    },
+    {
+     "t": "h2",
+     "x": "The paradox"
+    },
+    {
+     "t": "p",
+     "x": "On 12 October, Anthropic announces new defenses: since its classifier, extracted reasoning tokens would be 10 to 100 times lower, which is 90 to 99% less.[7] Mind what this measures: an Anthropic estimate, on its own platform, with no independent check. The company also expects a cat-and-mouse game.[7]"
+    },
+    {
+     "t": "p",
+     "x": "Hence Fireship's question. If American labs explain the Chinese catch-up by copying, and if that copying is blocked at 90-99%, how does Kimi K3.1 get so close? Several readings remain possible: extraction done before the defenses, other training techniques, or figures that cover only part of the problem. No source I read settles it. This list is my own reasoning, not a fact."
+    },
+    {
+     "t": "p",
+     "x": "The other side is ethical. Fireship points out that these companies absorbed human knowledge themselves: blogs, GitHub, scientific papers and books. A useful precision on \"Project Panama\": according to court documents, Anthropic bought books in batches, cut off the spines, scanned the pages and recycled the paper. In June 2025, a judge ruled that training an AI on lawfully purchased books was fair use, treating pirated books separately. Anthropic agreed to $1.5 billion to settle the class action.[9]"
+    },
+    {
+     "t": "h2",
+     "x": "Benchmarks: one point apart, depending on who measures"
+    },
+    {
+     "t": "p",
+     "x": "On Terminal-Bench 4.0, which tests coding agents in a terminal, Kimi K3.1 Pro sits about one point from Opus 5.5. But the figure moves with who measures and with which harness, the environment that runs the agent with its tools and limits. Same model, three measurements, more than three points apart.[2][4][5]"
+    },
+    {
+     "t": "svg",
+     "cap": "Terminal-Bench 4.0, three measurements. Truncated axis from 60 to 70%, read with care.[2][3][5]",
+     "svg": "<svg class=\"sv\" viewBox=\"0 0 600 260\" role=\"img\" aria-label=\"Terminal-Bench 4.0\"><text x=\"40\" y=\"20\" class=\"t\" text-anchor=\"start\">Moonshot (vendor)</text><path class=\"ln\" d=\"M40 42 H560\"/><circle cx=\"372.8\" cy=\"42\" r=\"8\" class=\"bar\"/><circle cx=\"336.4\" cy=\"42\" r=\"8\" fill=\"#d4ff3a\"/><text x=\"40\" y=\"70\" class=\"a\" text-anchor=\"start\">Kimi 65.7%</text><text x=\"560\" y=\"70\" class=\"m\" text-anchor=\"end\">Opus 5.5 66.4%</text><text x=\"40\" y=\"90\" class=\"t\" text-anchor=\"start\">Vals AI (mini-SWE-agent)</text><path class=\"ln\" d=\"M40 112 H560\"/><circle cx=\"307.8\" cy=\"112\" r=\"8\" class=\"bar\"/><circle cx=\"229.3\" cy=\"112\" r=\"8\" fill=\"#d4ff3a\"/><text x=\"40\" y=\"140\" class=\"a\" text-anchor=\"start\">Kimi 63.64%</text><text x=\"560\" y=\"140\" class=\"m\" text-anchor=\"end\">Opus 5.5 65.15%</text><text x=\"40\" y=\"160\" class=\"t\" text-anchor=\"start\">Artificial Analysis</text><path class=\"ln\" d=\"M40 182 H560\"/><circle cx=\"248.0\" cy=\"182\" r=\"8\" class=\"bar\"/><circle cx=\"404.0\" cy=\"182\" r=\"8\" fill=\"#d4ff3a\"/><text x=\"40\" y=\"210\" class=\"a\" text-anchor=\"start\">Kimi 67%</text><text x=\"560\" y=\"210\" class=\"m\" text-anchor=\"end\">Sonnet 5.5 64%</text><text x=\"40\" y=\"254\" class=\"m\" text-anchor=\"start\">60%</text><text x=\"560\" y=\"254\" class=\"m\" text-anchor=\"end\">70%</text></svg>"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Terminal-Bench 4.0 (Vals AI): Kimi 63.64% (3rd of 56); Opus 5.5 65.15%; Sonnet 5.5 64.14%",
+      "SWE-Marathon (Vendor): Kimi 51.7; Opus 5.5 46.3; GPT-6 Astra 42.5",
+      "Terminal-Bench Science 0.1 (Vendor): Kimi 38.1; Opus 5.5 63.3; GPT-6 Astra 68.1",
+      "ProgramBench (Vendor): Kimi 31.5%; Opus 5.5 65.0%",
+      "Humanity's Last Exam (Artificial Analysis): Kimi 52%; Opus 5.5 61%"
+     ]
+    },
+    {
+     "t": "p",
+     "x": "Other scores. Rows marked \"vendor\" come from Moonshot and have not been independently verified.[3][10]"
+    },
+    {
+     "t": "p",
+     "x": "Read the whole table: Kimi wins on SWE-Marathon, long software tasks, but is far behind on ProgramBench and Terminal-Bench Science.[2][10] Fireship says Artificial Analysis's 67% is the best of every model tested; on Vals AI, Kimi is 3rd, behind Opus 5.5 and Sonnet 5.5.[1][5] I could not confirm Artificial Analysis's full ranking."
+    },
+    {
+     "t": "h2",
+     "x": "Capped cybersecurity and geopolitics"
+    },
+    {
+     "t": "p",
+     "x": "Moonshot says it removed cyberattack-related data from training and filtered reinforcement-learning tasks before the open release.[2][3] On its internal test of exploiting real software flaws, an unfiltered version solves 90.5% of problems within three attempts. The released model solves 81%, against 33.3% for K3.[2][3]"
+    },
+    {
+     "t": "p",
+     "x": "Fireship links this choice to the ban on DeepSeek in US federal agencies: do not give a pretext to ban all Chinese models.[1][11] That is his interpretation. Moonshot talks about limiting the risks of an open release, which cannot be recalled once downloaded.[3]"
+    },
+    {
+     "t": "p",
+     "x": "On the defense side, Artificial Analysis measures a cyber index that excludes building exploits: Kimi K3.1 Pro scores 64%, ahead of DeepSeek V4.1 Flash (57%) and K3 (41%). Only GPT-6 Sol's trusted-access configuration does better, at 69%.[6] Part of the gap comes from refusals: models from OpenAI, Anthropic and Google refused some security requests, while Kimi refused none. Fireship says \"all\" prompts. The source says \"some\".[6]"
+    },
+    {
+     "t": "h2",
+     "x": "The 3D horse test (and its invented benchmark)"
+    },
+    {
+     "t": "p",
+     "x": "Fireship asks each model to build a realistic, interactive 3D horse with Three.js, then scores it out of 10 by eye. He calls it \"Thoroughbench\". It is a humorous benchmark invented for the video, subjective, with no scientific value.[1]"
+    },
+    {
+     "t": "svg",
+     "cap": "Thoroughbench scores out of 10, as reported by the video. Subjective and humorous: not an official evaluation.[1]",
+     "svg": "<svg class=\"sv\" viewBox=\"0 0 600 228\" role=\"img\" aria-label=\"Thoroughbench\"><text x=\"20\" y=\"24\" class=\"t\" text-anchor=\"start\">Opus</text><rect class=\"bar\" x=\"20\" y=\"32\" width=\"255.6\" height=\"18\" rx=\"4\"/><text x=\"285.6\" y=\"46\" class=\"t\" text-anchor=\"start\">6.39</text><text x=\"20\" y=\"76\" class=\"t\" text-anchor=\"start\">GPT-6 Astra</text><rect class=\"bar\" x=\"20\" y=\"84\" width=\"208.4\" height=\"18\" rx=\"4\"/><text x=\"238.4\" y=\"98\" class=\"t\" text-anchor=\"start\">5.21</text><text x=\"20\" y=\"128\" class=\"t\" text-anchor=\"start\">Kimi K3.1</text><rect class=\"bar a\" x=\"20\" y=\"136\" width=\"168.0\" height=\"18\" rx=\"4\"/><text x=\"198.0\" y=\"150\" class=\"t\" text-anchor=\"start\">4.20</text><text x=\"20\" y=\"180\" class=\"t\" text-anchor=\"start\">Google Argon</text><rect class=\"bar\" x=\"20\" y=\"188\" width=\"27.6\" height=\"18\" rx=\"4\"/><text x=\"57.6\" y=\"202\" class=\"t\" text-anchor=\"start\">0.69</text></svg>"
+    },
+    {
+     "t": "p",
+     "x": "Kimi makes the prettiest horse: right colors, realistic look. But its animation is poor, because it simply deforms the original mesh, a bit like stretching a clay sculpture. Claude builds a real skeleton: a mesh of about 95,000 vertices tied to 35 bones that move independently, and the skin follows. Gemini also uses bones, with one bone too many.[1]"
+    },
+    {
+     "t": "svg",
+     "cap": "Warping a mesh or animating a skeleton: simplified diagram, not the models' actual output.[1]",
+     "svg": "<svg class=\"sv\" viewBox=\"0 0 600 250\" role=\"img\" aria-label=\"mesh vs skeleton\"><text x=\"150\" y=\"22\" class=\"m\" text-anchor=\"middle\">Warp the mesh</text><path class=\"ln\" d=\"M70 50 L80 190\"/><path class=\"ln\" d=\"M99 50 L109 190\"/><path class=\"ln\" d=\"M128 50 L138 190\"/><path class=\"ln\" d=\"M157 50 L167 190\"/><path class=\"ln\" d=\"M186 50 L196 190\"/><path class=\"ln\" d=\"M215 50 L225 190\"/><path class=\"ln\" d=\"M244 50 L254 190\"/><path class=\"ln\" d=\"M70 50 L240 60\"/><path class=\"ln\" d=\"M70 85 L240 95\"/><path class=\"ln\" d=\"M70 120 L240 130\"/><path class=\"ln\" d=\"M70 155 L240 165\"/><path class=\"ln\" d=\"M70 190 L240 200\"/><text x=\"450\" y=\"22\" class=\"a\" text-anchor=\"middle\">Animate a skeleton</text><path class=\"la\" d=\"M360 80 L400 100 L450 100 L500 92 L540 65 M400 100 L392 160 L388 195 M450 100 L458 160 L465 195 M500 92 L508 155 L515 195\"/><circle cx=\"360\" cy=\"80\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"400\" cy=\"100\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"450\" cy=\"100\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"500\" cy=\"92\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"540\" cy=\"65\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"392\" cy=\"160\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"458\" cy=\"160\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"508\" cy=\"155\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"388\" cy=\"195\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"465\" cy=\"195\" r=\"5\" fill=\"#d4ff3a\"/><circle cx=\"515\" cy=\"195\" r=\"5\" fill=\"#d4ff3a\"/><text x=\"150\" y=\"230\" class=\"m\" text-anchor=\"middle\">Everything stretches as one</text><text x=\"450\" y=\"230\" class=\"m\" text-anchor=\"middle\">Each bone moves, skin follows</text></svg>"
+    },
+    {
+     "t": "p",
+     "x": "The lesson goes beyond the horse: a nice demo is not good engineering. Note that Moonshot claims 92.7% on BenchCAD, a code test for 3D modeling.[4]"
+    },
+    {
+     "t": "h2",
+     "x": "What it changes for developers and data engineers"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Price: $2 input and $10 output per million tokens, against $4 and $20 for Opus 5.5 and $2 and $10 for Sonnet 5.5.[2] On Artificial Analysis's index, cost per task is about $2 against about $6 for Opus 5.5.[2]",
+      "The weights are not downloadable yet: no self-hosting before 4 November, and the license is not specified in the sources I read.[2][10] The API privacy policy cites servers in Singapore: check compliance for your data.[2]",
+      "Benchmarks do not replace your use case. The horse test shows it: validate on your own tasks, with the same harness for every model.[2]",
+      "Treat an open model like downloaded software. In August, K3 drew scrutiny after leaving a test sandbox to look up a benchmark's answers online.[3] Isolate your agents."
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "Your plan for this week"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Write down 10 to 20 real tasks from your work: SQL, data cleaning, documentation, bug fixing.",
+      "Run them on three models with the same harness and compare quality, time and cost per task.[2]",
+      "Wait for the 4 November weights and read the license before any serious project.[3]",
+      "Run the agent in a sandbox with the network closed by default, and read the blocked calls."
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "Limits"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Passages taken from the video (the \"Ki\" joke, Thoroughbench scores, the 250 yuan monthly plan) could not be cross-checked with another source.[1]",
+      "Moonshot's scores are the vendor's own, and several independent measurements differ.[2][5][10]",
+      "Unauthenticated screenshots point to a paid Kimi promotion by influencers. Nothing is confirmed and I found no reply from Moonshot.[2]",
+      "The weights are not published: everything about open-weight remains an announcement until 4 November.[3]"
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "In short"
+    },
+    {
+     "t": "p",
+     "x": "China has nearly closed the gap with the best American models on some tests, in open-weight, at a lower price. But benchmarks depend on the harness, cybersecurity is deliberately reduced, and the creative demo still shows a quality gap. Geopolitical tension is becoming a factor in the race."
+    },
+    {
+     "t": "h2",
+     "x": "What about you?"
+    },
+    {
+     "t": "p",
+     "x": "Would you trust an open-weight Chinese model? Answer in the comments on LinkedIn or Instagram: I read everything."
+    }
+   ]
+  },
+  "sources": [
+   {
+    "title": "China just dropped a new frontier model... and nobody can explain how",
+    "publisher": "Fireship (The Code Report), YouTube",
+    "date": "2026-10-26",
+    "url": "https://www.youtube.com/watch?v=G_em1hHPnXY"
+   },
+   {
+    "title": "Moonshot's Kimi K3.1 Pro flirts with open weights leadership amid paid influencer scandal allegations",
+    "publisher": "VentureBeat",
+    "date": "2026-10-24",
+    "url": "https://venturebeat.com/technology/moonshots-kimi-k3-1-pro-flirts-with-open-weights-leadership-amid-paid-influencer-scandal-allegations"
+   },
+   {
+    "title": "Moonshot releases Kimi K3.1 Pro and says it cut its hacking skills",
+    "publisher": "The Next Web",
+    "date": "2026-10-23",
+    "url": "https://thenextweb.com/news/moonshot-kimi-k3-1-pro-open-weight-cyber"
+   },
+   {
+    "title": "Moonshot AI launches new flagship Kimi K3.1 Pro model with 3T parameters",
+    "publisher": "SiliconANGLE",
+    "date": "2026-10-23",
+    "url": "https://siliconangle.com/2026/10/23/moonshot-ai-launches-new-flagship-kim-k3-1-pro-model-with-3t-parameters/"
+   },
+   {
+    "title": "Terminal-Bench 4.0 Leaderboard and Methodology",
+    "publisher": "Vals AI (independent leaderboard, harness mini-SWE-agent)",
+    "date": "2026-10-26",
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-4"
+   },
+   {
+    "title": "Moonshot's Kimi K3.1 Pro Tops Every Public API Model in Security Benchmarks (Artificial Analysis Cyber Index)",
+    "publisher": "AlphaSignal",
+    "date": "2026-10 (undated page)",
+    "url": "https://alphasignal.ai/news/moonshot-s-kimi-k3-1-pro-tops-every-public-api-model-in-security-benchmarks"
+   },
+   {
+    "title": "Anthropic reports distillation defenses reduced extracted reasoning tokens",
+    "publisher": "Unite.AI (reporting Anthropic's post of 12 Oct 2026)",
+    "date": "2026-10",
+    "url": "https://www.unite.ai/anthropic-reports-distillation-defenses-reduced-extracted-reasoning-tokens/"
+   },
+   {
+    "title": "Kimi K3.1 is prepared for upcoming release after Arena testing",
+    "publisher": "TestingCatalog",
+    "date": "2026-10-23",
+    "url": "https://www.testingcatalog.com/kimi-k3-1-spotted-testing-arena/"
+   },
+   {
+    "title": "Project Panama: how Anthropic secretly destroyed millions of books to train its AI",
+    "publisher": "Euronews",
+    "date": "2026-08-05",
+    "url": "https://www.euronews.com/2026/08/05/project-panama-how-anthropic-secretly-destroyed-millions-of-books-to-train-its-ai"
+   },
+   {
+    "title": "Kimi K3.1 Pro: Benchmarks, Pricing, and How to Access It",
+    "publisher": "DataCamp (vendor-reported scores)",
+    "date": "2026-10-26",
+    "url": "https://www.datacamp.com/blog/kimi-k3-1-pro"
+   },
+   {
+    "title": "Cohere says Alibaba's Qwen model tried to send a file to Beijing",
+    "publisher": "TechCrunch (mentions the DHS order on DeepSeek)",
+    "date": "2026-10-26",
+    "url": "https://techcrunch.com/2026/10/26/cohere-says-alibabas-qwen-model-tried-to-send-a-file-to-beijing/"
+   }
+  ],
+  "carousel": ""
+ },
+ {
+  "id": "open-tables-any-engine",
+  "date": "2026-10-26",
+  "tag": {
+   "fr": "Tendance data",
+   "en": "Data trend"
+  },
+  "minutes": 7,
+  "title": {
+   "fr": "Tes tables, n'importe quel moteur.",
+   "en": "Your tables, any engine."
+  },
+  "summary": {
+   "fr": "Comprends ce que Databricks et Snowflake ont vraiment changé en octobre, quels chiffres ne sont que des annonces, et suis un plan en 5 étapes à faire cette semaine.",
+   "en": "Know what Databricks and Snowflake really changed in October, which numbers are only vendor claims, and follow a 5-step plan you can run this week."
+  },
+  "body": {
+   "en": [
+    {
+     "t": "p",
+     "x": "For years, a table format was a way to keep your data inside one platform. In 2026, Databricks and Snowflake started doing the opposite: opening their tables to other engines. Here is what happened, what is still vendor marketing, and what it means for anyone learning data engineering."
+    },
+    {
+     "t": "h2",
+     "x": "What you will get from this article"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "A plain-language picture of what Databricks and Snowflake actually shipped in October, with dates.",
+      "A way to tell real progress from vendor claims: which numbers are independent and which are not.",
+      "A checklist to run before any table format upgrade, including the one change you cannot undo.",
+      "A small project idea for your portfolio that shows you can work across engines."
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "What happened, and when"
+    },
+    {
+     "t": "p",
+     "x": "In March 2026, Snowflake announced support for Apache Iceberg v3, the latest version of the open table format. The announcement covered row lineage, the Variant type, deletion vectors, nanosecond timestamps, geometry and geography types, and default values.[3] Snowflake's release notes list general availability of that support on 7 May 2026.[4]"
+    },
+    {
+     "t": "p",
+     "x": "In July, Databricks published a post saying that engines such as Apache Spark, Apache Flink, Starburst, DuckDB and StreamNative can create, read and write Unity Catalog managed tables. At that point, external access was a public preview.[5] The October release notes show how far it went. On 13 October, external writes to managed Delta tables from external Spark clients became generally available, together with external access to views through the Unity REST API.[1] On 14 October, transactions, which group several SQL statements into one atomic unit, became generally available for managed Delta and Iceberg tables in Unity Catalog.[1]"
+    },
+    {
+     "t": "p",
+     "x": "Two days later, on 16 October, Snowflake moved the in-place upgrade of Iceberg tables from v2 to v3 to general availability. It is done with a single ALTER ICEBERG TABLE statement.[2]"
+    },
+    {
+     "t": "timeline",
+     "cap": "Six dates, drawn to scale from March to October 2026. The three highlighted dates are the October releases.",
+     "items": [
+      {
+       "d": "2026-03-04",
+       "h": "Snowflake announces support for Iceberg v3.[3]"
+      },
+      {
+       "d": "2026-05-07",
+       "h": "Snowflake lists Iceberg v3 as generally available.[4]"
+      },
+      {
+       "d": "2026-07-16",
+       "h": "Databricks: outside engines can create, read and write managed tables, in public preview.[5]"
+      },
+      {
+       "d": "2026-10-13",
+       "h": "Databricks: external writes to managed Delta tables, generally available.[1]",
+       "hot": true
+      },
+      {
+       "d": "2026-10-14",
+       "h": "Databricks: transactions on managed Delta and Iceberg tables, generally available.[1]",
+       "hot": true
+      },
+      {
+       "d": "2026-10-16",
+       "h": "Snowflake: in-place upgrade of Iceberg tables from v2 to v3, generally available.[2]",
+       "hot": true
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "Why it matters"
+    },
+    {
+     "t": "p",
+     "x": "The pattern across these announcements is the same. The data sits in an open format, a catalog decides who may touch it, and several engines can work on the same table. Databricks says that its managed tables, stored as Delta or Iceberg, stay reachable from any engine while governance stays central in Unity Catalog.[5] Snowflake describes a REST catalog interface in its Horizon Catalog that lets outside engines read Iceberg tables. When that post was published, writing through the interface was in private preview, so check the current status before you rely on it.[3]"
+    },
+    {
+     "t": "compare",
+     "cap": "The shift in one picture. The second panel follows the pattern both vendors describe.[5][3]",
+     "bt": "Before",
+     "bn": [
+      "Platform engine",
+      "Platform table format"
+     ],
+     "bnote": "The table format kept your data inside one platform.",
+     "at": "Now",
+     "engines": [
+      "Spark",
+      "Flink",
+      "DuckDB"
+     ],
+     "cat": "Catalog",
+     "tab": "Open table",
+     "anote": "A catalog decides who may touch the table, and several engines work on the same data. The lock-in moves to the catalog. That last point is my reading, not a vendor claim."
+    },
+    {
+     "t": "p",
+     "x": "The lock-in does not disappear. It moves. If the table format is open, the catalog and the governance rules become the place where a platform keeps its grip, which makes the choice of catalog as important as the choice of format. That last sentence is my reading, not a claim from either vendor."
+    },
+    {
+     "t": "h2",
+     "x": "The details data engineers should know"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Snowflake's v3 upgrade works for the tables it manages and for externally managed tables that use an Iceberg REST catalog.[2]",
+      "The upgrade is permanent. For Snowflake-managed tables you can restore the original v2 version with Time Travel, but only during the retention period. The note does not say the same for external tables.[2]",
+      "With default expressions, Snowflake writes only expressions that evaluate to a constant, such as PI(), into the Iceberg metadata. Others, such as CURRENT_DATE(), are evaluated only for writes made by Snowflake.[2]",
+      "On the Databricks side, cross-engine attribute-based access control reached general availability on 1 October, so external engines can read managed tables while the access policies are enforced.[1]",
+      "Iceberg 1.12.0 removes support for Spark 3.4 and Flink 2.0 and adds Flink 2.2 and 2.3. The v4 format is still at the foundation stage and should not go to production.[6]"
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "What the numbers say, and what they do not"
+    },
+    {
+     "t": "p",
+     "x": "Databricks claims up to 50 percent storage savings and queries up to 20 times faster for Unity Catalog managed tables.[5] These figures come from Databricks itself, and I did not find an independent benchmark for them. Treat them as a hypothesis to test on your own workload."
+    },
+    {
+     "t": "matrix",
+     "cap": "What is shipped, what is still preview, and what is only a claim. Status as reported in the sources at the time they were published.",
+     "head": [
+      "What",
+      "Status",
+      "Source"
+     ],
+     "rows": [
+      {
+       "k": "External writes to managed Delta tables (Databricks)",
+       "s": "ga",
+       "st": "Generally available, 13 Oct",
+       "src": "[1]"
+      },
+      {
+       "k": "Transactions on managed Delta and Iceberg tables (Databricks)",
+       "s": "ga",
+       "st": "Generally available, 14 Oct",
+       "src": "[1]"
+      },
+      {
+       "k": "In-place Iceberg v2 to v3 upgrade (Snowflake)",
+       "s": "ga",
+       "st": "Generally available, 16 Oct. Permanent",
+       "src": "[2]"
+      },
+      {
+       "k": "Outside engines writing through Snowflake's REST catalog interface",
+       "s": "preview",
+       "st": "Private preview in March. Check today's status",
+       "src": "[3]"
+      },
+      {
+       "k": "Up to 50% storage savings and queries up to 20 times faster (Databricks)",
+       "s": "claim",
+       "st": "Vendor claim. No independent benchmark found",
+       "src": "[5]"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "Before you upgrade"
+    },
+    {
+     "t": "p",
+     "x": "Dremio's upgrade guide for Iceberg 1.12.0 gives a sensible order of work that applies to any table format change.[6]"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Inventory every engine, client and table, and the features you actually use.",
+      "Look for position delete files that carry row data, using the position_deletes metadata table, before you upgrade.",
+      "Recompile custom code and test representative tables, including failure scenarios.",
+      "Roll out by risk level: readers first, then low-volume writers, then streaming jobs, then maintenance jobs.",
+      "Keep the library upgrade, the engine runtime upgrade and the table format version upgrade as three separate decisions."
+     ]
+    },
+    {
+     "t": "flow",
+     "cap": "A safe order for a table format upgrade, based on Dremio's Iceberg 1.12.0 guide.[6] Keep the library, the engine runtime and the table format as three separate decisions.",
+     "prepLabel": "Prep",
+     "rollLabel": "Roll out",
+     "prep": 2,
+     "steps": [
+      "Inventory every engine, client and table",
+      "Test representative tables, including failures",
+      "Readers first",
+      "Low-volume writers",
+      "Streaming jobs",
+      "Maintenance jobs"
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "Your plan for this week"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Write down which engines read and write your tables today, and which catalog sits in front of them.",
+      "Check the status of each feature you rely on in the vendor release notes: generally available, beta or preview.[1]",
+      "Before any Iceberg v3 upgrade, test on a copy of the table, and check whether you can go back. On Snowflake-managed tables, Time Travel can restore v2, but only during the retention period.[2]",
+      "Run your own benchmark before you trust a savings figure: same data, same workload, before and after.[5]",
+      "Build the two-engine mini project: write an Iceberg table from one engine, read it from another, and publish the notes on your blog or GitHub."
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "My take as a future data engineer"
+    },
+    {
+     "t": "p",
+     "x": "The skill that travels from one company to another is not one platform. It is the layer below: how an open table format stores its metadata, how a catalog hands out credentials, and how two engines avoid overwriting each other. A good exercise would be a small project that writes the same Iceberg table from two engines and reads it back from a third. It would show you what the product pages skip."
+    },
+    {
+     "t": "h2",
+     "x": "Limits and open questions"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Status varies by feature. The October Databricks notes mix generally available and beta items, so read each entry before you plan around it.[1]",
+      "The exact release date of Iceberg 1.12.0 comes from secondary sources. Dremio dates it to 30 September and a community newsletter says it was announced on 1 October.[6][7] I did not find an official announcement page.",
+      "The performance and savings figures are vendor claims, as explained above."
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "In short"
+    },
+    {
+     "t": "p",
+     "x": "Open tables are no longer a side project. In mid-October, both Databricks and Snowflake shipped features built around open table formats. If you are learning data engineering, learn Iceberg, learn how catalogs work, and read the release note before you read the blog post."
+    }
+   ],
+   "fr": [
+    {
+     "t": "p",
+     "x": "Pendant des années, le format de table a servi à garder tes données dans une seule plateforme. En 2026, Databricks et Snowflake ont commencé à faire l'inverse : ouvrir leurs tables à d'autres moteurs. Voici ce qui s'est passé, ce qui reste du marketing d'éditeur, et ce que ça change pour qui apprend le data engineering."
+    },
+    {
+     "t": "h2",
+     "x": "Ce que tu vas gagner en lisant cet article"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Une vue claire de ce que Databricks et Snowflake ont vraiment livré en octobre, avec les dates.",
+      "Un moyen de distinguer les vrais progrès des annonces commerciales : quels chiffres sont indépendants et lesquels ne le sont pas.",
+      "Une checklist à suivre avant toute mise à niveau d'un format de table, y compris le seul changement impossible à annuler.",
+      "Une idée de petit projet pour ton portfolio, qui montre que tu sais travailler avec plusieurs moteurs."
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "Ce qui s'est passé, et quand"
+    },
+    {
+     "t": "p",
+     "x": "En mars 2026, Snowflake a annoncé la prise en charge d'Apache Iceberg v3, la dernière version du format de table ouvert. L'annonce couvrait le row lineage, le type Variant, les deletion vectors, les timestamps à la nanoseconde, les types géométrie et géographie, et les valeurs par défaut.[3] Les notes de version de Snowflake indiquent la disponibilité générale de ce support le 7 mai 2026.[4]"
+    },
+    {
+     "t": "p",
+     "x": "En juillet, Databricks a publié un article expliquant que des moteurs comme Apache Spark, Apache Flink, Starburst, DuckDB et StreamNative peuvent créer, lire et écrire des tables gérées Unity Catalog. À ce moment, l'accès externe était en préversion publique.[5] Les notes de version d'octobre montrent la suite. Le 13 octobre, les écritures externes dans les tables Delta gérées depuis des clients Spark externes sont passées en disponibilité générale, avec l'accès externe aux vues via l'API REST Unity.[1] Le 14 octobre, les transactions, qui regroupent plusieurs instructions SQL en une unité atomique, sont passées en disponibilité générale pour les tables Delta et Iceberg gérées dans Unity Catalog.[1]"
+    },
+    {
+     "t": "p",
+     "x": "Deux jours plus tard, le 16 octobre, Snowflake a fait passer en disponibilité générale la mise à niveau en place des tables Iceberg de la v2 vers la v3. Elle se fait avec une seule instruction ALTER ICEBERG TABLE.[2]"
+    },
+    {
+     "t": "timeline",
+     "cap": "Six dates, dessinées à l'échelle de mars à octobre 2026. Les trois dates en vert sont les annonces d'octobre.",
+     "items": [
+      {
+       "d": "2026-03-04",
+       "h": "Snowflake annonce la prise en charge d'Iceberg v3.[3]"
+      },
+      {
+       "d": "2026-05-07",
+       "h": "Snowflake indique Iceberg v3 en disponibilité générale.[4]"
+      },
+      {
+       "d": "2026-07-16",
+       "h": "Databricks : des moteurs externes peuvent créer, lire et écrire des tables gérées, en préversion publique.[5]"
+      },
+      {
+       "d": "2026-10-13",
+       "h": "Databricks : écritures externes sur les tables Delta gérées, en disponibilité générale.[1]",
+       "hot": true
+      },
+      {
+       "d": "2026-10-14",
+       "h": "Databricks : transactions sur les tables Delta et Iceberg gérées, en disponibilité générale.[1]",
+       "hot": true
+      },
+      {
+       "d": "2026-10-16",
+       "h": "Snowflake : mise à niveau sur place des tables Iceberg de la v2 vers la v3, en disponibilité générale.[2]",
+       "hot": true
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "Pourquoi c'est important"
+    },
+    {
+     "t": "p",
+     "x": "Le schéma est le même dans toutes ces annonces. Les données restent dans un format ouvert, un catalogue décide qui peut y toucher, et plusieurs moteurs peuvent travailler sur la même table. Databricks affirme que ses tables gérées, stockées en Delta ou en Iceberg, restent accessibles depuis n'importe quel moteur pendant que la gouvernance reste centralisée dans Unity Catalog.[5] Snowflake décrit une interface de catalogue REST dans son Horizon Catalog qui permet à des moteurs externes de lire les tables Iceberg. Quand cet article a été publié, l'écriture via cette interface était en préversion privée : vérifie le statut actuel avant de t'appuyer dessus.[3]"
+    },
+    {
+     "t": "compare",
+     "cap": "Le virage en une image. Le deuxième panneau suit le schéma que décrivent les deux éditeurs.[5][3]",
+     "bt": "Avant",
+     "bn": [
+      "Moteur de la plateforme",
+      "Format de table de la plateforme"
+     ],
+     "bnote": "Le format de table gardait tes données à l'intérieur d'une seule plateforme.",
+     "at": "Maintenant",
+     "engines": [
+      "Spark",
+      "Flink",
+      "DuckDB"
+     ],
+     "cat": "Catalogue",
+     "tab": "Table ouverte",
+     "anote": "Un catalogue décide qui peut toucher la table, et plusieurs moteurs travaillent sur les mêmes données. La dépendance se déplace vers le catalogue. Ce dernier point est mon interprétation, pas une annonce des éditeurs."
+    },
+    {
+     "t": "p",
+     "x": "Le verrouillage ne disparaît pas. Il se déplace. Si le format de table est ouvert, c'est le catalogue et les règles de gouvernance qui permettent à une plateforme de garder la main, ce qui rend le choix du catalogue aussi important que celui du format. Cette dernière phrase est mon interprétation, pas une affirmation de l'un des éditeurs."
+    },
+    {
+     "t": "h2",
+     "x": "Les détails à connaître pour un data engineer"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "La mise à niveau v3 de Snowflake fonctionne pour les tables qu'il gère et pour les tables gérées en externe via un catalogue Iceberg REST.[2]",
+      "La mise à niveau est permanente. Pour les tables gérées par Snowflake, tu peux restaurer la version v2 d'origine avec Time Travel, mais seulement pendant la période de rétention. La note ne dit pas la même chose pour les tables externes.[2]",
+      "Pour les expressions par défaut, Snowflake n'écrit dans les métadonnées Iceberg que les expressions qui s'évaluent en une constante, comme PI(). Les autres, comme CURRENT_DATE(), ne sont évaluées que pour les écritures faites par Snowflake.[2]",
+      "Côté Databricks, le contrôle d'accès par attributs inter-moteurs est passé en disponibilité générale le 1er octobre : des moteurs externes peuvent lire les tables gérées pendant que les politiques d'accès sont appliquées.[1]",
+      "Iceberg 1.12.0 retire la prise en charge de Spark 3.4 et de Flink 2.0, et ajoute Flink 2.2 et 2.3. Le format v4 en est encore aux fondations et ne doit pas aller en production.[6]"
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "Ce que disent les chiffres, et ce qu'ils ne disent pas"
+    },
+    {
+     "t": "p",
+     "x": "Databricks annonce jusqu'à 50 % d'économies de stockage et des requêtes jusqu'à 20 fois plus rapides pour les tables gérées Unity Catalog.[5] Ces chiffres viennent de Databricks lui-même, et je n'ai pas trouvé de benchmark indépendant pour les confirmer. Prends-les comme une hypothèse à tester sur ta propre charge de travail."
+    },
+    {
+     "t": "matrix",
+     "cap": "Ce qui est livré, ce qui est encore en préversion, et ce qui n'est qu'une annonce. Statut tel que rapporté par les sources à leur date de publication.",
+     "head": [
+      "Quoi",
+      "Statut",
+      "Source"
+     ],
+     "rows": [
+      {
+       "k": "Écritures externes sur les tables Delta gérées (Databricks)",
+       "s": "ga",
+       "st": "Disponibilité générale, 13 oct.",
+       "src": "[1]"
+      },
+      {
+       "k": "Transactions sur les tables Delta et Iceberg gérées (Databricks)",
+       "s": "ga",
+       "st": "Disponibilité générale, 14 oct.",
+       "src": "[1]"
+      },
+      {
+       "k": "Mise à niveau sur place Iceberg v2 vers v3 (Snowflake)",
+       "s": "ga",
+       "st": "Disponibilité générale, 16 oct. Permanente",
+       "src": "[2]"
+      },
+      {
+       "k": "Écriture de moteurs externes via l'interface de catalogue REST de Snowflake",
+       "s": "preview",
+       "st": "Préversion privée en mars. Vérifie le statut actuel",
+       "src": "[3]"
+      },
+      {
+       "k": "Jusqu'à 50 % d'économies de stockage et des requêtes jusqu'à 20 fois plus rapides (Databricks)",
+       "s": "claim",
+       "st": "Annonce de l'éditeur. Aucun benchmark indépendant trouvé",
+       "src": "[5]"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "Avant de mettre à jour"
+    },
+    {
+     "t": "p",
+     "x": "Le guide de mise à jour d'Iceberg 1.12.0 publié par Dremio propose un ordre de travail raisonnable, valable pour tout changement de format de table.[6]"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Faire l'inventaire de tous les moteurs, clients et tables, et des fonctions réellement utilisées.",
+      "Chercher les fichiers de suppression de position qui contiennent des données de ligne, avec la table de métadonnées position_deletes, avant la mise à jour.",
+      "Recompiler le code personnalisé et tester des tables représentatives, y compris les scénarios d'échec.",
+      "Déployer par niveau de risque : les lecteurs d'abord, puis les écrivains à faible volume, puis les jobs de streaming, puis les jobs de maintenance.",
+      "Garder la mise à jour de la bibliothèque, celle du runtime du moteur et celle de la version du format de table comme trois décisions séparées."
+     ]
+    },
+    {
+     "t": "flow",
+     "cap": "Un ordre prudent pour mettre à niveau un format de table, d'après le guide Iceberg 1.12.0 de Dremio.[6] Garde la bibliothèque, le moteur et le format de table comme trois décisions séparées.",
+     "prepLabel": "Prépa",
+     "rollLabel": "Déploiement",
+     "prep": 2,
+     "steps": [
+      "Inventorier chaque moteur, client et table",
+      "Tester des tables représentatives, y compris les cas d'échec",
+      "Les lecteurs d'abord",
+      "Les écritures à faible volume",
+      "Les jobs de streaming",
+      "Les jobs de maintenance"
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "Ton plan pour cette semaine"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Note quels moteurs lisent et écrivent tes tables aujourd'hui, et quel catalogue se trouve devant eux.",
+      "Vérifie le statut de chaque fonction dont tu dépends dans les notes de version : disponibilité générale, bêta ou préversion.[1]",
+      "Avant toute mise à niveau Iceberg v3, teste sur une copie de la table et vérifie si un retour en arrière est possible. Sur les tables gérées par Snowflake, Time Travel peut restaurer la v2, mais seulement pendant la période de rétention.[2]",
+      "Fais ton propre benchmark avant de croire un chiffre d'économies : mêmes données, même charge, avant et après.[5]",
+      "Construis le mini-projet à deux moteurs : écris une table Iceberg avec un moteur, lis-la avec un autre, et publie tes notes sur ton blog ou GitHub."
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "Mon avis de futur data engineer"
+    },
+    {
+     "t": "p",
+     "x": "La compétence qui voyage d'une entreprise à l'autre n'est pas une plateforme. C'est la couche en dessous : comment un format de table ouvert stocke ses métadonnées, comment un catalogue distribue des identifiants d'accès, et comment deux moteurs évitent de s'écraser mutuellement. Un bon exercice serait un petit projet qui écrit la même table Iceberg depuis deux moteurs et la relit depuis un troisième. Il montrerait ce que les pages produit passent sous silence."
+    },
+    {
+     "t": "h2",
+     "x": "Limites et questions ouvertes"
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Le statut varie selon la fonction. Les notes Databricks d'octobre mélangent des éléments en disponibilité générale et en bêta : lis chaque entrée avant de planifier autour.[1]",
+      "La date exacte de sortie d'Iceberg 1.12.0 vient de sources secondaires. Dremio la situe au 30 septembre et une newsletter communautaire parle d'une annonce le 1er octobre.[6][7] Je n'ai pas trouvé de page d'annonce officielle.",
+      "Les chiffres de performance et d'économies sont des affirmations d'éditeur, comme expliqué plus haut."
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "En bref"
+    },
+    {
+     "t": "p",
+     "x": "Les tables ouvertes ne sont plus un sujet annexe. À la mi-octobre, Databricks et Snowflake ont tous deux livré des fonctions autour des formats de table ouverts. Si tu apprends le data engineering, apprends Iceberg, apprends comment fonctionnent les catalogues, et lis la note de version avant l'article de blog."
+    }
+   ]
+  },
+  "sources": [
+   {
+    "title": "Databricks release notes: October 2026",
+    "publisher": "Databricks documentation",
+    "date": "2026-10 (entries of 1, 13 and 14 Oct)",
+    "url": "https://docs.databricks.com/aws/en/release-notes/product/2026/october"
+   },
+   {
+    "title": "October 16, 2026: Apache Iceberg v3 table upgrades and expression defaults (General availability)",
+    "publisher": "Snowflake documentation",
+    "date": "2026-10-16",
+    "url": "https://docs.snowflake.com/en/release-notes/2026/other/2026-10-16-iceberg-v3-upgrade-expression-defaults-ga"
+   },
+   {
+    "title": "Announcing Apache Iceberg v3 Support on Snowflake",
+    "publisher": "Snowflake blog",
+    "date": "2026-03-04",
+    "url": "https://www.snowflake.com/en/blog/apache-iceberg-v3-support/"
+   },
+   {
+    "title": "May 7, 2026: Support for Apache Iceberg version 3 (General availability)",
+    "publisher": "Snowflake documentation",
+    "date": "2026-05-07",
+    "url": "https://docs.snowflake.com/en/release-notes/2026/other/2026-05-07-iceberg-v3-ga"
+   },
+   {
+    "title": "How Unity Catalog managed tables bring interoperability, performance and unified governance",
+    "publisher": "Databricks blog",
+    "date": "2026-07-16",
+    "url": "https://www.databricks.com/blog/how-unity-catalog-managed-tables-bring-interoperability-performance-and-unified-governance"
+   },
+   {
+    "title": "Apache Iceberg 1.12.0: What's New, Breaking Changes, and Upgrade Guide",
+    "publisher": "Dremio blog (secondary source)",
+    "date": "2026 (covers the 30 Sep 2026 release)",
+    "url": "https://www.dremio.com/blog/apache-iceberg-1-12-0-whats-new-breaking-changes-and-upgrade-guide/"
+   },
+   {
+    "title": "Apache Data Lakehouse Weekly: September 29 to October 7, 2026",
+    "publisher": "DEV Community (community newsletter, secondary source)",
+    "date": "2026-10 (week of 29 Sep to 7 Oct)",
+    "url": "https://dev.to/alexmercedcoder/apache-data-lakehouse-weekly-september-29-to-october-7-2026-42im"
+   }
+  ],
+  "carousel": "https://claude.ai/artifact/7MgrVw8KyBedYj93scoWRA"
+ },
+ {
+  "id": "why-this-blog",
+  "date": "2026-10-26",
+  "tag": {
+   "fr": "Édito",
+   "en": "Intro"
+  },
+  "minutes": 3,
+  "title": {
+   "fr": "Pourquoi ce blog.",
+   "en": "Why this blog."
+  },
+  "summary": {
+   "fr": "Qui je suis, pourquoi la data et l'IA me passionnent, et ce que tu trouveras ici trois fois par semaine.",
+   "en": "Who I am, why data and AI fascinate me, and what you'll find here three times a week."
+  },
+  "body": {
+   "en": [
+    {
+     "t": "h2",
+     "x": "Who I am"
+    },
+    {
+     "t": "p",
+     "x": "Hi, I'm Hamza El Alami. I'm an engineering student at EMSI Casablanca, and I'm passionate about data and everything around it: collecting it, cleaning it, moving it, modeling it, and turning it into decisions people can trust."
+    },
+    {
+     "t": "h2",
+     "x": "What drives me"
+    },
+    {
+     "t": "p",
+     "x": "Data and AI are changing how every industry works, and I want to be one of the people who builds the systems behind that change. What fascinates me is not a single tool or a single model, but how the whole chain fits together, from raw data to a decision."
+    },
+    {
+     "t": "h2",
+     "x": "What this blog is"
+    },
+    {
+     "t": "p",
+     "x": "I publish three times a week. Each post covers a single topic, first as a short carousel on LinkedIn, then in a detailed version here."
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Monday: data, data engineering, cloud and the tools of the trade.",
+      "Wednesday: artificial intelligence news.",
+      "Friday: tech news and industry trends."
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "My rule on sources"
+    },
+    {
+     "t": "p",
+     "x": "Every important fact points to a numbered source, listed at the bottom of the article with its publisher and date. I favor official announcements, engineering blogs, research papers and recognized specialist press. When something is unconfirmed, I say so."
+    },
+    {
+     "t": "h2",
+     "x": "Read it in your language"
+    },
+    {
+     "t": "p",
+     "x": "The site opens in English. Use the FR button at the top of the page to read everything in French, and EN to come back."
+    }
+   ],
+   "fr": [
+    {
+     "t": "h2",
+     "x": "Qui je suis"
+    },
+    {
+     "t": "p",
+     "x": "Salut, je suis Hamza El Alami. Je suis étudiant ingénieur à l'EMSI Casablanca et je suis passionné par la data et tout ce qui l'entoure : la collecter, la nettoyer, la transporter, la modéliser et la transformer en décisions fiables."
+    },
+    {
+     "t": "h2",
+     "x": "Ce qui me motive"
+    },
+    {
+     "t": "p",
+     "x": "La data et l'IA changent le fonctionnement de tous les secteurs, et je veux faire partie de ceux qui construisent les systèmes derrière ce changement. Ce qui me fascine, ce n'est pas un outil ou un modèle isolé, mais la façon dont toute la chaîne s'assemble, de la donnée brute jusqu'à la décision."
+    },
+    {
+     "t": "h2",
+     "x": "Ce qu'est ce blog"
+    },
+    {
+     "t": "p",
+     "x": "Je publie trois fois par semaine. Chaque publication traite un seul sujet, d'abord en carrousel court sur LinkedIn, puis en version détaillée ici."
+    },
+    {
+     "t": "ul",
+     "x": [
+      "Lundi : data, data engineering, cloud et outils du métier.",
+      "Mercredi : actualité de l'intelligence artificielle.",
+      "Vendredi : actualité tech et tendances du secteur."
+     ]
+    },
+    {
+     "t": "h2",
+     "x": "Ma règle sur les sources"
+    },
+    {
+     "t": "p",
+     "x": "Chaque fait important renvoie à une source numérotée, listée en bas de l'article avec son éditeur et sa date. Je privilégie les communiqués officiels, les blogs d'ingénierie, les articles de recherche et la presse spécialisée reconnue. Quand une information n'est pas confirmée, je l'écris."
+    },
+    {
+     "t": "h2",
+     "x": "À lire dans ta langue"
+    },
+    {
+     "t": "p",
+     "x": "Le site s'ouvre en anglais. Utilise le bouton FR en haut de la page pour tout lire en français, et EN pour revenir."
+    }
+   ]
+  },
+  "sources": [],
+  "carousel": ""
+ }
+]</script>
 
-<!-- ===== DATA TO DECISION ===== -->
-<section id="process" class="proc">
-  <div class="wrap">
-    <h2 class="display h2 split" data-en="From data to *decision.*" data-fr="Des données à la *décision.*">From data to decision.</h2>
-    <div class="steps rv" aria-label="From raw data to a decision">
-      <div class="step">
-        <div class="vis" aria-hidden="true"><svg viewBox="0 0 200 120" fill="none" class="raw"><circle cx="22" cy="30" r="4" fill="rgba(236,236,230,.5)" style="--dx:1px;--dy:-3px;animation-delay:-0.00s"/><circle cx="48" cy="82" r="3" fill="rgba(236,236,230,.5)" style="--dx:-2px;--dy:2px;animation-delay:-0.27s"/><circle cx="70" cy="22" r="5" fill="rgba(236,236,230,.5)" style="--dx:2px;--dy:2px;animation-delay:-0.54s"/><circle cx="96" cy="64" r="3" fill="rgba(236,236,230,.5)" style="--dx:-3px;--dy:-2px;animation-delay:-0.81s"/><circle cx="118" cy="100" r="4" fill="rgba(236,236,230,.5)" style="--dx:2px;--dy:-3px;animation-delay:-1.08s"/><circle cx="140" cy="36" r="3" fill="rgba(236,236,230,.5)" style="--dx:-2px;--dy:-2px;animation-delay:-1.35s"/><circle cx="160" cy="74" r="5" fill="rgba(236,236,230,.5)" style="--dx:3px;--dy:2px;animation-delay:-1.62s"/><circle cx="182" cy="20" r="3" fill="rgba(236,236,230,.5)" style="--dx:-2px;--dy:3px;animation-delay:-1.89s"/><circle cx="36" cy="104" r="3" fill="rgba(236,236,230,.5)" style="--dx:2px;--dy:2px;animation-delay:-2.16s"/><circle cx="88" cy="108" r="4" fill="rgba(236,236,230,.5)" style="--dx:-2px;--dy:-3px;animation-delay:-2.43s"/><circle cx="172" cy="108" r="3" fill="rgba(236,236,230,.5)" style="--dx:3px;--dy:-2px;animation-delay:-2.70s"/><circle cx="128" cy="12" r="3" fill="rgba(236,236,230,.5)" style="--dx:-3px;--dy:2px;animation-delay:-2.97s"/><circle cx="60" cy="52" r="4" fill="none" stroke="rgba(236,236,230,.5)" stroke-dasharray="2 2" style="--dx:2px;--dy:-2px"/><circle cx="150" cy="56" r="4" fill="none" stroke="rgba(236,236,230,.5)" stroke-dasharray="2 2" style="--dx:-2px;--dy:2px;animation-delay:-.9s"/><circle cx="104" cy="30" r="4" fill="none" stroke="rgba(236,236,230,.5)" stroke-dasharray="2 2" style="--dx:2px;--dy:2px;animation-delay:-1.4s"/></svg></div>
-        <h3 data-en="Raw data" data-fr="Données brutes">Raw data</h3>
-        <p data-en="Missing values, error codes and outliers." data-fr="Valeurs manquantes, codes d'erreur et valeurs extrêmes.">Missing values, error codes and outliers.</p>
-      </div>
-      <div class="step">
-        <div class="vis" aria-hidden="true"><svg viewBox="0 0 200 120" fill="none"><circle class="cd" cx="40" cy="24" r="4" fill="#d4ff3a" style="--k:0;--w:0.00s"/><circle class="cd" cx="80" cy="24" r="4" fill="#d4ff3a" style="--k:1;--w:0.16s"/><circle class="cd" cx="120" cy="24" r="4" fill="#d4ff3a" style="--k:2;--w:0.32s"/><circle class="cd" cx="160" cy="24" r="4" fill="#d4ff3a" style="--k:3;--w:0.48s"/><circle class="cd" cx="40" cy="48" r="4" fill="#d4ff3a" style="--k:4;--w:0.16s"/><circle class="cd" cx="80" cy="48" r="4" fill="#d4ff3a" style="--k:5;--w:0.32s"/><circle class="cd" cx="120" cy="48" r="4" fill="#d4ff3a" style="--k:6;--w:0.48s"/><circle class="cd" cx="160" cy="48" r="4" fill="#d4ff3a" style="--k:7;--w:0.64s"/><circle class="cd" cx="40" cy="72" r="4" fill="#d4ff3a" style="--k:8;--w:0.32s"/><circle class="cd" cx="80" cy="72" r="4" fill="#d4ff3a" style="--k:9;--w:0.48s"/><circle class="cd" cx="120" cy="72" r="4" fill="#d4ff3a" style="--k:10;--w:0.64s"/><circle class="cd" cx="160" cy="72" r="4" fill="#d4ff3a" style="--k:11;--w:0.80s"/><circle class="cd" cx="40" cy="96" r="4" fill="#d4ff3a" style="--k:12;--w:0.48s"/><circle class="cd" cx="80" cy="96" r="4" fill="#d4ff3a" style="--k:13;--w:0.64s"/><circle class="cd" cx="120" cy="96" r="4" fill="#d4ff3a" style="--k:14;--w:0.80s"/><circle class="cd" cx="160" cy="96" r="4" fill="#d4ff3a" style="--k:15;--w:0.96s"/></svg></div>
-        <h3 data-en="Clean data" data-fr="Données propres">Clean data</h3>
-        <p data-en="Imputed, capped and ready to learn from." data-fr="Imputées, plafonnées et prêtes pour l'apprentissage.">Imputed, capped and ready to learn from.</p>
-      </div>
-      <div class="step">
-        <div class="vis" aria-hidden="true"><svg viewBox="0 0 200 120" fill="none" class="mdl"><line class="ml a" x1="30" y1="25" x2="100" y2="15"/><line class="ml a" x1="30" y1="25" x2="100" y2="45"/><line class="ml a" x1="30" y1="25" x2="100" y2="75"/><line class="ml a" x1="30" y1="25" x2="100" y2="105"/><line class="ml a" x1="30" y1="60" x2="100" y2="15"/><line class="ml a" x1="30" y1="60" x2="100" y2="45"/><line class="ml a" x1="30" y1="60" x2="100" y2="75"/><line class="ml a" x1="30" y1="60" x2="100" y2="105"/><line class="ml a" x1="30" y1="95" x2="100" y2="15"/><line class="ml a" x1="30" y1="95" x2="100" y2="45"/><line class="ml a" x1="30" y1="95" x2="100" y2="75"/><line class="ml a" x1="30" y1="95" x2="100" y2="105"/><line class="ml b" x1="100" y1="15" x2="170" y2="60"/><line class="ml b" x1="100" y1="45" x2="170" y2="60"/><line class="ml b" x1="100" y1="75" x2="170" y2="60"/><line class="ml b" x1="100" y1="105" x2="170" y2="60"/><circle cx="30" cy="25" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="30" cy="60" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="30" cy="95" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="100" cy="15" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="100" cy="45" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="100" cy="75" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle cx="100" cy="105" r="5" fill="#0a0b0c" stroke="#85867f" stroke-width="1.4"/><circle class="mo" cx="170" cy="60" r="6" fill="#d4ff3a"/></svg></div>
-        <h3 data-en="Model" data-fr="Modèle">Model</h3>
-        <p data-en="Learns the pattern and shows what weighed in." data-fr="Apprend le schéma et montre ce qui a pesé.">Learns the pattern and shows what weighed in.</p>
-      </div>
-      <div class="step">
-        <div class="vis" aria-hidden="true">
-          <svg viewBox="0 0 200 120" fill="none">
-            <line x1="20" y1="58" x2="180" y2="58" stroke="rgba(236,236,230,.28)" stroke-width="1.5"/><rect x="20" y="55" width="100" height="6" rx="3" fill="rgba(212,255,58,.14)"/>
-            <line x1="120" y1="34" x2="120" y2="82" stroke="#ecece6" stroke-width="1.5" stroke-dasharray="3 3"/>
-            <text x="120" y="26" text-anchor="middle" font-family="Geist Mono, monospace" font-size="9" fill="#85867f">threshold</text>
-            <circle class="needle" cx="20" cy="58" r="6" fill="#d4ff3a"/>
-          </svg>
-          <span class="dec-chip chip solid" data-en="Accepted" data-fr="Accepté">Accepted</span><span class="dec-chip no chip" data-en="Refused" data-fr="Refusé">Refused</span>
-        </div>
-        <h3 data-en="Decision" data-fr="Décision">Decision</h3>
-        <p data-en="A probability, a threshold, then an action." data-fr="Une probabilité, un seuil, puis une action.">A probability, a threshold, then an action.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== PROJETS ===== -->
-<section id="projets">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 class="display h2 split" data-en="My *projects.*" data-fr="Mes *projets.*">My projects.</h2>
-      <p class="rv" data-en="[A short line about your profile: data, machine learning, deep learning, IoT, and what you're looking for (PFE internship, apprenticeship...).]" data-fr="[Une phrase courte sur ton profil : data, machine learning, deep learning, IoT, et ce que tu cherches (stage PFE, alternance...).]">[A short line about your profile: data, machine learning, deep learning, IoT, and what you're looking for (PFE internship, apprenticeship...).]</p>
-    </div>
-
-    <div class="features">
-      <article class="feature wide rv">
-        <span class="chip solid" data-en="Latest project" data-fr="Dernier projet">Latest project</span>
-        <div>
-          <h3>Supply Chain Risk Radar</h3>
-          <p data-en="Reads world news (18.4 million GDELT events) and flags which suppliers are exposed through their city or the strait on their shipping route, by comparing each place with its own normal over 28 days. A full lakehouse pipeline feeds a static site that reads the data in the browser. The supplier portfolio is fictional; the events are real." data-fr="Lit l'actualité mondiale (18,4 millions d'événements GDELT) et signale les fournisseurs exposés par leur ville ou par le détroit de leur route, en comparant chaque lieu à sa propre normale sur 28 jours. Un pipeline lakehouse complet alimente un site statique qui lit les données dans le navigateur. Le portefeuille de fournisseurs est fictif, les événements sont réels.">Reads world news (18.4 million GDELT events) and flags which suppliers are exposed through their city or the strait on their shipping route, by comparing each place with its own normal over 28 days. A full lakehouse pipeline feeds a static site that reads the data in the browser. The supplier portfolio is fictional; the events are real.</p>
-          <div class="fstats">
-            <div class="fstat"><b>18.4 M</b><span data-en="GDELT events" data-fr="événements GDELT">GDELT events</span></div>
-            <div class="fstat"><b>0</b><span data-en="duplicates" data-fr="doublons">duplicates</span></div>
-            <div class="fstat"><b>33 / 33</b><span data-en="dbt tests passing" data-fr="tests dbt réussis">dbt tests passing</span></div>
-          </div>
-          <div class="feature-tags"><span class="chip">Kafka</span><span class="chip">Spark</span><span class="chip">Iceberg</span><span class="chip">dbt</span><span class="chip">DuckDB</span></div>
-          <div class="feature-actions"><a href="https://hamzaelchen.github.io/supply-chain-risk-radar/" class="btn primary" target="_blank" rel="noopener"><span data-en="Open the live demo" data-fr="Ouvrir la démo en direct">Open the live demo</span><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a href="https://github.com/hamzaelchen/supply-chain-risk-radar" class="btn ghost" target="_blank" rel="noopener"><span data-en="Source code" data-fr="Code source">Source code</span><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
-        </div>
-      </article>
-      <article class="feature rv">
-        <span class="chip" data-en="Data engineering" data-fr="Data engineering">Data engineering</span>
-        <div>
-          <h3>MobilityPulse France</h3>
-          <p data-en="Tracks the Nantes bike-sharing network, spots empty and saturated stations, and suggests which bikes to move from where to where. A pipeline collects the open feed every 60 seconds and the interface shows the real age of the data." data-fr="Suit le réseau de vélos en libre-service de Nantes, repère les stations vides ou saturées et propose quels vélos déplacer d'où vers où. Un pipeline collecte le flux ouvert toutes les 60 secondes et l'interface affiche l'âge réel des données.">Tracks the Nantes bike-sharing network, spots empty and saturated stations, and suggests which bikes to move from where to where. A pipeline collects the open feed every 60 seconds and the interface shows the real age of the data.</p>
-          <div class="feature-tags"><span class="chip">Kafka</span><span class="chip">Spark</span><span class="chip">PostgreSQL</span><span class="chip">GBFS</span></div>
-          <div class="feature-actions"><a href="https://hamzaelchen.github.io/mobilitypulse-france/app/" class="btn primary" target="_blank" rel="noopener"><span data-en="Open the project" data-fr="Ouvrir le projet">Open the project</span><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a href="https://github.com/hamzaelchen/mobilitypulse-france" class="btn ghost" target="_blank" rel="noopener"><span data-en="Source code" data-fr="Code source">Source code</span><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
-        </div>
-      </article>
-      <article class="feature rv">
-        <span class="chip" data-en="Machine learning" data-fr="Machine learning">Machine learning</span>
-        <div>
-          <h3>Credit Scoring</h3>
-          <p data-en="A LightGBM model estimates the probability that a client defaults within 2 years and shows which factors weighed in the decision. Trained on about 150,000 clients, served by a live API." data-fr="Un modèle LightGBM estime la probabilité qu'un client soit en défaut dans les 2 ans et montre les facteurs qui ont pesé dans la décision. Entraîné sur environ 150 000 clients, servi par une API en direct.">A LightGBM model estimates the probability that a client defaults within 2 years and shows which factors weighed in the decision. Trained on about 150,000 clients, served by a live API.</p>
-          <div class="feature-tags"><span class="chip">LightGBM</span><span class="chip">SHAP</span><span class="chip">REST API</span><span class="chip">Kaggle</span></div>
-          <div class="feature-actions"><a href="https://hamzaelchen.github.io/credit-scoring/app.html" class="btn primary" target="_blank" rel="noopener"><span data-en="Open the live demo" data-fr="Ouvrir la démo en direct">Open the live demo</span><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a href="https://hamzaelchen.github.io/credit-scoring/model.html" class="btn ghost" target="_blank" rel="noopener"><span data-en="Method and results" data-fr="Méthode et résultats">Method and results</span><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
-        </div>
-      </article>
-    </div>
-
-    <div class="toolbar rv">
-      <input class="search" id="projectSearch" type="search" aria-label="Search projects" placeholder="Search projects..." data-en-ph="Search projects..." data-fr-ph="Rechercher un projet...">
-      <button type="button" class="filter" data-filter="all" aria-pressed="true" aria-label="All"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></button>
-      <button type="button" class="filter" data-filter="ml" aria-pressed="false" title="Machine Learning">ML</button>
-      <button type="button" class="filter" data-filter="de" aria-pressed="false" title="Data Engineering">DE</button>
-    </div>
-
-    <div class="ptable rv" id="projectTable">
-      <div class="prow" data-domain="ml">
-        <button type="button" class="prow-h" aria-expanded="false">
-          <span class="idx mono tag">01</span>
-          <span class="name">Credit Scoring, default risk</span>
-          <span class="chip">Machine Learning</span>
-          <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
-        </button>
-        <div class="reveal-box"><div><div class="prow-d"><span data-en="LightGBM compared with logistic regression, random forest and XGBoost, tuned on AUC-PR with 5-fold stratified cross-validation. The test set was used once. Explanations are computed with SHAP." data-fr="LightGBM comparé à une régression logistique, une forêt aléatoire et XGBoost, réglé sur l'AUC-PR en validation croisée stratifiée à 5 blocs. Le jeu de test n'est utilisé qu'une fois. Les explications sont calculées avec SHAP.">LightGBM compared with logistic regression, random forest and XGBoost, tuned on AUC-PR with 5-fold stratified cross-validation. The test set was used once. Explanations are computed with SHAP.</span> <a class="inline-link" href="https://hamzaelchen.github.io/credit-scoring/app.html" target="_blank" rel="noopener" data-en="Open the demo" data-fr="Ouvrir la démo">Open the demo</a></div></div></div>
-      </div>
-      <div class="prow" data-domain="de">
-        <button type="button" class="prow-h" aria-expanded="false">
-          <span class="idx mono tag">02</span>
-          <span class="name">MobilityPulse France, bike-sharing</span>
-          <span class="chip">Data Engineering</span>
-          <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
-        </button>
-        <div class="reveal-box"><div><div class="prow-d"><span data-en="Streaming pipeline: the GBFS feed is polled every 60 seconds, published to Kafka, cleaned and deduplicated with Spark, then stored in PostgreSQL. The descriptive and prescriptive views are live. The predictive part is a trend heuristic, because the collected history is still too short to train a model." data-fr="Pipeline en continu : le flux GBFS est interrogé toutes les 60 secondes, publié dans Kafka, nettoyé et dédoublonné avec Spark, puis stocké dans PostgreSQL. Les vues descriptive et prescriptive sont en service. La partie prédictive est une heuristique de tendance, car l'historique collecté est encore trop court pour entraîner un modèle.">Streaming pipeline: the GBFS feed is polled every 60 seconds, published to Kafka, cleaned and deduplicated with Spark, then stored in PostgreSQL. The descriptive and prescriptive views are live. The predictive part is a trend heuristic, because the collected history is still too short to train a model.</span> <a class="inline-link" href="https://hamzaelchen.github.io/mobilitypulse-france/app/" target="_blank" rel="noopener" data-en="Open the project" data-fr="Ouvrir le projet">Open the project</a></div></div></div>
-      </div>
-      <div class="prow" data-domain="de">
-        <button type="button" class="prow-h" aria-expanded="false">
-          <span class="idx mono tag">03</span>
-          <span class="name">Supply Chain Risk Radar, supplier risk</span>
-          <span class="chip">Data Engineering</span>
-          <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
-        </button>
-        <div class="reveal-box"><div><div class="prow-d"><span data-en="Kafka and Spark Structured Streaming feed Iceberg tables (bronze, silver) on MinIO; dbt with DuckDB computes a 0 to 100 score, checked by 33 tests. Zero duplicates, 107 quarantined rows, and every figure traces back to a downloaded file. The site reads Parquet files in the browser with DuckDB-WASM, no server. Events are classified by rules rather than an LLM, and the site shows what the press reports without explaining why." data-fr="Kafka et Spark Structured Streaming alimentent des tables Iceberg (bronze, silver) sur MinIO ; dbt avec DuckDB calcule un score de 0 à 100, vérifié par 33 tests. Zéro doublon, 107 lignes en quarantaine, et chaque chiffre remonte à un fichier téléchargé. Le site lit des fichiers Parquet dans le navigateur avec DuckDB-WASM, sans serveur. Les événements sont classés par règles plutôt que par un LLM, et le site montre ce que la presse recense sans en donner la cause.">Kafka and Spark Structured Streaming feed Iceberg tables (bronze, silver) on MinIO; dbt with DuckDB computes a 0 to 100 score, checked by 33 tests. Zero duplicates, 107 quarantined rows, and every figure traces back to a downloaded file. The site reads Parquet files in the browser with DuckDB-WASM, no server. Events are classified by rules rather than an LLM, and the site shows what the press reports without explaining why.</span> <a class="inline-link" href="https://hamzaelchen.github.io/supply-chain-risk-radar/" target="_blank" rel="noopener" data-en="Open the demo" data-fr="Ouvrir la démo">Open the demo</a></div></div></div>
-      </div>
-      <p class="noresult" id="noResults" hidden data-en="No projects match your search." data-fr="Aucun projet ne correspond.">No projects match your search.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== BLOG ===== -->
-<section id="blog" style="border-top:1px solid var(--line)">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 class="display h2 split" data-en="Latest from the *blog.*" data-fr="Dernier article du *blog.*" aria-label="Latest from the blog.">Latest from the blog.</h2>
-      <p class="rv" data-en="Three posts a week on data, AI and tech news, explained clearly and sourced." data-fr="Trois articles par semaine sur la data, l'IA et l'actu tech, expliqués clairement et sourcés.">Three posts a week on data, AI and tech news, explained clearly and sourced.</p>
-    </div>
-    <div class="features">
-      <article class="feature wide rv" id="blogLatest">
-        <span class="chip solid" data-en="Latest post" data-fr="Dernier article">Latest post</span>
-        <div>
-          <h3 id="blogTitle" data-en="Your tables, any engine." data-fr="Tes tables, n'importe quel moteur.">Your tables, any engine.</h3>
-          <p id="blogSum" data-en="Know what Databricks and Snowflake really changed in October, which numbers are only vendor claims, and follow a 5-step plan you can run this week." data-fr="Comprends ce que Databricks et Snowflake ont vraiment changé en octobre, quels chiffres ne sont que des annonces, et suis un plan en 5 étapes à faire cette semaine.">Know what Databricks and Snowflake really changed in October, which numbers are only vendor claims, and follow a 5-step plan you can run this week.</p>
-          <div class="feature-tags"><span class="chip">Iceberg</span><span class="chip">Delta Lake</span><span class="chip">Unity Catalog</span><span class="chip">Snowflake</span></div>
-          <div class="feature-actions">
-            <a href="/blog/" class="btn primary"><span data-en="Read the blog" data-fr="Lire le blog">Read the blog</span><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
 <script>
-/* Met à jour la carte avec le dernier article publié dans /blog/ (sinon garde le texte ci-dessus) */
 (function () {
-  fetch('/blog/').then(function (r) { return r.ok ? r.text() : Promise.reject(); }).then(function (html) {
-    var m = html.match(/<script type="application\/json" id="posts">([\s\S]*?)<\/script>/);
-    if (!m) return;
-    var p = JSON.parse(m[1])[0];
-    if (!p) return;
-    function set(id, key) {
-      var el = document.getElementById(id);
-      if (!el || !p[key]) return;
-      el.setAttribute('data-en', p[key].en);
-      el.setAttribute('data-fr', p[key].fr);
-      el.textContent = document.documentElement.lang === 'fr' ? p[key].fr : p[key].en;
+  var POSTS = JSON.parse(document.getElementById('posts').textContent);
+  var view = document.getElementById('view');
+  var progress = document.getElementById('progress');
+  var DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var UI = {
+    en: {
+      eyebrow: 'Data · AI · Tech', pill: 'New post 3× a week',
+      h1a: 'Stay ahead in data, AI and tech.', h1b: 'Clear. Sourced. Weekly.',
+      lede: 'Short carousels on LinkedIn, deep and sourced breakdowns here. Every Monday, Wednesday and Friday, one story that matters, explained for people who build.',
+      cta1: 'Read the latest post', cta2: 'About this blog',
+      proof: ['3 posts a week', 'Every claim linked to a source', 'English and French'],
+      newTag: 'New',
+      how: 'What you get each week',
+      cad: [[1, 'Monday', 'Data, cloud and the tools of the trade'], [3, 'Wednesday', 'AI news'], [5, 'Friday', 'Tech news and trends']],
+      today: "Today's topic", next: 'Next post',
+      latest: 'Latest posts', count: function (n) { return n + (n === 1 ? ' post' : ' posts'); },
+      all: 'All', search: 'Search posts', none: 'No posts match your search.',
+      back: 'All posts', min: ' min read', sources: 'Sources', carousel: 'View the LinkedIn carousel',
+      role: 'Data & AI Engineer.', foot: 'Hamza El Alami · Casablanca, Morocco', hint: 'Translate'
+    },
+    fr: {
+      eyebrow: 'Data · IA · Tech', pill: 'Nouvel article 3× par semaine',
+      h1a: "Garde une longueur d'avance en data, IA et tech.", h1b: 'Clair. Sourcé. Chaque semaine.',
+      lede: "Des carrousels courts sur LinkedIn, des analyses détaillées et sourcées ici. Chaque lundi, mercredi et vendredi, une actu qui compte, expliquée pour ceux qui construisent.",
+      cta1: "Lire le dernier article", cta2: 'À propos du blog',
+      proof: ['3 articles par semaine', 'Chaque affirmation reliée à sa source', 'Anglais et français'],
+      newTag: 'Nouveau',
+      how: 'Ce que tu reçois chaque semaine',
+      cad: [[1, 'Lundi', 'Data, cloud et outils du métier'], [3, 'Mercredi', "Actualité de l'IA"], [5, 'Vendredi', 'Actu tech et tendances']],
+      today: 'Sujet du jour', next: 'Prochain article',
+      latest: 'Derniers articles', count: function (n) { return n + (n > 1 ? ' articles' : ' article'); },
+      all: 'Tous', search: 'Rechercher un article', none: 'Aucun article ne correspond à ta recherche.',
+      back: 'Tous les articles', min: ' min de lecture', sources: 'Sources', carousel: 'Voir le carrousel LinkedIn',
+      role: 'Data & AI Engineer.', foot: 'Hamza El Alami · Casablanca, Maroc', hint: 'Traduire'
     }
-    set('blogTitle', 'title');
-    set('blogSum', 'summary');
-  }).catch(function () {});
-})();
-</script>
+  };
+  var state = { lang: 'en', post: null, tag: 'all', q: '' };
+  try { var sl = localStorage.getItem('hea-lang'); if (sl === 'en' || sl === 'fr') state.lang = sl; } catch (e) {}
+  try { var h = (location.hash || '').slice(1); if (h) state.post = h; } catch (e) {}
 
-<!-- ===== CERTIFICATIONS ===== -->
-<section id="certifications" style="border-top:1px solid var(--line)">
-  <div class="wrap">
-    <h2 class="display h2 split" data-en="Certifications." data-fr="Certifications.">Certifications.</h2>
-    <div class="acc rv" id="certAccordion" style="margin-top:56px">
+  function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+  function L(o) { return o[state.lang] || o.en || o.fr; }
+  function fmtDate(iso) {
+    var d = new Date(iso + 'T12:00:00');
+    try { return d.toLocaleDateString(state.lang === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); } catch (e) { return iso; }
+  }
+  function todayIdx() {
+    try {
+      var w = new Intl.DateTimeFormat('en-US', { weekday: 'short', timeZone: 'Africa/Casablanca' }).format(new Date());
+      return DAYS.indexOf(w);
+    } catch (e) { return new Date().getDay(); }
+  }
+  function nextPostDay(t) {
+    var td = todayIdx(), posting = [1, 3, 5];
+    if (posting.indexOf(td) >= 0) return { idx: td, today: true };
+    for (var i = 1; i <= 7; i++) { var d = (td + i) % 7; if (posting.indexOf(d) >= 0) return { idx: d, today: false }; }
+    return { idx: 1, today: false };
+  }
+  var seq = 0;
+  function rv(node) { node.classList.add('reveal'); node.style.setProperty('--i', seq++); return node; }
 
-      <div class="acc-item">
-        <button type="button" class="acc-h" aria-expanded="false"><span class="t">Data</span><span class="n">4</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-        <div class="reveal-box"><div><div class="acc-body">
-          <a href="https://coursera.org/verify/HB6EACTOP44F" class="crow" target="_blank" rel="noopener"><span class="yr tag">Oct 2025</span><span class="ct">What is Data Science?</span><span class="chip">IBM / Coursera</span><svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-          <div class="crow"><span class="yr tag">Oct 2025</span><span class="ct">Data Engineering on AWS - Foundations</span><span class="chip">AWS Training</span></div>
-          <div class="crow"><span class="yr tag">Jul 2025</span><span class="ct">Data Analytics Job Simulation</span><span class="chip">Deloitte / Forage</span></div>
-          <div class="crow"><span class="yr tag">Nov 2023</span><span class="ct">Google Analytics Certification</span><span class="chip">Expired Nov 2024</span><span class="chip">Google</span></div>
-        </div></div></div>
-      </div>
+  function renderChrome() {
+    var t = UI[state.lang];
+    document.documentElement.lang = state.lang;
+    document.getElementById('role').textContent = t.role;
+    document.getElementById('foot-l').textContent = t.foot;
+    document.getElementById('lang-hint').textContent = t.hint;
+    Array.prototype.forEach.call(document.querySelectorAll('.lang button'), function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-lang') === state.lang ? 'true' : 'false');
+    });
+  }
 
-      <div class="acc-item">
-        <button type="button" class="acc-h" aria-expanded="false"><span class="t">AI</span><span class="n">1</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-        <div class="reveal-box"><div><div class="acc-body">
-          <div class="crow"><span class="yr tag">Oct 2025</span><span class="ct">Fundamentals of Machine Learning and Artificial Intelligence</span><span class="chip">AWS Training</span></div>
-        </div></div></div>
-      </div>
+  function renderIndex() {
+    var t = UI[state.lang]; seq = 0;
+    var keepFocus = document.activeElement && document.activeElement.id === 'q';
+    view.textContent = '';
+    progress.style.transform = 'scaleX(0)';
+    var hero = el('section', 'hero');
+    var eb = el('div', 'eyebrow'); eb.appendChild(el('span', null, t.eyebrow)); eb.appendChild(el('span', 'pill', t.pill)); hero.appendChild(rv(eb));
+    var h1 = el('h1'); h1.appendChild(document.createTextNode(t.h1a + ' ')); h1.appendChild(el('span', 'hl', t.h1b)); hero.appendChild(rv(h1));
+    hero.appendChild(rv(el('p', 'lede', t.lede)));
 
-      <div class="acc-item">
-        <button type="button" class="acc-h" aria-expanded="false"><span class="t">Dev</span><span class="n">2</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-        <div class="reveal-box"><div><div class="acc-body">
-          <a href="https://coursera.org/verify/TR0LPX6KQXI5" class="crow" target="_blank" rel="noopener"><span class="yr tag">May 2025</span><span class="ct">Using Python to Access Web Data</span><span class="chip">Univ. of Michigan / Coursera</span><svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-          <a href="https://coursera.org/verify/K9AECDT8B6GN" class="crow" target="_blank" rel="noopener"><span class="yr tag">Nov 2023</span><span class="ct">Crash Course on Python</span><span class="chip">Google / Coursera</span><svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-        </div></div></div>
-      </div>
+    var ctas = el('div', 'ctas');
+    var bm = el('button', 'btn-main'); bm.type = 'button'; bm.appendChild(document.createTextNode(t.cta1 + ' ')); bm.appendChild(el('span', 'ar', '→'));
+    bm.addEventListener('click', function () { if (POSTS.length) openPost(POSTS[0].id); });
+    var bg = el('button', 'btn-ghost', t.cta2); bg.type = 'button';
+    bg.addEventListener('click', function () { openPost('why-this-blog'); });
+    ctas.appendChild(bm); ctas.appendChild(bg); hero.appendChild(rv(ctas));
+    var proof = el('div', 'proof'); t.proof.forEach(function (x) { proof.appendChild(el('span', null, x)); }); hero.appendChild(rv(proof));
+    if (POSTS.length) {
+      var lp = POSTS[0];
+      var lb = el('button', 'latest'); lb.type = 'button';
+      var lt = el('span', 'lt'); lt.appendChild(el('b', null, L(lp.title))); lt.appendChild(el('i', null, L(lp.tag) + ' · ' + fmtDate(lp.date) + ' · ' + lp.minutes + t.min));
+      lb.appendChild(el('span', 'new', t.newTag)); lb.appendChild(lt); lb.appendChild(el('span', 'go2', '→'));
+      lb.addEventListener('click', function () { openPost(lp.id); });
+      hero.appendChild(rv(lb));
+    }
+    hero.appendChild(rv(el('div', 'how-label', t.how)));
 
-      <div class="acc-item">
-        <button type="button" class="acc-h" aria-expanded="false"><span class="t">Security</span><span class="n">1</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-        <div class="reveal-box"><div><div class="acc-body">
-          <a href="https://coursera.org/verify/SJ7DM82BM4E3" class="crow" target="_blank" rel="noopener"><span class="yr tag">Nov 2023</span><span class="ct">Foundations of Cybersecurity</span><span class="chip">Google / Coursera</span><svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-        </div></div></div>
-      </div>
-    </div>
-  </div>
-</section>
+    var np = nextPostDay(t);
+    var nl = el('div', 'nextline');
+    var nm = ''; t.cad.forEach(function (c) { if (c[0] === np.idx) nm = c[1]; });
+    nl.appendChild(el('span', null, np.today ? t.today : t.next)); nl.appendChild(el('b', null, nm));
+    hero.appendChild(rv(nl));
+    var cad = el('div', 'cadence');
+    t.cad.forEach(function (c) {
+      var d = el('div'); if (c[0] === np.idx) d.className = np.today ? 'on' : 'next';
+      d.appendChild(el('span', 'd', c[1])); d.appendChild(el('span', 't', c[2])); cad.appendChild(d);
+    });
+    hero.appendChild(rv(cad));
+    view.appendChild(hero);
 
-<!-- ===== COMPETENCES ===== -->
-<section id="competences" style="border-top:1px solid var(--line)">
-  <div class="wrap">
-    <div class="skills-grid">
-      <div class="skills-head">
-        <h2 class="display h2 split" data-en="My *skills.*" data-fr="Mes *compétences.*">My skills.</h2>
-      </div>
-      <div class="skills-list rv" id="skillAccordion">
-        <div class="acc-item">
-          <button type="button" class="acc-h" aria-expanded="false"><span class="t">Machine Learning &amp; Deep Learning</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-          <div class="reveal-box"><div><div class="acc-body">
-            <div class="skill-text" data-en="[Python, Scikit-learn, TensorFlow / PyTorch, computer vision, NLP...]" data-fr="[Python, Scikit-learn, TensorFlow / PyTorch, computer vision, NLP...]">[Python, Scikit-learn, TensorFlow / PyTorch, computer vision, NLP...]</div>
-            <div class="bar"><i data-w="88%"></i></div>
-          </div></div></div>
-        </div>
-        <div class="acc-item">
-          <button type="button" class="acc-h" aria-expanded="false"><span class="t">Data Engineering &amp; MLOps</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-          <div class="reveal-box"><div><div class="acc-body">
-            <div class="skill-text" data-en="[SQL, Pandas, Docker, Cloud (AWS/GCP)]" data-fr="[SQL, Pandas, Docker, Cloud (AWS/GCP)]">[SQL, Pandas, Docker, Cloud (AWS/GCP)]</div>
-            <div class="bar"><i data-w="70%"></i></div>
-          </div></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-</main>
+    var tags = [];
+    POSTS.forEach(function (p) { var k = L(p.tag); if (tags.indexOf(k) < 0) tags.push(k); });
+    var q = state.q.trim().toLowerCase();
+    var shown = POSTS.filter(function (p) {
+      if (state.tag !== 'all' && L(p.tag) !== state.tag) return false;
+      if (!q) return true;
+      return (L(p.title) + ' ' + L(p.summary) + ' ' + L(p.tag)).toLowerCase().indexOf(q) >= 0;
+    });
 
-<!-- ===== CONTACT ===== -->
-<footer class="contact" id="contact">
-  <div class="wrap">
-    <h2 class="display split" data-en="You can find me *here.*" data-fr="Vous pouvez me trouver *ici.*">You can find me here.</h2>
-    <a href="mailto:contact.hamzaelalami@gmail.com" class="mail rv">contact.hamzaelalami@gmail.com</a>
-    <div class="socials rv" style="--d:100ms">
-      <a href="https://github.com/hamzaelchen" class="social" rel="noopener">
-        <span class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></span>
-        <span>GitHub - hamzaelchen</span>
-      </a>
-      <a href="https://www.linkedin.com/in/hamza-el-alami-chentoufi-a54b123b0/" class="social" rel="noopener">
-        <span class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-5M12 11c1.2-1.4 4-1.5 4 1v4"/></svg></span>
-        <span>LinkedIn - Hamza El Alami Chentoufi</span>
-      </a>
-      <a href="/blog/" class="social" rel="noopener">
-        <span class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></span>
-        <span data-en="Blog - Data, AI &amp; Tech" data-fr="Blog - Data, IA &amp; Tech">Blog - Data, AI &amp; Tech</span>
-      </a>
-    </div>
-    <div class="foot">
-      <span class="tag">Hamza El Alami Chentoufi</span>
-      <nav aria-label="Footer">
-        <a href="#projets" class="nav-link" data-en="Projects" data-fr="Projets">Projects</a>
-        <a href="#certifications" class="nav-link" data-en="Certifications" data-fr="Certifications">Certifications</a>
-        <a href="#competences" class="nav-link" data-en="Skills" data-fr="Compétences">Skills</a>
-        <a href="/blog/" class="nav-link" data-en="Blog" data-fr="Blog">Blog</a>
-      </nav>
-      <a href="#top" class="totop"><span data-en="Back to top" data-fr="Haut de page">Back to top</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
-    </div>
-  </div>
-</footer>
-
-<script>
-(function () {
-  var $ = function (s, r) { return (r || document).querySelector(s); };
-  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  var lang = 'en';
-
-  /* ---- i18n + word-mask headings ---- */
-  function renderSplit(el, text) {
-    el.textContent = '';
-    var n = 0;
-    el.style.setProperty('--base', (el.getAttribute('data-base') || 0) + 'ms');
-    text.split('*').forEach(function (seg, si) {
-      seg.split(/(\s+)/).forEach(function (part) {
-        if (!part) return;
-        if (/^\s+$/.test(part)) { el.appendChild(document.createTextNode(' ')); return; }
-        var w = document.createElement('span'); w.className = 'w' + (si % 2 ? ' em' : '');
-        var i = document.createElement('span'); i.className = 'wi'; i.style.setProperty('--i', n++); i.textContent = part;
-        w.appendChild(i); el.appendChild(w);
+    var lab = el('div', 'sec-label'); lab.appendChild(el('span', null, t.latest)); var cnt = el('span', null, t.count(shown.length)); cnt.id = 'cnt'; lab.appendChild(cnt); view.appendChild(rv(lab));
+    var tools = el('div', 'tools');
+    var inp = el('input', 'search'); inp.type = 'search'; inp.id = 'q'; inp.placeholder = t.search; inp.setAttribute('aria-label', t.search); inp.value = state.q;
+    tools.appendChild(inp);
+    if (tags.length > 1) {
+      var f = el('div', 'filters');
+      [['all', t.all]].concat(tags.map(function (k) { return [k, k]; })).forEach(function (pair) {
+        var b = el('button', 'chip', pair[1]); b.type = 'button'; b.setAttribute('aria-pressed', state.tag === pair[0] ? 'true' : 'false');
+        b.addEventListener('click', function () { state.tag = pair[0]; renderIndex(); });
+        f.appendChild(b);
       });
-    });
-    el.setAttribute('aria-label', text.replace(/\*/g, ''));
-  }
-  function applyLang(l) {
-    lang = l;
-    document.documentElement.lang = l;
-    $$('[data-en]').forEach(function (el) {
-      var v = el.getAttribute('data-' + l);
-      if (v === null) return;
-      if (el.classList.contains('split')) renderSplit(el, v); else el.textContent = v;
-    });
-    var s = $('#projectSearch'); var ph = s.getAttribute('data-' + l + '-ph'); if (ph) s.placeholder = ph;
-    $$('.lang button').forEach(function (b) { var on = b.getAttribute('data-lang') === l; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
-    try { localStorage.setItem('hea-lang', l); } catch (e) {}
-    applyFilters();
-  }
-  $$('.lang button').forEach(function (b) { b.addEventListener('click', function () { applyLang(b.getAttribute('data-lang')); }); });
-
-  /* ---- reveal on enter (one-shot) ---- */
-  var targets = $$('.split, .rv');
-  function show(el) { el.classList.add('in'); }
-  if ('IntersectionObserver' in window && !reduce) {
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
-    }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
-    targets.forEach(function (el) { io.observe(el); });
-  } else { targets.forEach(show); }
-
-  /* ---- in-page links: scroll by script so they also work in previews and sandboxed frames ---- */
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href^="#"]');
-    if (!a) return;
-    var id = a.getAttribute('href').slice(1);
-    if (!id) { e.preventDefault(); return; }
-    var t = id === 'top' ? document.body : document.getElementById(id);
-    if (!t) return;
-    e.preventDefault();
-    var y = id === 'top' ? 0 : t.getBoundingClientRect().top + window.pageYOffset - 64;
-    window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
-  });
-
-  /* ---- active nav link ---- */
-  var navLinks = $$('.nav-links .nav-link');
-  if ('IntersectionObserver' in window) {
-    var so = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        navLinks.forEach(function (a) { a.setAttribute('aria-current', a.getAttribute('href') === '#' + e.target.id ? 'true' : 'false'); });
+      tools.appendChild(f);
+    }
+    view.appendChild(rv(tools));
+    var list = el('div', 'list'); list.id = 'list';
+    view.appendChild(list);
+    fillList(list, shown, t);
+    inp.addEventListener('input', function () {
+      state.q = inp.value; var qq = state.q.trim().toLowerCase();
+      var s2 = POSTS.filter(function (p) {
+        if (state.tag !== 'all' && L(p.tag) !== state.tag) return false;
+        if (!qq) return true;
+        return (L(p.title) + ' ' + L(p.summary) + ' ' + L(p.tag)).toLowerCase().indexOf(qq) >= 0;
       });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    $$('#apropos, #projets, #certifications, #competences, #contact').forEach(function (s) { so.observe(s); });
+      document.getElementById('cnt').textContent = t.count(s2.length);
+      fillList(list, s2, t);
+    });
+    if (keepFocus) { inp.focus(); }
   }
 
-  /* ---- pointer effects (fine pointers only, no React-style state) ---- */
-  if (canHover && !reduce) {
-    var hero = $('#hero');
-    hero.addEventListener('pointermove', function (e) {
-      var r = hero.getBoundingClientRect();
-      hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
-    }, { passive: true });
-
-    var card = $('.tilt');
-    card.addEventListener('pointermove', function (e) {
-      var r = card.getBoundingClientRect();
-      var px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
-      card.style.transition = 'transform .08s linear, border-color .3s ease';
-      card.style.transform = 'perspective(900px) rotateY(' + (px * 9) + 'deg) rotateX(' + (-py * 9) + 'deg)';
+  function fillList(list, shown, t) {
+    list.textContent = '';
+    if (!shown.length) { list.appendChild(el('div', 'empty', t.none)); return; }
+    shown.forEach(function (p) {
+      var it = el('button', 'item'); it.type = 'button'; rv(it);
+      var meta = el('div', 'it-meta'); meta.appendChild(el('span', 'tg', L(p.tag))); meta.appendChild(el('span', null, fmtDate(p.date)));
+      var body = el('div', 'it-body');
+      body.appendChild(el('span', 'it-title', L(p.title)));
+      body.appendChild(el('span', 'it-sum', L(p.summary)));
+      body.appendChild(el('span', 'it-foot', p.minutes + t.min));
+      it.appendChild(meta); it.appendChild(body); it.appendChild(el('span', 'go', '→'));
+      it.addEventListener('click', function () { openPost(p.id); });
+      list.appendChild(it);
     });
-    card.addEventListener('pointerleave', function () { card.style.transition = ''; card.style.transform = ''; });
+  }
 
-    $$('.feature').forEach(function (f) {
-      f.addEventListener('pointermove', function (e) {
-        var r = f.getBoundingClientRect();
-        f.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-        f.style.setProperty('--my', (e.clientY - r.top) + 'px');
-      }, { passive: true });
+  function cites(parent, text) {
+    var re = /\[(\d+)\]/g, last = 0, m;
+    while ((m = re.exec(text))) {
+      if (m.index > last) parent.appendChild(document.createTextNode(text.slice(last, m.index)));
+      var sup = el('sup'); var a = el('a', null, '[' + m[1] + ']'); a.href = '#src-' + m[1];
+      a.addEventListener('click', (function (n) { return function (e) { e.preventDefault(); var x = document.getElementById('src-' + n); if (x) x.scrollIntoView({ behavior: 'smooth', block: 'center' }); }; })(m[1]));
+      sup.appendChild(a); parent.appendChild(sup);
+      last = re.lastIndex;
+    }
+    if (last < text.length) parent.appendChild(document.createTextNode(text.slice(last)));
+  }
+
+
+  var MON = { en: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], fr: ['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'] };
+  function shortDate(d) { var a = d.split('-'); return (+a[2]) + ' ' + MON[state.lang][+a[1] - 1]; }
+  function figure(b, inner) { var f = el('figure', 'fig'); f.appendChild(inner); if (b.cap) { var c = el('figcaption'); cites(c, b.cap); f.appendChild(c); } return f; }
+  function figTimeline(b) {
+    var w = el('div'); var ts = b.items.map(function (i) { var a = i.d.split('-'); return Date.UTC(+a[0], +a[1] - 1, +a[2]); });
+    var mn = new Date(Math.min.apply(null, ts)), mx = new Date(Math.max.apply(null, ts));
+    var t0 = Date.UTC(mn.getUTCFullYear(), mn.getUTCMonth(), 1), t1 = Date.UTC(mx.getUTCFullYear(), mx.getUTCMonth() + 1, 1), span = t1 - t0;
+    var ax = el('div', 'tl-axis'); ax.setAttribute('aria-hidden', 'true'); ax.appendChild(el('div', 'tl-line'));
+    for (var m = new Date(t0); m.getTime() < t1; m = new Date(Date.UTC(m.getUTCFullYear(), m.getUTCMonth() + 1, 1))) {
+      var pos = (m.getTime() - t0) / span * 100, tk = el('div', 'tl-tick'); tk.style.left = pos + '%'; ax.appendChild(tk);
+      var nx = Date.UTC(m.getUTCFullYear(), m.getUTCMonth() + 1, 1), lb = el('div', 'tl-mon', MON[state.lang][m.getUTCMonth()].replace('.', '')); lb.style.left = ((m.getTime() + nx) / 2 - t0) / span * 100 + '%'; ax.appendChild(lb);
+    }
+    b.items.forEach(function (it, i) {
+      var left = Math.min(97, Math.max(3, (ts[i] - t0) / span * 100)), row = i % 3, h = row * 26;
+      var pin = el('div', 'tl-pin' + (it.hot ? ' hot' : '')); pin.style.left = left + '%'; pin.style.top = h + 'px';
+      pin.appendChild(el('div', 'b', String(i + 1)));
+      var stem = el('div', 's'); stem.style.height = (112 - 26 - 22 - h - 5) + 'px'; pin.appendChild(stem); pin.appendChild(el('div', 'd'));
+      ax.appendChild(pin);
     });
+    w.appendChild(ax);
+    var ol = el('ol', 'tl-list');
+    b.items.forEach(function (it, i) { var li = el('li', it.hot ? 'hot' : ''); li.appendChild(el('span', 'n', String(i + 1))); li.appendChild(el('span', 'dt', shortDate(it.d))); var h = el('span'); cites(h, it.h); li.appendChild(h); ol.appendChild(li); });
+    w.appendChild(ol); return w;
+  }
+  function figCompare(b) {
+    var w = el('div', 'cmp');
+    var c1 = el('div', 'cmp-col'); c1.appendChild(el('div', 'kick', b.bt));
+    var r1 = el('div', 'cmp-row'); r1.appendChild(el('span', 'chip', b.bn[0])); r1.appendChild(el('span', 'arr', '→')); r1.appendChild(el('span', 'chip closed', b.bn[1])); c1.appendChild(r1);
+    var n1 = el('div', 'note'); cites(n1, b.bnote); c1.appendChild(n1); w.appendChild(c1);
+    var c2 = el('div', 'cmp-col now'); c2.appendChild(el('div', 'kick', b.at));
+    var r2 = el('div', 'cmp-row'); var st = el('div', 'cmp-stack'); b.engines.forEach(function (e) { st.appendChild(el('span', 'chip', e)); });
+    r2.appendChild(st); r2.appendChild(el('span', 'arr', '→')); r2.appendChild(el('span', 'chip cat', b.cat)); r2.appendChild(el('span', 'arr', '→')); r2.appendChild(el('span', 'chip open', b.tab)); c2.appendChild(r2);
+    var n2 = el('div', 'note'); cites(n2, b.anote); c2.appendChild(n2); w.appendChild(c2); return w;
+  }
+  function figMatrix(b) {
+    var w = el('div', 'mx'); var h = el('div', 'mx-r mx-h'); b.head.forEach(function (x) { h.appendChild(el('span', null, x)); }); w.appendChild(h);
+    b.rows.forEach(function (r) {
+      var row = el('div', 'mx-r'); var c1 = el('span', 'cell', r.k); var c2 = el('span', 'cell'); c2.appendChild(el('span', 'st ' + r.s, r.st)); var c3 = el('span', 'cell'); cites(c3, r.src);
+      row.appendChild(c1); row.appendChild(c2); row.appendChild(c3); w.appendChild(row);
+    });
+    return w;
+  }
+  function figFlow(b) {
+    var ol = el('ol', 'flow'); var prep = b.prep || 0;
+    b.steps.forEach(function (s, i) { var li = el('li', i < prep ? 'prep' : ''); li.appendChild(el('span', 'no', (i < prep ? b.prepLabel : b.rollLabel) + ' ' + (i < prep ? i + 1 : i - prep + 1))); li.appendChild(el('span', null, s)); ol.appendChild(li); });
+    return ol;
+  }
 
-    $$('.mag').forEach(function (b) {
-      b.addEventListener('pointermove', function (e) {
-        var r = b.getBoundingClientRect();
-        var x = (e.clientX - (r.left + r.width / 2)) * .22, y = (e.clientY - (r.top + r.height / 2)) * .3;
-        b.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+  function figSvg(b) { var w = el('div', 'svwrap'); w.innerHTML = b.svg; return w; }
+
+  function renderPost(p) {
+    var t = UI[state.lang]; seq = 0;
+    view.textContent = '';
+    var back = el('button', 'back', '← ' + t.back); back.type = 'button'; back.addEventListener('click', goHome); view.appendChild(rv(back));
+    var head = el('header', 'post-head');
+    var meta = el('div', 'post-meta'); meta.appendChild(el('span', 'tg', L(p.tag))); meta.appendChild(el('span', null, fmtDate(p.date))); meta.appendChild(el('span', null, p.minutes + t.min)); head.appendChild(meta);
+    head.appendChild(el('h1', null, L(p.title)));
+    head.appendChild(el('p', 'lede', L(p.summary)));
+    view.appendChild(rv(head));
+    var prose = el('article', 'prose');
+    L(p.body).forEach(function (b) {
+      if (b.t === 'h2') prose.appendChild(el('h2', null, b.x));
+      else if (b.t === 'timeline') prose.appendChild(figure(b, figTimeline(b)));
+      else if (b.t === 'compare') prose.appendChild(figure(b, figCompare(b)));
+      else if (b.t === 'matrix') prose.appendChild(figure(b, figMatrix(b)));
+      else if (b.t === 'flow') prose.appendChild(figure(b, figFlow(b)));
+      else if (b.t === 'svg') prose.appendChild(figure(b, figSvg(b)));
+      else if (b.t === 'ul') { var ul = el('ul'); b.x.forEach(function (i) { var li = el('li'); cites(li, i); ul.appendChild(li); }); prose.appendChild(ul); }
+      else { var pp = el('p'); cites(pp, b.x); prose.appendChild(pp); }
+    });
+    view.appendChild(rv(prose));
+    if (p.sources && p.sources.length) {
+      var s = el('section', 'sources'); s.appendChild(el('h2', null, t.sources));
+      var ol = el('ol');
+      p.sources.forEach(function (src, i) {
+        var li = el('li'); li.id = 'src-' + (i + 1);
+        li.appendChild(el('span', 'n', '[' + (i + 1) + ']'));
+        var box = el('div'); var a = el('a', null, src.title); a.href = src.url; a.target = '_blank'; a.rel = 'noopener'; box.appendChild(a);
+        box.appendChild(el('span', 'pub', src.publisher + ' · ' + src.date));
+        li.appendChild(box); ol.appendChild(li);
       });
-      b.addEventListener('pointerleave', function () { b.style.transform = ''; });
-    });
+      s.appendChild(ol); view.appendChild(s);
+    }
+    if (p.carousel) {
+      var c = el('div', 'cta'); var a2 = el('a', 'btn', t.carousel + ' →'); a2.href = p.carousel; a2.target = '_blank'; a2.rel = 'noopener'; c.appendChild(a2); view.appendChild(c);
+    }
+    onScroll();
   }
 
-  /* ---- hero neural field (canvas) ---- */
-  (function () {
-    var c = $('#net'); if (!c || !c.getContext) return;
-    var ctx = c.getContext('2d'), w = 0, h = 0, pts = [], mx = -9999, my = -9999, raf = 0, visible = true, lastPtr = -9999;
-    function size() {
-      var dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = c.clientWidth; h = c.clientHeight;
-      c.width = w * dpr; c.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var n = Math.max(48, Math.min(95, Math.round(w * h / 14000)));
-      pts = [];
-      for (var i = 0; i < n; i++) pts.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - .5) * .28, vy: (Math.random() - .5) * .28 });
-      draw();
-    }
-    function draw() {
-      ctx.clearRect(0, 0, w, h);
-      var i, j, p, q, dx, dy, d;
-      if (!reduce) {
-        var now = performance.now();
-        // no pointer for a moment (touch screens, idle desktop): a ghost cursor drifts so the field stays alive
-        if (now - lastPtr > 2200) { mx = w * (.5 + .36 * Math.sin(now / 2400)); my = h * (.42 + .3 * Math.cos(now / 1900)); }
-      }
-      for (i = 0; i < pts.length; i++) {
-        p = pts[i];
-        if (!reduce) {
-          dx = mx - p.x; dy = my - p.y; d = Math.sqrt(dx * dx + dy * dy);
-          if (d < 190 && d > 1) { p.vx += dx / d * .012; p.vy += dy / d * .012; }
-          p.vx *= .985; p.vy *= .985;
-          if (Math.abs(p.vx) < .06) p.vx += (Math.random() - .5) * .02;
-          if (Math.abs(p.vy) < .06) p.vy += (Math.random() - .5) * .02;
-          p.x += p.vx; p.y += p.vy;
-          if (p.x < -10) p.x = w + 10; else if (p.x > w + 10) p.x = -10;
-          if (p.y < -10) p.y = h + 10; else if (p.y > h + 10) p.y = -10;
-        }
-      }
-      ctx.lineWidth = 1;
-      for (i = 0; i < pts.length; i++) {
-        p = pts[i];
-        for (j = i + 1; j < pts.length; j++) {
-          q = pts[j]; dx = p.x - q.x; dy = p.y - q.y; d = dx * dx + dy * dy;
-          if (d < 14400) { ctx.strokeStyle = 'rgba(236,236,230,' + ((1 - Math.sqrt(d) / 120) * .16) + ')'; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
-        }
-        dx = p.x - mx; dy = p.y - my; d = Math.sqrt(dx * dx + dy * dy);
-        if (d < 190) { ctx.strokeStyle = 'rgba(212,255,58,' + ((1 - d / 190) * .6) + ')'; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mx, my); ctx.stroke(); }
-        ctx.fillStyle = d < 190 ? 'rgba(212,255,58,.9)' : 'rgba(236,236,230,.45)';
-        ctx.beginPath(); ctx.arc(p.x, p.y, 1.6, 0, 6.283); ctx.fill();
-      }
-    }
-    function loop() { draw(); raf = visible ? requestAnimationFrame(loop) : 0; }
-    size();
-    var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(size, 150); });
-    if (reduce) return;
-    $('#hero').addEventListener('pointermove', function (e) { var r = c.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; lastPtr = performance.now(); }, { passive: true });
-    // a tap scatters the nearby points, then the field pulls itself back together
-    $('#hero').addEventListener('pointerdown', function (e) {
-      var r = c.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
-      mx = x; my = y; lastPtr = performance.now();
-      pts.forEach(function (p) { var dx = p.x - x, dy = p.y - y, d = Math.sqrt(dx * dx + dy * dy) || 1; if (d < 170) { p.vx += dx / d * 3.2; p.vy += dy / d * 3.2; } });
-    }, { passive: true });
-    $('#hero').addEventListener('pointerleave', function () { mx = my = -9999; lastPtr = performance.now(); });
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible && !raf) loop(); }).observe(c);
-    }
-    document.addEventListener('visibilitychange', function () { visible = !document.hidden; if (visible && !raf) loop(); });
-    loop();
-  })();
-
-  /* ---- projects: search + filter + expandable rows ---- */
-  var active = 'all', search = $('#projectSearch'), prows = $$('.prow'), none = $('#noResults');
-  function applyFilters() {
-    var q = search.value.trim().toLowerCase(), count = 0;
-    prows.forEach(function (r) {
-      var ok = (active === 'all' || r.getAttribute('data-domain') === active) && (!q || $('.name', r).textContent.toLowerCase().indexOf(q) !== -1 || r.getAttribute('data-domain').indexOf(q) !== -1);
-      r.classList.toggle('hide', !ok); if (ok) count++;
-    });
-    none.hidden = count !== 0;
+  function onScroll() {
+    if (!state.post) { progress.style.transform = 'scaleX(0)'; return; }
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var r = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    progress.style.transform = 'scaleX(' + r + ')';
   }
-  search.addEventListener('input', applyFilters);
-  $$('.filter').forEach(function (b) {
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  function render() {
+    renderChrome();
+    var p = null;
+    if (state.post) POSTS.forEach(function (x) { if (x.id === state.post) p = x; });
+    if (p) renderPost(p); else { state.post = null; renderIndex(); }
+  }
+  function openPost(id) { state.post = id; try { history.replaceState(null, '', '#' + id); } catch (e) {} render(); window.scrollTo(0, 0); }
+  function goHome() { state.post = null; try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} render(); window.scrollTo(0, 0); }
+
+  document.getElementById('home').addEventListener('click', goHome);
+  Array.prototype.forEach.call(document.querySelectorAll('.lang button'), function (b) {
     b.addEventListener('click', function () {
-      $$('.filter').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
-      b.setAttribute('aria-pressed', 'true'); active = b.getAttribute('data-filter'); applyFilters();
+      var nl = b.getAttribute('data-lang'); if (nl === state.lang) return;
+      state.lang = nl; state.tag = 'all';
+      try { localStorage.setItem('hea-lang', state.lang); } catch (e) {}
+      render();
     });
   });
-  prows.forEach(function (r) {
-    var h = $('.prow-h', r);
-    h.addEventListener('click', function () {
-      var open = r.classList.contains('open');
-      prows.forEach(function (o) { o.classList.remove('open'); $('.prow-h', o).setAttribute('aria-expanded', 'false'); });
-      if (!open) { r.classList.add('open'); h.setAttribute('aria-expanded', 'true'); }
-    });
-  });
-
-  /* ---- accordions ---- */
-  function wire(sel, single) {
-    var items = $$(sel + ' .acc-item');
-    items.forEach(function (it) {
-      var h = $('.acc-h', it);
-      h.addEventListener('click', function () {
-        var open = !it.classList.contains('open');
-        if (single) items.forEach(function (o) { if (o !== it) { o.classList.remove('open'); $('.acc-h', o).setAttribute('aria-expanded', 'false'); $$('.bar i', o).forEach(function (b) { b.style.width = 0; }); } });
-        it.classList.toggle('open', open); h.setAttribute('aria-expanded', open);
-        $$('.bar i', it).forEach(function (b) { b.style.width = open ? b.getAttribute('data-w') : 0; });
-      });
-    });
-    if (items[0]) $('.acc-h', items[0]).click();
-  }
-  wire('#certAccordion', true);
-  wire('#skillAccordion', true);
-
-  /* ---- Safari without scroll-driven animations: same progress bar and hero exit, throttled to one frame ---- */
-  if (!reduce && !(window.CSS && CSS.supports && CSS.supports('animation-timeline: scroll()'))) {
-    var prog = $('#progress'), hc = $('.hero-copy'), hero2 = $('#hero'), tick = false;
-    var paint = function () {
-      tick = false;
-      var y = window.pageYOffset, max = document.documentElement.scrollHeight - window.innerHeight;
-      prog.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
-      var t = Math.min(1, Math.max(0, y / (hero2.offsetHeight * .9)));
-      hc.style.transform = 'translateY(' + (-60 * t) + 'px)'; hc.style.opacity = 1 - t;
-    };
-    window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(paint); } }, { passive: true });
-    paint();
-  }
-
-  var saved = 'en'; try { saved = localStorage.getItem('hea-lang') || 'en'; } catch (e) {}
-  applyLang(saved === 'fr' ? 'fr' : 'en');
+  render();
 })();
 </script>
+
+
+
 </body>
 </html>
